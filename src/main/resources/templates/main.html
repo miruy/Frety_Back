@@ -1,0 +1,88 @@
+<html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+<div layout:fragment="content">
+    <div class="space-y-10">
+        <div class="space-y-1 border-b pb-3">
+            <div class="text-4xl font-bold">Chordric</div>
+            <div class="text-zinc-500">세상에 단 하나뿐인 당신의 기타 코드</div>
+        </div>
+
+        <div>
+            <div class="flex justify-end">
+                <a class="btn" th:href="@{/chord/create}">코드 등록</a>
+            </div>
+
+            <div role="tablist" class="tabs tabs-lifted">
+
+                <!--최근 등록된 코드-->
+                <input
+                        type="radio"
+                        name="my_tabs_2"
+                        role="tab"
+                        class="tab"
+                        aria-label="최근 등록된 코드"
+                        checked="checked"
+                />
+                <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+                    <div class="overflow-x-auto">
+                        <table class="table">
+                            <thead>
+                            <tr class="text-[15px] text-center tracking-wide">
+                                <th>가수</th>
+                                <th>제목</th>
+                                <th>등록일</th>
+                                <th>작성자</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="chord : ${latestChords}"
+                                th:attr="data-href=@{|/chord/${chord.id}|}"
+                                onclick="window.location.href=this.getAttribute('data-href')"
+                                class="hover:bg-gray-100 text-[15px] text-center cursor-pointer tracking-wide">
+                                <td th:text="${chord.artist}"></td>
+                                <td th:text="${chord.song}"></td>
+                                <td th:text="${#temporals.format(chord.createAt, 'yyyy.MM.dd')}"></td>
+                                <td th:text="작성자"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!--인기 코드 (댓글이 가장 많은 코드)-->
+                <input
+                        type="radio"
+                        name="my_tabs_2"
+                        role="tab"
+                        class="tab"
+                        aria-label="인기 코드"
+                />
+                <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+                    <div class="overflow-x-auto">
+                        <table class="table">
+                            <thead>
+                            <tr class="text-[15px] text-center tracking-wide">
+                                <th>가수</th>
+                                <th>제목</th>
+                                <th>등록일</th>
+                                <th>작성자</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="chord : ${popularChords}"
+                                th:attr="data-href=@{|/chord/${chord.id}|}"
+                                onclick="window.location.href=this.getAttribute('data-href')"
+                                class="hover:bg-gray-100 text-[15px] text-center cursor-pointer tracking-wide">
+                                <td th:text="${chord.artist}"></td>
+                                <td th:text="${chord.song}"></td>
+                                <td th:text="${#temporals.format(chord.createAt, 'yyyy.MM.dd')}"></td>
+                                <td th:text="작성자"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

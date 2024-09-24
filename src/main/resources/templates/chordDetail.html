@@ -1,0 +1,48 @@
+<html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+<div layout:fragment="content">
+    <div class="px-5 space-y-10">
+        <div class="space-y-1 border-b pb-3">
+            <div class="text-4xl font-bold" th:text="${chord.song}"></div>
+            <div class="text-zinc-500" th:text="${chord.artist}"></div>
+        </div>
+
+        <div class="py-20" th:text="${chord.content}"></div>
+
+        <form th:action="@{|/comment/create/${chord.id}|}" method="post" class="flex flex-col items-end space-y-3">
+            <textarea class="textarea textarea-bordered w-full h-40 min-h-40 max-h-80" placeholder="댓글을 남겨보세요!"
+                      name="content" id="content" rows="15"></textarea>
+            <input class="btn" type="submit" value="등록"/>
+        </form>
+
+        <div class="space-y-3">
+            <div th:text="|${#lists.size(chord.comments)}개의 댓글|"></div>
+
+            <!-- 댓글 없을 경우 -->
+            <div th:if="${#lists.isEmpty(chord.comments)}"
+                 class="flex bg-zinc-50 text-[15px] text-gray-500 justify-center items-center p-5 rounded-lg h-40">
+                댓글이 없습니다.
+            </div>
+
+            <!-- 댓글 있을 경우 -->
+            <div th:each="comment: ${chord.comments}" class="border rounded-lg p-5">
+                <div class="chat chat-start space-y-1">
+                    <div class="chat-header flex ml-1 items-center space-x-1">
+                        <div class="text-[14px]">귀여운 친친라</div>
+                        <time class="text-xs opacity-50">12:45</time>
+                    </div>
+                    <div th:text="${comment.content}" class="chat-bubble text-[15px] flex items-center"></div>
+                </div>
+
+                <!--답글 예시-->
+                <div class="chat chat-end  space-y-1">
+                    <div class="chat-header flex mr-1 items-center space-x-1">
+                        <div class="text-[14px]">작성자</div>
+                        <time class="text-xs opacity-50">18:23</time>
+                    </div>
+                    <div th:text="감사합니다" class="chat-bubble text-[15px] flex items-center"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>
