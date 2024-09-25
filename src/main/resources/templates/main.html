@@ -44,7 +44,12 @@
                                 class="hover:bg-gray-100 text-[15px] text-center cursor-pointer tracking-wide">
                                 <td th:text="${chord.id}"></td>
                                 <td th:text="${chord.artist}"></td>
-                                <td th:text="${chord.song}"></td>
+                                <td class="flex items-center justify-center space-x-2">
+                                    <div th:text="${chord.song}"></div>
+                                    <div class="flex bg-neutral rounded text-white text-[11px] w-5 h-5 items-center justify-center"
+                                         th:if="${#lists.size(chord.comments) > 0}"
+                                         th:text="${#lists.size(chord.comments)}"></div>
+                                </td>
                                 <td th:text="${#temporals.format(chord.createAt, 'yyyy.MM.dd')}"></td>
                                 <td th:text="작성자"></td>
                             </tr>
@@ -103,7 +108,12 @@
                                 class="hover:bg-gray-100 text-[15px] text-center cursor-pointer tracking-wide">
                                 <td th:text="${chord.id}"></td>
                                 <td th:text="${chord.artist}"></td>
-                                <td th:text="${chord.song}"></td>
+                                <td class="flex items-center justify-center space-x-2">
+                                    <div th:text="${chord.song}"></div>
+                                    <div class="flex bg-neutral rounded text-white text-[11px] w-5 h-5 items-center justify-center"
+                                         th:if="${#lists.size(chord.comments) > 0}"
+                                         th:text="${#lists.size(chord.comments)}"></div>
+                                </td>
                                 <td th:text="${#temporals.format(chord.createAt, 'yyyy.MM.dd')}"></td>
                                 <td th:text="작성자"></td>
                             </tr>
