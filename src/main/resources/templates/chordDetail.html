@@ -1,6 +1,7 @@
 <html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
 <div layout:fragment="content">
     <div class="px-5 space-y-10">
+        <!-- Chord 정보와 댓글 표시 -->
         <div class="space-y-1 border-b pb-3">
             <div class="text-4xl font-bold" th:text="${chord.song}"></div>
             <div class="text-zinc-500" th:text="${chord.artist}"></div>
@@ -14,35 +15,87 @@
             <input class="btn" type="submit" value="등록"/>
         </form>
 
+        <!-- 댓글 목록 -->
         <div class="space-y-3">
             <div th:text="|${#lists.size(chord.comments)}개의 댓글|"></div>
 
-            <!-- 댓글 없을 경우 -->
+            <!-- 댓글이 없을 경우 -->
             <div th:if="${#lists.isEmpty(chord.comments)}"
                  class="flex bg-zinc-50 text-[15px] text-gray-500 justify-center items-center p-5 rounded-lg h-40">
                 댓글이 없습니다.
             </div>
 
-            <!-- 댓글 있을 경우 -->
+            <!-- 댓글이 있을 경우 -->
             <div th:each="comment: ${chord.comments}" class="border rounded-lg p-5">
+                <div class="flex justify-end">
+                    <!-- 댓글에 데이터 속성을 추가해서 chord.id와 comment.id 값을 넣어줌 -->
+                    <button class="btn btn-sm tracking-wide"
+                            th:attr="chordId=${chord.id}, commentId=${comment.id}"
+                            onclick="openReplyModal(this)">답글달기
+                    </button>
+                </div>
+
                 <div class="chat chat-start space-y-1">
                     <div class="chat-header flex ml-1 items-center space-x-1">
                         <div class="text-[14px]">귀여운 친친라</div>
-                        <time class="text-xs opacity-50">12:45</time>
+                        <time th:text="${#temporals.format(comment.createdAt,'yyyy.MM.dd')}"
+                              class="text-xs opacity-50"></time>
                     </div>
                     <div th:text="${comment.content}" class="chat-bubble text-[15px] flex items-center"></div>
                 </div>
 
-                <!--답글 예시-->
-                <div class="chat chat-end  space-y-1">
+                <!--답글이 있을 경우-->
+                <div th:each="reply: ${comment.replies}" class="chat chat-end space-y-1">
                     <div class="chat-header flex mr-1 items-center space-x-1">
                         <div class="text-[14px]">작성자</div>
-                        <time class="text-xs opacity-50">18:23</time>
+                        <time th:text="${#temporals.format(reply.createdAt,'yyyy.MM.dd')}"
+                              class="text-xs opacity-50"></time>
                     </div>
-                    <div th:text="감사합니다" class="chat-bubble text-[15px] flex items-center"></div>
+                    <div th:text="${reply.content}" class="chat-bubble text-[15px] flex items-center"></div>
                 </div>
+
             </div>
         </div>
     </div>
+
+    <!-- 답글달기 모달 -->
+    <dialog id="my_modal_1" class="modal">
+        <div class="modal-box relative min-w-auto max-w-[800px] space-y-5">
+            <div class="border-b pb-2">
+                <div class="font-semibold">답글 달기</div>
+            </div>
+
+            <!-- 이곳의 액션은 JavaScript로 설정 -->
+            <form id="replyForm" method="post" class="space-y-5">
+                <textarea name="replyContent" id="replyContent"
+                          class="textarea textarea-bordered h-40 w-full resize-none py-2 px-3 text-[15px]"
+                          placeholder="답글을 남겨보세요!"></textarea>
+
+                <div class="flex justify-end">
+                    <button type="submit" class="btn btn-neutral w-fit h-fit px-4 tracking-wide">저장</button>
+                </div>
+            </form>
+
+            <form method="dialog" class="absolute right-[90px] bottom-6">
+                <button class="btn w-fit h-fit px-4 tracking-wide">취소</button>
+            </form>
+        </div>
+    </dialog>
+
+    <!-- JavaScript로 모달의 액션 설정 -->
+    <script>
+        function openReplyModal(button) {
+            // 버튼에서 data-* 속성으로 chordId와 commentId를 가져옴
+            const chordId = button.getAttribute('chordId');
+            const commentId = button.getAttribute('commentId');
+
+            // 폼의 액션을 설정
+            const form = document.getElementById('replyForm');
+            form.action = `/reply/create/${chordId}/${commentId}`;
+
+            // 모달 열기
+            document.getElementById('my_modal_1').showModal();
+        }
+    </script>
 </div>
 </html>
