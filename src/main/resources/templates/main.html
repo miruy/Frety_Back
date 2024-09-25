@@ -20,13 +20,17 @@
                         role="tab"
                         class="tab"
                         aria-label="최근 등록된 코드"
-                        checked="checked"
+                        th:checked="${activeTab == 'latest'}"
+                        th:attr="data-current-page=${currentPage}"
+                        onclick="locationToTab('latest', this.getAttribute('data-current-page'))"
+
                 />
-                <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+                <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6 space-y-7">
                     <div class="overflow-x-auto">
                         <table class="table">
                             <thead>
                             <tr class="text-[15px] text-center tracking-wide">
+                                <th>NO</th>
                                 <th>가수</th>
                                 <th>제목</th>
                                 <th>등록일</th>
@@ -38,6 +42,7 @@
                                 th:attr="data-href=@{|/chord/${chord.id}|}"
                                 onclick="window.location.href=this.getAttribute('data-href')"
                                 class="hover:bg-gray-100 text-[15px] text-center cursor-pointer tracking-wide">
+                                <td th:text="${chord.id}"></td>
                                 <td th:text="${chord.artist}"></td>
                                 <td th:text="${chord.song}"></td>
                                 <td th:text="${#temporals.format(chord.createAt, 'yyyy.MM.dd')}"></td>
@@ -45,6 +50,26 @@
                             </tr>
                             </tbody>
                         </table>
+                    </div>
+
+                    <!--페이징처리-->
+                    <div class="join flex justify-center" th:if="${!latestChords.isEmpty()}">
+                        <button class="join-item btn btn-xs"
+                                th:classappend="${!latestChords.hasPrevious()} ? 'btn-disabled'">
+                            <a th:href="@{|/list?activeTab=latest&page=${currentPage - 1}|}">이전</a>
+                        </button>
+
+                        <button class="join-item btn btn-xs"
+                                th:each="page: ${#numbers.sequence(0, latestChords.totalPages-1)}"
+                                th:if="${page >= currentPage-5 and page <= currentPage+5}"
+                                th:classappend="${page == latestChords.number} ? 'btn-active'">
+                            <a th:text="${page}" th:href="@{|/list?activeTab=latest&page=${page}|}"></a>
+                        </button>
+
+                        <button class="join-item btn btn-xs"
+                                th:classappend="${!latestChords.hasNext()} ? 'btn-disabled'">
+                            <a th:href="@{|/list?activeTab=latest&page=${currentPage + 1}|}">다음</a>
+                        </button>
                     </div>
                 </div>
 
@@ -55,12 +80,16 @@
                         role="tab"
                         class="tab"
                         aria-label="인기 코드"
+                        th:checked="${activeTab == 'popular'}"
+                        th:attr="data-current-page=${currentPage}"
+                        onclick="locationToTab('popular', this.getAttribute('data-current-page'))"
                 />
-                <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+                <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6 space-y-7">
                     <div class="overflow-x-auto">
                         <table class="table">
                             <thead>
                             <tr class="text-[15px] text-center tracking-wide">
+                                <th>NO</th>
                                 <th>가수</th>
                                 <th>제목</th>
                                 <th>등록일</th>
@@ -72,6 +101,7 @@
                                 th:attr="data-href=@{|/chord/${chord.id}|}"
                                 onclick="window.location.href=this.getAttribute('data-href')"
                                 class="hover:bg-gray-100 text-[15px] text-center cursor-pointer tracking-wide">
+                                <td th:text="${chord.id}"></td>
                                 <td th:text="${chord.artist}"></td>
                                 <td th:text="${chord.song}"></td>
                                 <td th:text="${#temporals.format(chord.createAt, 'yyyy.MM.dd')}"></td>
@@ -80,9 +110,35 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <!--페이징처리-->
+                    <div class="join flex justify-center" th:if="${!popularChords.isEmpty()}">
+                        <button class="join-item btn btn-xs"
+                                th:classappend="${!popularChords.hasPrevious()} ? 'btn-disabled'">
+                            <a th:href="@{|/list?activeTab=popular&page=${currentPage - 1}|}">이전</a>
+                        </button>
+
+                        <button class="join-item btn btn-xs"
+                                th:each="page: ${#numbers.sequence(0, popularChords.totalPages-1)}"
+                                th:if="${page >= currentPage-5 and page <= currentPage+5}"
+                                th:classappend="${page == popularChords.number} ? 'btn-active'">
+                            <a th:text="${page}" th:href="@{|/list?activeTab=popular&page=${page}|}"></a>
+                        </button>
+
+                        <button class="join-item btn btn-xs"
+                                th:classappend="${!popularChords.hasNext()} ? 'btn-disabled'">
+                            <a th:href="@{|/list?activeTab=popular&page=${currentPage + 1}|}">다음</a>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        function locationToTab(tab, currentPage) {
+            window.location.href = `/list?activeTab=${tab}&page=${currentPage}`;
+        }
+    </script>
 </div>
 </html>

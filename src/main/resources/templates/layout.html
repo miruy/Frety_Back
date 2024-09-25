@@ -15,8 +15,8 @@
     <title>Chordric</title>
 </head>
 <body>
-<div class="min-w-screen min-h-[100vh] mx-3 lg:mx-20 2xl:mx-[400px] my-20">
-    <th:block layout:fragment="content"></th:block>
-</div>
+
+<!--drawer 겸 nav 안에 body content 있음-->
+<div th:replace="~{navbar :: navbarFragment}"></div>
 </body>
 </html>
