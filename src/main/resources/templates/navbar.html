@@ -1,4 +1,4 @@
-<div th:fragment="navbarFragment" xmlns:layout="">
+<div th:fragment="navbarFragment" xmlns:layout="" xmlns:sec="http://www.w3.org/1999/xhtml">
     <div class="drawer">
         <input id="my-drawer-3" type="checkbox" class="drawer-toggle"/>
         <div class="drawer-content flex flex-col">
@@ -9,7 +9,11 @@
 
                 <div class="hidden flex-none lg:block">
                     <ul class="menu menu-horizontal">
-                        <li><a>로그인</a></li>
+                        <li>
+                            <a th:href="@{/login}" sec:authorize="isAnonymous()">로그인</a>
+                            <a th:href="@{/logout}" sec:authorize="isAuthenticated()">로그아웃</a>
+                        </li>
+
                         <li><a th:href="@{/signup}">회원가입</a></li>
                     </ul>
                 </div>
@@ -41,9 +45,11 @@
         <div class="drawer-side">
             <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label>
             <ul class="menu bg-base-100 min-h-full w-80 p-4">
-                <li><a>Parent-link1</a></li>
-                <li><a>Parent-link2</a></li>
-                <li><a>로그인</a></li>
+                <li>
+                    <a th:href="@{/login}" sec:authorize="isAnonymous()">로그인</a>
+                    <a th:href="@{/logout}" sec:authorize="isAuthenticated()">로그아웃</a>
+                </li>
+
                 <li><a th:href="@{/signup}">회원가입</a></li>
             </ul>
         </div>
