@@ -3,7 +3,8 @@ package miruy.dev.chordric.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import miruy.dev.chordric.entity.Chord;
-import miruy.dev.chordric.form.ChordForm;
+import miruy.dev.chordric.form.ChordCreateForm;
+import miruy.dev.chordric.form.CommentCreateForm;
 import miruy.dev.chordric.service.ChordService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,14 +22,14 @@ public class ChordController {
     private final ChordService chordService;
 
     @GetMapping("/create")
-    public String createChord(ChordForm chordForm) {
-        return "createChordForm";
+    public String createChord(ChordCreateForm chordForm) {
+        return "chordCreate";
     }
 
     @PostMapping("/create")
-    public String createChord(@Valid ChordForm chordForm, BindingResult bindingResult) {
+    public String createChord(@Valid ChordCreateForm chordForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "createChordForm";
+            return "chordCreate";
         }
         this.chordService.createChord(
                 chordForm.getArtist(),
@@ -39,7 +40,7 @@ public class ChordController {
     }
 
     @GetMapping(value = "/{id}")
-    public String detail(Model model, @PathVariable("id") long id) {
+    public String detail(Model model, @PathVariable("id") long id, CommentCreateForm commentCreateForm) {
         Chord chord = this.chordService.getChord(id);
         model.addAttribute("chord", chord);
         return "chordDetail";

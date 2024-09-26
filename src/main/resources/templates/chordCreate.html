@@ -7,12 +7,8 @@
         </div>
 
 
-        <form th:action="@{/chord/create}" method="post" th:object="${chordForm}" class="space-y-10">
+        <form th:action="@{/chord/create}" method="post" th:object="${chordCreateForm}" class="space-y-10">
             <div class="space-y-3">
-                <div th:if="${#fields.hasAnyErrors()}">
-                    <div th:each="error: ${#fields.allErrors()}" th:text="${error}"></div>
-                </div>
-
                 <label class="input input-bordered flex items-center gap-2">
                     Artist
                     <input type="text" id="artist" th:field="*{artist}" class="grow"/>
@@ -28,6 +24,8 @@
                 코드
                 <input type="text" id="content" th:field="*{content}" class="grow"/>
             </label>
+
+            <div th:replace="~{form_errors :: formErrorsFragment}"></div>
 
             <input type="submit" value="등록" class="btn w-full"/>
         </form>

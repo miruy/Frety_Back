@@ -4,21 +4,20 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-
 @Getter
 @Setter
 @Entity
-public class Reply {
+public class Member {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(columnDefinition = "TEXT")
-    private String content;
+    @Column(unique = true)
+    private String username;
 
-    private LocalDateTime createdAt;
+    private String password;
 
-    @ManyToOne
-    private Comment comment;
+    @Column(unique = true)
+    private String email;
 }

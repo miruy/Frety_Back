@@ -1,4 +1,4 @@
-<div th:fragment="navbarFragment">
+<div th:fragment="navbarFragment" xmlns:layout="">
     <div class="drawer">
         <input id="my-drawer-3" type="checkbox" class="drawer-toggle"/>
         <div class="drawer-content flex flex-col">
@@ -10,6 +10,7 @@
                 <div class="hidden flex-none lg:block">
                     <ul class="menu menu-horizontal">
                         <li><a>로그인</a></li>
+                        <li><a th:href="@{/signup}">회원가입</a></li>
                     </ul>
                 </div>
 
@@ -43,6 +44,7 @@
                 <li><a>Parent-link1</a></li>
                 <li><a>Parent-link2</a></li>
                 <li><a>로그인</a></li>
+                <li><a th:href="@{/signup}">회원가입</a></li>
             </ul>
         </div>
     </div>

@@ -7,16 +7,16 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ChordForm {
+public class ChordCreateForm {
 
-    @NotEmpty(message = "가수명은 필수항목입니다.")
+    @NotEmpty(message = "아티스트명을 입력하세요.")
     @Size(max = 200)
     private String artist;
 
-    @NotEmpty(message = "제목은 필수항목입니다.")
+    @NotEmpty(message = "곡 제목을 입력하세요.")
     @Size(max = 200)
     private String song;
 
-    @NotEmpty(message = "코드는 필수항목입니다.")
+    @NotEmpty(message = "코드를 입력하세요.")
     private String content;
 }
