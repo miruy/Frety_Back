@@ -16,13 +16,14 @@ import java.util.Optional;
 public class CommentService {
     private final CommentRepository commentRepository;
 
-    public void createComment(Chord chord, String content, Member member) {
+    public Comment createComment(Chord chord, String content, Member member) {
         Comment comment = new Comment();
         comment.setContent(content);
         comment.setCreatedAt(LocalDateTime.now());
         comment.setChord(chord);
         comment.setAuthor(member);
         this.commentRepository.save(comment);
+        return comment;
     }
 
     public Comment getComment(Long id) {

@@ -40,7 +40,6 @@
         <div class="py-20" th:text="${chord.content}"></div>
 
         <div class="flex justify-between border rounded-lg p-3">
-
             <div class="flex flex-col items-center space-y-2">
                 <div class="flex items-center space-x-1">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
@@ -69,6 +68,7 @@
 
             <!--좋아요-->
             <div class="flex flex-col items-center justify-center space-y-2">
+                <a th:id="|vote_${chord.id}|"></a>
                 <div class="badge badge-outline border-neutral-400" th:text="${#lists.size(chord.voter)}"></div>
 
                 <div onclick="handleVote(this)"
@@ -124,6 +124,8 @@
 
             <!-- 댓글이 있을 경우 -->
             <div th:each="comment: ${chord.comments}" class="border rounded-lg p-5">
+                <a th:id="|comment_${comment.id}|"></a>
+
                 <div class="flex justify-end space-x-1">
                     <!-- 댓글에 데이터 속성을 추가해서 chord.id와 comment.id 값을 넣어줌 -->
                     <button class="btn btn-sm tracking-wide"

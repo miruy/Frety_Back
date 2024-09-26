@@ -42,8 +42,9 @@ public class CommentController {
             return "chordDetail";
         }
 
-        this.commentService.createComment(chord, commentCreateForm.getCommentContent(), member);
-        return String.format("redirect:/chord/%d", id);
+        Comment comment = this.commentService.createComment(chord, commentCreateForm.getCommentContent(), member);
+        return String.format("redirect:/chord/%s#comment_%s",
+                comment.getChord().getId(), comment.getId());
     }
 
     @PreAuthorize("isAuthenticated()")
@@ -73,7 +74,8 @@ public class CommentController {
         }
 
         this.commentService.editComment(comment, commentCreateForm.getCommentContent());
-        return String.format("redirect:/chord/%d", comment.getChord().getId());
+        return String.format("redirect:/chord/%s#comment_%s",
+                comment.getChord().getId(), comment.getId());
     }
 
     @PreAuthorize("isAuthenticated()")

@@ -111,6 +111,6 @@ public class ChordController {
         Chord chord = this.chordService.getChord(id);
         Member member = this.memberService.getUser(principal.getName());
         this.chordService.vote(chord, member);
-        return String.format("redirect:/chord/%d", id);
+        return String.format("redirect:/chord/%s#vote_%s", id, chord.getId());
     }
 }
