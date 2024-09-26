@@ -1,10 +1,64 @@
-<html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+<html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <div layout:fragment="content">
     <div class="px-5 space-y-10">
-        <!-- Chord 정보와 댓글 표시 -->
-        <div class="space-y-1 border-b pb-3">
-            <div class="text-4xl font-bold" th:text="${chord.song}"></div>
-            <div class="text-zinc-500" th:text="${chord.artist}"></div>
+        <div>
+            <div class="space-y-1 border-b pb-3">
+                <div class="text-4xl font-bold" th:text="${chord.song}"></div>
+                <div class="text-zinc-500" th:text="${chord.artist}"></div>
+            </div>
+
+            <div class="flex justify-end pt-2">
+                <div class="w-full sm:w-[40%] border rounded-lg p-3">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-1 text-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                 class="size-5">
+                                <path fill-rule="evenodd"
+                                      d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-5.5-2.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0ZM10 12a5.99 5.99 0 0 0-4.793 2.39A6.483 6.483 0 0 0 10 16.5a6.483 6.483 0 0 0 4.793-2.11A5.99 5.99 0 0 0 10 12Z"
+                                      clip-rule="evenodd"/>
+                            </svg>
+                            <div th:if="${chord.author != null}" th:text="${chord.author.username}"></div>
+                        </div>
+
+                        <div sec:authorize="isAuthenticated()"
+                             th:if="${chord.author != null and #authentication.getPrincipal().getUsername() == chord.author.username}"
+                             class="dropdown dropdown-end">
+                            <div tabindex="0" role="button" class="btn btn-xs">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                     class="size-5">
+                                    <path d="M3 10a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM8.5 10a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM15.5 8.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z"/>
+                                </svg>
+                            </div>
+                            <ul tabindex="0"
+                                class="dropdown-content menu bg-base-100 rounded-box z-[1] w-[73px] p-2 shadow">
+                                <li>
+                                    <a th:href="@{|/chord/edit/${chord.id}|}"
+                                       th:text="수정">
+                                    </a>
+                                </li>
+                                <li>
+                                    <button type="button" onclick="deleteMethod(this)"
+                                            th:data-uri="@{|/chord/delete/${chord.id}|}"
+                                            th:text="삭제">
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-2 text-sm">
+                        <div>등록일</div>
+                        <div th:if="${chord.createAt != null}"
+                             th:text="${#temporals.format(chord.createAt, 'yyyy.MM.dd HH:mm')}"></div>
+                    </div>
+
+                    <div class="flex items-center space-x-2 text-sm">
+                        <div>수정일</div>
+                        <div th:if="${chord.updateAt != null}"
+                             th:text="${#temporals.format(chord.updateAt, 'yyyy.MM.dd HH:mm')}"></div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="py-20" th:text="${chord.content}"></div>
@@ -16,14 +70,27 @@
               class="flex flex-col items-end space-y-3"
         >
             <div th:replace="~{form_errors :: formErrorsFragment}"></div>
+
+            <!--로그아웃 상태면 작성불가능-->
             <textarea
+                    sec:authorize="isAnonymous()" disabled
                     th:field="*{commentContent}"
                     class="textarea textarea-bordered w-full h-40 min-h-40 max-h-80"
                     placeholder="댓글을 남겨보세요!"
                     name="commentContent"
-                    id="commentContent"
                     rows="15">
             </textarea>
+
+            <!--로그인 상태면 작성가능-->
+            <textarea
+                    sec:authorize="isAuthenticated()"
+                    th:field="*{commentContent}"
+                    class="textarea textarea-bordered w-full h-40 min-h-40 max-h-80"
+                    placeholder="댓글을 남겨보세요!"
+                    name="commentContent"
+                    rows="15">
+            </textarea>
+
             <input class="btn" type="submit" value="등록"/>
         </form>
 
@@ -49,8 +116,9 @@
 
                 <div class="chat chat-start space-y-1">
                     <div class="chat-header flex ml-1 items-center space-x-1">
-                        <div class="text-[14px]">귀여운 친친라</div>
-                        <time th:text="${#temporals.format(comment.createdAt,'yyyy.MM.dd')}"
+                        <div th:if="${comment.author != null}" th:text="${comment.author.username}"
+                             class="text-[14px]"></div>
+                        <time th:text="${#temporals.format(comment.createdAt,'yyyy.MM.dd HH:mm')}"
                               class="text-xs opacity-50"></time>
                     </div>
                     <div th:text="${comment.content}" class="chat-bubble text-[15px] flex items-center"></div>
@@ -58,5 +126,15 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function deleteMethod(element) {
+            const uri = element.dataset.uri;
+
+            if (confirm("정말 코드를 삭제하시겠습니까?")) {
+                location.href = uri
+            }
+        }
+    </script>
 </div>
 </html>

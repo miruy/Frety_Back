@@ -51,7 +51,7 @@
                                          th:text="${#lists.size(chord.comments)}"></div>
                                 </td>
                                 <td th:text="${#temporals.format(chord.createAt, 'yyyy.MM.dd')}"></td>
-                                <td th:text="작성자"></td>
+                                <td th:if="${chord.author != null}" th:text="${chord.author.username}"></td>
                             </tr>
                             </tbody>
                         </table>

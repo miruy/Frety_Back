@@ -3,6 +3,7 @@ package miruy.dev.chordric.service;
 import lombok.RequiredArgsConstructor;
 import miruy.dev.chordric.entity.Chord;
 import miruy.dev.chordric.entity.Comment;
+import miruy.dev.chordric.entity.Member;
 import miruy.dev.chordric.exception.DataNotFoundException;
 import miruy.dev.chordric.repository.CommentRepository;
 import org.springframework.stereotype.Service;
@@ -15,11 +16,12 @@ import java.util.Optional;
 public class CommentService {
     private final CommentRepository commentRepository;
 
-    public void createComment(Chord chord, String content) {
+    public void createComment(Chord chord, String content, Member member) {
         Comment comment = new Comment();
         comment.setContent(content);
         comment.setCreatedAt(LocalDateTime.now());
         comment.setChord(chord);
+        comment.setAuthor(member);
         this.commentRepository.save(comment);
     }
 

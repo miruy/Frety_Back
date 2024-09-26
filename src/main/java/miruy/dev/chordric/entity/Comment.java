@@ -20,6 +20,11 @@ public class Comment {
 
     private LocalDateTime createdAt;
 
+    private LocalDateTime updateAt;
+
     @ManyToOne
     private Chord chord;
+
+    @ManyToOne
+    private Member author;
 }

@@ -25,6 +25,11 @@ public class Chord {
 
     private LocalDateTime createAt;
 
+    private LocalDateTime updateAt;
+
     @OneToMany(mappedBy = "chord", cascade = CascadeType.REMOVE)
     private List<Comment> comments;
+
+    @ManyToOne
+    private Member author;
 }
