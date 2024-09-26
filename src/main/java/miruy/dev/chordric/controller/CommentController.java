@@ -65,11 +65,7 @@ public class CommentController {
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/edit/{id}")
-    public String editComment(@Valid CommentCreateForm commentCreateForm, BindingResult bindingResult, @PathVariable("id") Long id, Principal principal) {
-        if (bindingResult.hasErrors()) {
-            return "commentEdit";
-        }
-
+    public String editComment(@Valid CommentCreateForm commentCreateForm, @PathVariable("id") Long id, Principal principal) {
         Comment comment = this.commentService.getComment(id);
 
         if (!comment.getAuthor().getUsername().equals(principal.getName())) {

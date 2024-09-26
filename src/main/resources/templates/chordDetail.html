@@ -147,7 +147,11 @@
                     <div class="chat-header flex ml-1 items-center space-x-1">
                         <div th:if="${comment.author != null}" th:text="${comment.author.username}"
                              class="text-[14px]"></div>
-                        <time th:text="${#temporals.format(comment.createdAt,'yyyy.MM.dd HH:mm')}"
+
+                        <time th:if="${comment.updateAt != null}" th:text="|${@dateTimeUtil.getTimeAgo(comment.updateAt)} 수정됨|"
+                              class="text-xs opacity-50"></time>
+
+                        <time th:if="${comment.updateAt == null}" th:text="${@dateTimeUtil.getTimeAgo(comment.createdAt)}"
                               class="text-xs opacity-50"></time>
                     </div>
                     <div th:text="${comment.content}" class="chat-bubble text-[15px] flex items-center"></div>
@@ -159,22 +163,27 @@
     <!-- 댓글 수정 모달 -->
     <dialog id="editComment" class="modal">
         <div class="modal-box">
-            <h5>답변 수정</h5>
-
-            <!-- 댓글 내용을 입력받는 textarea -->
-            <div>
-                <label>내용</label>
-                <textarea id="editCommentContent" name="commentContent" rows="10"></textarea>
+            <div class="border-b pb-1.5">
+                <div class="font-semibold">댓글 수정</div>
             </div>
 
-            <!-- 저장 버튼 -->
-            <input type="button" value="저장하기"
-                   id="saveEditCommentButton"
-                   onclick="editCommentPost(this)"
-                   data-comment-id="">
+            <!-- 댓글 내용을 입력받는 textarea -->
+            <div class="py-5">
+                <textarea id="editCommentContent" name="commentContent" rows="10"
+                          class="textarea textarea-bordered w-full h-40 min-h-40 max-h-80"></textarea>
+            </div>
 
-            <div class="modal-action">
-                <button class="btn" onclick="closeDialog()">Close</button>
+            <div class="flex justify-end items-end space-x-2">
+                <form method="dialog">
+                    <button class="btn">취소</button>
+                </form>
+
+                <!-- 저장 버튼 -->
+                <input type="button" value="저장하기"
+                       id="saveEditCommentButton"
+                       onclick="editCommentPost(this)"
+                       class="btn btn-neutral"
+                >
             </div>
         </div>
     </dialog>
