@@ -1,7 +1,9 @@
 package miruy.dev.chordric.service;
 
+import jakarta.persistence.criteria.*;
 import lombok.RequiredArgsConstructor;
 import miruy.dev.chordric.entity.Chord;
+import miruy.dev.chordric.entity.Comment;
 import miruy.dev.chordric.entity.Member;
 import miruy.dev.chordric.exception.DataNotFoundException;
 import miruy.dev.chordric.repository.ChordRepository;
@@ -9,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -66,5 +69,21 @@ public class ChordService {
     public void vote(Chord chord, Member member) {
         chord.getVoter().add(member);
         this.chordRepository.save(chord);
+    }
+
+    public Page<Chord> searchChords(String keyword, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Specification<Chord> spec = search(keyword);
+        return chordRepository.findAll(spec, pageable);
+    }
+
+    private Specification<Chord> search(String kw) {
+        return (Root<Chord> chord, CriteriaQuery<?> query, CriteriaBuilder cb) -> {
+            query.distinct(true);  // 중복을 제거
+            Join<Chord, Member> member1 = chord.join("author", JoinType.LEFT); // 코드 작성자 기준
+            return cb.or(cb.like(chord.get("song"), "%" + kw + "%"),         // 노래 제목 검색
+                    cb.like(chord.get("artist"), "%" + kw + "%"),       // 가수 이름 검색
+                    cb.like(member1.get("username"), "%" + kw + "%"));  // 코드 작성자 검색
+        };
     }
 }

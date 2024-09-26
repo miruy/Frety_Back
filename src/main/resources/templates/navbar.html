@@ -9,6 +9,23 @@
 
                 <div class="hidden flex-none lg:block">
                     <ul class="menu menu-horizontal">
+                        <form th:action="@{/search}" method="get"
+                              class="border rounded-lg flex items-center w-[350px] gap-2 pl-3 pr-1 py-1">
+                            <input name="keyword" type="text" class="grow outline-none" placeholder="Search"/>
+                            <button type="submit">
+                                <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 16 16"
+                                        fill="currentColor"
+                                        class="h-7 w-7 p-1 hover:bg-base-200 active:scale-90 duration-100 rounded-lg">
+                                    <path
+                                            fill-rule="evenodd"
+                                            d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                                            clip-rule="evenodd"/>
+                                </svg>
+                            </button>
+                        </form>
+
                         <li>
                             <a th:href="@{/login}" sec:authorize="isAnonymous()">로그인</a>
                             <a th:href="@{/logout}" sec:authorize="isAuthenticated()">로그아웃</a>

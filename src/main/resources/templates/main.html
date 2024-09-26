@@ -31,10 +31,10 @@
                             <thead>
                             <tr class="text-[15px] text-center tracking-wide">
                                 <th>NO</th>
-                                <th>가수</th>
-                                <th>제목</th>
-                                <th>등록일</th>
+                                <th>Artist</th>
+                                <th>Song</th>
                                 <th>작성자</th>
+                                <th>등록일</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -50,8 +50,8 @@
                                          th:if="${#lists.size(chord.comments) > 0}"
                                          th:text="${#lists.size(chord.comments)}"></div>
                                 </td>
-                                <td th:text="${#temporals.format(chord.createAt, 'yyyy.MM.dd')}"></td>
                                 <td th:if="${chord.author != null}" th:text="${chord.author.username}"></td>
+                                <td th:text="${#temporals.format(chord.createAt, 'yyyy.MM.dd')}"></td>
                             </tr>
                             </tbody>
                         </table>
@@ -95,10 +95,10 @@
                             <thead>
                             <tr class="text-[15px] text-center tracking-wide">
                                 <th>NO</th>
-                                <th>가수</th>
-                                <th>제목</th>
-                                <th>등록일</th>
+                                <th>Artist</th>
+                                <th>Song</th>
                                 <th>작성자</th>
+                                <th>등록일</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -114,8 +114,8 @@
                                          th:if="${#lists.size(chord.comments) > 0}"
                                          th:text="${#lists.size(chord.comments)}"></div>
                                 </td>
+                                <td th:if="${chord.author != null}" th:text="${chord.author.username}"></td>
                                 <td th:text="${#temporals.format(chord.createAt, 'yyyy.MM.dd')}"></td>
-                                <td th:text="작성자"></td>
                             </tr>
                             </tbody>
                         </table>
