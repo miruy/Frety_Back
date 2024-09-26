@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -32,4 +33,7 @@ public class Chord {
 
     @ManyToOne
     private Member author;
+
+    @ManyToMany
+    Set<Member> voter;
 }

@@ -8,61 +8,78 @@
             </div>
 
             <div class="flex justify-end pt-2">
-                <div class="w-full sm:w-[40%] border rounded-lg p-3">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center space-x-1 text-sm">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                 class="size-5">
-                                <path fill-rule="evenodd"
-                                      d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-5.5-2.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0ZM10 12a5.99 5.99 0 0 0-4.793 2.39A6.483 6.483 0 0 0 10 16.5a6.483 6.483 0 0 0 4.793-2.11A5.99 5.99 0 0 0 10 12Z"
-                                      clip-rule="evenodd"/>
-                            </svg>
-                            <div th:if="${chord.author != null}" th:text="${chord.author.username}"></div>
-                        </div>
 
-                        <!--코드 수정/삭제 버튼-->
-                        <div sec:authorize="isAuthenticated()"
-                             th:if="${chord.author != null and #authentication.getPrincipal().getUsername() == chord.author.username}"
-                             class="dropdown dropdown-end">
-                            <div tabindex="0" role="button" class="btn btn-sm">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                     class="size-5">
-                                    <path d="M3 10a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM8.5 10a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM15.5 8.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z"/>
-                                </svg>
-                            </div>
-                            <ul tabindex="0"
-                                class="dropdown-content menu bg-base-100 rounded-box z-[1] w-[73px] p-2 shadow">
-                                <li>
-                                    <a th:href="@{|/chord/edit/${chord.id}|}"
-                                       th:text="수정">
-                                    </a>
-                                </li>
-                                <li>
-                                    <button type="button" onclick="deleteMethod(this)"
-                                            th:data-uri="@{|/chord/delete/${chord.id}|}"
-                                            th:text="삭제">
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
+                <!--코드 수정/삭제 버튼-->
+                <div sec:authorize="isAuthenticated()"
+                     th:if="${chord.author != null and #authentication.getPrincipal().getUsername() == chord.author.username}"
+                     class="dropdown dropdown-end">
+                    <div tabindex="0" role="button" class="btn btn-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                             class="size-5">
+                            <path d="M3 10a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM8.5 10a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM15.5 8.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z"/>
+                        </svg>
                     </div>
-
-                    <div class="flex items-center space-x-2 text-sm">
-                        <div>등록일</div>
-                        <div th:if="${chord.createAt != null}"
-                             th:text="${#temporals.format(chord.createAt, 'yyyy.MM.dd HH:mm')}"></div>
-                    </div>
-
-                    <div class="flex items-center space-x-2 text-sm">
-                        <div>수정일</div>
-                        <div th:if="${chord.updateAt != null}"
-                             th:text="${#temporals.format(chord.updateAt, 'yyyy.MM.dd HH:mm')}"></div>
-                    </div>
+                    <ul tabindex="0"
+                        class="dropdown-content menu bg-base-100 rounded-box z-[1] w-[73px] p-2 shadow">
+                        <li>
+                            <a th:href="@{|/chord/edit/${chord.id}|}"
+                               th:text="수정">
+                            </a>
+                        </li>
+                        <li>
+                            <button type="button" onclick="deleteMethod(this)"
+                                    th:data-uri="@{|/chord/delete/${chord.id}|}"
+                                    th:text="삭제">
+                            </button>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
 
         <div class="py-20" th:text="${chord.content}"></div>
+
+        <div class="flex justify-between border rounded-lg p-3">
+
+            <div class="flex flex-col items-center space-y-2">
+                <div class="flex items-center space-x-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                         class="size-5">
+                        <path fill-rule="evenodd"
+                              d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-5.5-2.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0ZM10 12a5.99 5.99 0 0 0-4.793 2.39A6.483 6.483 0 0 0 10 16.5a6.483 6.483 0 0 0 4.793-2.11A5.99 5.99 0 0 0 10 12Z"
+                              clip-rule="evenodd"/>
+                    </svg>
+                    <div th:if="${chord.author != null}" th:text="${chord.author.username}" class="text-sm"></div>
+                </div>
+
+                <div class="flex space-x-1">
+                    <div class="flex flex-col items-center justify-center bg-base-200 rounded-lg text-xs text-black p-2 space-y-0.5 tracking-wider">
+                        <div>등록</div>
+                        <div th:if="${chord.createAt != null}"
+                             th:text="${#temporals.format(chord.createAt, 'yyyy.MM.dd')}"></div>
+                    </div>
+
+                    <div th:if="${chord.updateAt != null}"
+                         class="flex flex-col items-center justify-center bg-base-200 rounded-lg text-xs text-black p-2 space-y-0.5 tracking-wider">
+                        <div>수정</div>
+                        <div th:text="${#temporals.format(chord.updateAt, 'yyyy.MM.dd')}"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!--좋아요-->
+            <div class="flex flex-col items-center justify-center space-y-2">
+                <div class="badge badge-outline border-neutral-400" th:text="${#lists.size(chord.voter)}"></div>
+
+                <div onclick="handleVote(this)"
+                     th:attr="uri=@{|/chord/vote/${chord.id}|}"
+                     class="recommend p-3 rounded-full hover:bg-base-200 active:scale-90 duration-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                        <path d="M1 8.25a1.25 1.25 0 1 1 2.5 0v7.5a1.25 1.25 0 1 1-2.5 0v-7.5ZM11 3V1.7c0-.268.14-.526.395-.607A2 2 0 0 1 14 3c0 .995-.182 1.948-.514 2.826-.204.54.166 1.174.744 1.174h2.52c1.243 0 2.261 1.01 2.146 2.247a23.864 23.864 0 0 1-1.341 5.974C17.153 16.323 16.072 17 14.9 17h-3.192a3 3 0 0 1-1.341-.317l-2.734-1.366A3 3 0 0 0 6.292 15H5V8h.963c.685 0 1.258-.483 1.612-1.068a4.011 4.011 0 0 1 2.166-1.73c.432-.143.853-.386 1.011-.814.16-.432.248-.9.248-1.388Z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
 
         <!-- 댓글 작성 폼 -->
         <form th:action="@{|/comment/create/${chord.id}|}"
@@ -148,10 +165,12 @@
                         <div th:if="${comment.author != null}" th:text="${comment.author.username}"
                              class="text-[14px]"></div>
 
-                        <time th:if="${comment.updateAt != null}" th:text="|${@dateTimeUtil.getTimeAgo(comment.updateAt)} 수정됨|"
+                        <time th:if="${comment.updateAt != null}"
+                              th:text="|${@dateTimeUtil.getTimeAgo(comment.updateAt)} 수정됨|"
                               class="text-xs opacity-50"></time>
 
-                        <time th:if="${comment.updateAt == null}" th:text="${@dateTimeUtil.getTimeAgo(comment.createdAt)}"
+                        <time th:if="${comment.updateAt == null}"
+                              th:text="${@dateTimeUtil.getTimeAgo(comment.createdAt)}"
                               class="text-xs opacity-50"></time>
                     </div>
                     <div th:text="${comment.content}" class="chat-bubble text-[15px] flex items-center"></div>
@@ -256,6 +275,11 @@
             // 폼을 body에 추가한 후, submit
             document.body.appendChild(form);
             form.submit();
+        }
+
+        function handleVote(element) {
+            const uri = element.getAttribute('uri');
+            location.href = uri
         }
     </script>
 </div>

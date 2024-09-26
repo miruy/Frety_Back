@@ -104,4 +104,13 @@ public class ChordController {
         this.chordService.deleteChord(chord);
         return "redirect:/";
     }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/vote/{id}")
+    public String chordVote(Principal principal, @PathVariable("id") Long id) {
+        Chord chord = this.chordService.getChord(id);
+        Member member = this.memberService.getUser(principal.getName());
+        this.chordService.vote(chord, member);
+        return String.format("redirect:/chord/%d", id);
+    }
 }

@@ -62,4 +62,9 @@ public class ChordService {
     public void deleteChord(Chord chord) {
         this.chordRepository.delete(chord);
     }
+
+    public void vote(Chord chord, Member member) {
+        chord.getVoter().add(member);
+        this.chordRepository.save(chord);
+    }
 }
