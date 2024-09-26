@@ -33,4 +33,14 @@ public class CommentService {
             throw new DataNotFoundException("댓글을 불러오는데 실패하였습니다.");
         }
     }
+
+    public void editComment(Comment comment, String content) {
+        comment.setContent(content);
+        comment.setUpdateAt(LocalDateTime.now());
+        this.commentRepository.save(comment);
+    }
+
+    public void deleteComment(Comment comment) {
+        this.commentRepository.delete(comment);
+    }
 }
