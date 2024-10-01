@@ -2,7 +2,7 @@
 <div layout:fragment="content">
     <div class="space-y-10">
         <div class="space-y-1 border-b pb-3">
-            <div class="text-4xl font-bold">코드 등록</div>
+            <div class="text-4xl font-bold">악보 제작</div>
             <div class="text-zinc-500">Chordric에 기타 코드를 직접 등록하고, 다른 사람들과 공유해보세요</div>
         </div>
 
@@ -22,15 +22,150 @@
                 </label>
             </div>
 
+            <!--악보 제작 방법-->
+            <div>
+                <div class="flex space-x-2 items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-4">
+                        <path fill-rule="evenodd"
+                              d="M17.721 1.599a.75.75 0 0 1 .279.583v11.29a2.25 2.25 0 0 1-1.774 2.2l-2.041.44a2.216 2.216 0 0 1-.938-4.332l2.662-.577a.75.75 0 0 0 .591-.733V6.112l-8 1.73v7.684a2.25 2.25 0 0 1-1.774 2.2l-2.042.44a2.216 2.216 0 1 1-.935-4.331l2.659-.573A.75.75 0 0 0 7 12.529V4.236a.75.75 0 0 1 .591-.733l9.5-2.054a.75.75 0 0 1 .63.15Z"
+                              clip-rule="evenodd"/>
+                    </svg>
+
+                    <div class="text-sm font-semibold">악보 제작 방법</div>
+                </div>
+                <div class="text-sm ml-2.5">
+                    <div>1. 입력 칸에 가사 한 행을 작성한 후, 엔터를 눌러보세요.</div>
+                    <div>2. 가사의 각 음절을 클릭하면, 기타 코드를 지정할 수 있습니다. (공백에도 지정 가능)</div>
+                    <div>3. 악보 작성을 마쳤다면, 등록 버튼을 눌러 당신의 가사를 Chordric에 공유해 보세요!</div>
+                </div>
+            </div>
+
+            <!--가사 한 행 입력 칸-->
             <label class="input input-bordered flex items-center gap-2">
-                코드
-                <input type="text" id="content" th:field="*{content}" class="grow"/>
+                <input type="text" id="content" th:field="*{content}" class="grow text-center"
+                       placeholder="한 행 씩 입력해주세요."
+                       onkeydown="handleEnter(event)"
+                />
             </label>
+
+            <div class=" bg-blue-300">
+                <!--코드 지정가능한 가사 한 행 업로드-->
+                <div id="uploadedLyrics" class="flex flex-col relative text-xl items-center space-y-3">
+                    <!--코드 선택 박스-->
+                    <div id="chordSelector"
+                         class="hidden absolute left-20 -bottom-[100px] w-[120px] h-[200px] overflow-y-auto p-1 bg-white rounded-lg shadow-lg">
+                        <ul class="menu menu-xs w-full">
+                            <li>
+                                <details open>
+                                    <summary>
+                                        A 코드
+                                    </summary>
+                                    <ul>
+                                        <li><a>A</a></li>
+                                        <li><a>Am</a></li>
+                                    </ul>
+                                </details>
+                            </li>
+                            <li>
+                                <details>
+                                    <summary>
+                                        B 코드
+                                    </summary>
+                                    <ul>
+                                        <li><a>B</a></li>
+                                        <li><a>Bm</a></li>
+                                    </ul>
+                                </details>
+                            </li>
+                            <li>
+                                <details>
+                                    <summary>
+                                        C 코드
+                                    </summary>
+                                    <ul>
+                                        <li><a>C</a></li>
+                                        <li><a>Cm</a></li>
+                                    </ul>
+                                </details>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
             <div th:replace="~{form_errors :: formErrorsFragment}"></div>
 
             <input type="submit" value="등록" class="btn w-full"/>
         </form>
     </div>
+
+    <script>
+        // 한글 입력 시 반복문제 해결을 위해 isComposing사용
+        let isComposing = false;
+        const inputElement = document.getElementById('content');
+
+        // 한글 입력 시작하면 true
+        inputElement.addEventListener('compositionstart', () => {
+            isComposing = true;
+        });
+
+        // 한글 입력 끝나면 false
+        inputElement.addEventListener('compositionend', () => {
+            isComposing = false;
+        });
+
+        function handleEnter(event) {
+            if (event.key === 'Enter' && !isComposing) {
+                // 등록 버튼 막기
+                event.preventDefault();
+
+                const input = document.getElementById('content');
+                const uploadedLyrics = document.getElementById('uploadedLyrics');
+
+                // 입력된 값이 있는 경우에만 가사 업로드
+                if (input.value.trim() !== '') {
+                    // 행 삭제를 위해 새로운 div 생성
+                    const lineContainer = document.createElement('div');
+                    lineContainer.className = 'flex items-center tracking-wide';
+
+                    // 가사를 한 음절씩 나누기 (공백 포함)
+                    const syllables = input.value.split('');
+
+                    // 각 음절을 span으로 생성
+                    syllables.forEach(syllable => {
+                        const syllableSpan = document.createElement('span');
+                        syllableSpan.className = 'hover:bg-green-700 hover:bg-opacity-40 cursor-pointer';
+
+                        // syllableSpan.textContent = syllable === ' ' ? '_' : syllable;
+                        syllableSpan.innerHTML = syllable === ' ' ? '&nbsp;&nbsp;&nbsp;' : syllable;
+
+                        // 클릭 이벤트 추가 (기타 코드 지정용)
+                        syllableSpan.onclick = function () {
+                            const chordSelector = document.getElementById('chordSelector');
+                            chordSelector.classList.remove('hidden');
+                        };
+
+                        // 한 음절씨기 나눈 가사를 행 컨테이너에 추가
+                        lineContainer.appendChild(syllableSpan);
+                    });
+
+                    // 가사 삭제
+                    const removeBtn = document.createElement('button');
+                    removeBtn.className = 'absolute right-0 py-1.5 px-1.5 text-xs hover:text-white hover:bg-neutral rounded-lg';
+                    removeBtn.textContent = '삭제';
+                    removeBtn.onclick = function () {
+                        uploadedLyrics.removeChild(lineContainer);
+                    };
+                    lineContainer.appendChild(removeBtn);
+
+                    // 가사를 행 컨테이너에 추가
+                    uploadedLyrics.appendChild(lineContainer);
+
+                    // 입력 필드 초기화
+                    input.value = '';
+                }
+            }
+        }
+    </script>
 </div>
 </html>
