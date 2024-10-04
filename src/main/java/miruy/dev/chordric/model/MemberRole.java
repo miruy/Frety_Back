@@ -1,4 +1,4 @@
-package miruy.dev.chordric.form;
+package miruy.dev.chordric.model;
 
 import lombok.Getter;
 

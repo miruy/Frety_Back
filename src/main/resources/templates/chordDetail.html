@@ -87,7 +87,7 @@
               th:object="${commentCreateForm}"
               class="flex flex-col items-end space-y-3"
         >
-            <div th:replace="~{form_errors :: formErrorsFragment}"></div>
+            <div th:replace="~{fragments/form_errors :: formErrorsFragment}"></div>
 
             <!--로그아웃 상태면 작성불가능-->
             <textarea

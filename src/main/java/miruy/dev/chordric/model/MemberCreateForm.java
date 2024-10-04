@@ -1,4 +1,4 @@
-package miruy.dev.chordric.form;
+package miruy.dev.chordric.model;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;

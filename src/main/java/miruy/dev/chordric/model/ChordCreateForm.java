@@ -1,9 +1,11 @@
-package miruy.dev.chordric.form;
+package miruy.dev.chordric.model;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,4 +21,6 @@ public class ChordCreateForm {
 
     @NotEmpty(message = "코드를 입력하세요.")
     private String content;
+//    @NotEmpty(message = "코드를 입력하세요.")
+//    private List<SyllableObject> content;
 }

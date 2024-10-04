@@ -2,7 +2,7 @@ package miruy.dev.chordric.service;
 
 import lombok.RequiredArgsConstructor;
 import miruy.dev.chordric.entity.Member;
-import miruy.dev.chordric.form.MemberRole;
+import miruy.dev.chordric.model.MemberRole;
 import miruy.dev.chordric.repository.MemberRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import miruy.dev.chordric.entity.Chord;
 import miruy.dev.chordric.entity.Comment;
 import miruy.dev.chordric.entity.Member;
-import miruy.dev.chordric.form.CommentCreateForm;
+import miruy.dev.chordric.model.CommentCreateForm;
 import miruy.dev.chordric.service.ChordService;
 import miruy.dev.chordric.service.CommentService;
 import miruy.dev.chordric.service.MemberService;

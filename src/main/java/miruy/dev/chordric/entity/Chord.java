@@ -22,6 +22,7 @@ public class Chord {
     @Column(length = 200)
     private String song;
 
+    @Column(columnDefinition = "TEXT") // 길이 제한 없음 의미
     private String content;
 
     private LocalDateTime createAt;

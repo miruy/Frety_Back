@@ -3,12 +3,15 @@
     <div class="space-y-10">
         <div class="space-y-1 border-b pb-3">
             <div class="text-4xl font-bold">악보 제작</div>
-            <div class="text-zinc-500">Chordric에 기타 코드를 직접 등록하고, 다른 사람들과 공유해보세요</div>
+            <div class="text-zinc-500">Chordric에 직접 제작한 기타 악보를 등록하고, 다른 사람들과 공유해보세요.</div>
         </div>
 
-        <form method="post" th:object="${chordCreateForm}" class="space-y-10">
+        <form method="post" th:object="${chordCreateForm}" id="chordCreateForm" class="space-y-10">
             <!--th:action 속성을 삭제 후 CSRF 값 설정-->
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+            <!--객체-배열 형태로 파싱된 데이터를 hidden속성사용하여 백엔드로 전달-->
+            <input type="hidden" id="lyricsDataInput" name="content"/>
 
             <div class="space-y-3">
                 <label class="input input-bordered flex items-center gap-2">
@@ -48,124 +51,41 @@
                 />
             </label>
 
-            <div class=" bg-blue-300">
+            <div>
                 <!--코드 지정가능한 가사 한 행 업로드-->
-                <div id="uploadedLyrics" class="flex flex-col relative text-xl items-center space-y-3">
+                <div id="uploadedLyrics"
+                     class="flex flex-col relative text-2xl items-center space-y-10 tracking-widest">
+
                     <!--코드 선택 박스-->
-                    <div id="chordSelector"
-                         class="hidden absolute left-20 -bottom-[100px] w-[120px] h-[200px] overflow-y-auto p-1 bg-white rounded-lg shadow-lg">
-                        <ul class="menu menu-xs w-full">
-                            <li>
-                                <details open>
-                                    <summary>
-                                        A 코드
-                                    </summary>
-                                    <ul>
-                                        <li><a>A</a></li>
-                                        <li><a>Am</a></li>
-                                    </ul>
-                                </details>
-                            </li>
-                            <li>
-                                <details>
-                                    <summary>
-                                        B 코드
-                                    </summary>
-                                    <ul>
-                                        <li><a>B</a></li>
-                                        <li><a>Bm</a></li>
-                                    </ul>
-                                </details>
-                            </li>
-                            <li>
-                                <details>
-                                    <summary>
-                                        C 코드
-                                    </summary>
-                                    <ul>
-                                        <li><a>C</a></li>
-                                        <li><a>Cm</a></li>
-                                    </ul>
-                                </details>
-                            </li>
-                        </ul>
-                    </div>
+                    <div th:replace="~{fragments/chordSelector :: chordSelector}"></div>
                 </div>
             </div>
 
-            <div th:replace="~{form_errors :: formErrorsFragment}"></div>
+            <div th:replace="~{fragments/form_errors :: formErrorsFragment}"></div>
 
             <input type="submit" value="등록" class="btn w-full"/>
         </form>
     </div>
 
     <script>
-        // 한글 입력 시 반복문제 해결을 위해 isComposing사용
-        let isComposing = false;
-        const inputElement = document.getElementById('content');
+        const lyricsData = []; // 각 음절과 코드 데이터를 관리할 배열
+        let selectedSyllable = null;  // 현재 선택된 음절을 저장할 변수
+        const uploadedLyrics = document.getElementById('uploadedLyrics');
 
-        // 한글 입력 시작하면 true
-        inputElement.addEventListener('compositionstart', () => {
-            isComposing = true;
+        // 등록 버튼 누를 때 백엔드로 전송되기 전 객체-배열 을 json문자열로 변환하여 input태그에 설정
+        document.getElementById('chordCreateForm').addEventListener('submit', function () {
+            const lyricsDataInput = document.getElementById('lyricsDataInput');
+            lyricsDataInput.value = JSON.stringify(lyricsData);
         });
-
-        // 한글 입력 끝나면 false
-        inputElement.addEventListener('compositionend', () => {
-            isComposing = false;
-        });
-
-        function handleEnter(event) {
-            if (event.key === 'Enter' && !isComposing) {
-                // 등록 버튼 막기
-                event.preventDefault();
-
-                const input = document.getElementById('content');
-                const uploadedLyrics = document.getElementById('uploadedLyrics');
-
-                // 입력된 값이 있는 경우에만 가사 업로드
-                if (input.value.trim() !== '') {
-                    // 행 삭제를 위해 새로운 div 생성
-                    const lineContainer = document.createElement('div');
-                    lineContainer.className = 'flex items-center tracking-wide';
-
-                    // 가사를 한 음절씩 나누기 (공백 포함)
-                    const syllables = input.value.split('');
-
-                    // 각 음절을 span으로 생성
-                    syllables.forEach(syllable => {
-                        const syllableSpan = document.createElement('span');
-                        syllableSpan.className = 'hover:bg-green-700 hover:bg-opacity-40 cursor-pointer';
-
-                        // syllableSpan.textContent = syllable === ' ' ? '_' : syllable;
-                        syllableSpan.innerHTML = syllable === ' ' ? '&nbsp;&nbsp;&nbsp;' : syllable;
-
-                        // 클릭 이벤트 추가 (기타 코드 지정용)
-                        syllableSpan.onclick = function () {
-                            const chordSelector = document.getElementById('chordSelector');
-                            chordSelector.classList.remove('hidden');
-                        };
-
-                        // 한 음절씨기 나눈 가사를 행 컨테이너에 추가
-                        lineContainer.appendChild(syllableSpan);
-                    });
-
-                    // 가사 삭제
-                    const removeBtn = document.createElement('button');
-                    removeBtn.className = 'absolute right-0 py-1.5 px-1.5 text-xs hover:text-white hover:bg-neutral rounded-lg';
-                    removeBtn.textContent = '삭제';
-                    removeBtn.onclick = function () {
-                        uploadedLyrics.removeChild(lineContainer);
-                    };
-                    lineContainer.appendChild(removeBtn);
-
-                    // 가사를 행 컨테이너에 추가
-                    uploadedLyrics.appendChild(lineContainer);
-
-                    // 입력 필드 초기화
-                    input.value = '';
-                }
-            }
-        }
     </script>
+
+    <!--한글 입력 시 반복문제 해결-->
+    <script src="/script/handleComposing.js"></script>
+
+    <!--음절 클릭 이벤트-->
+    <script src="/script/handleSyllableClick.js"></script>
+
+    <!--행 업로드-->
+    <script src="/script/handleEnter.js"></script>
 </div>
 </html>

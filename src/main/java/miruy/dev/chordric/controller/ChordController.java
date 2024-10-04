@@ -1,11 +1,15 @@
 package miruy.dev.chordric.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import miruy.dev.chordric.entity.Chord;
 import miruy.dev.chordric.entity.Member;
-import miruy.dev.chordric.form.ChordCreateForm;
-import miruy.dev.chordric.form.CommentCreateForm;
+import miruy.dev.chordric.model.ChordCreateForm;
+import miruy.dev.chordric.model.CommentCreateForm;
+import miruy.dev.chordric.model.SyllableObject;
 import miruy.dev.chordric.service.ChordService;
 import miruy.dev.chordric.service.MemberService;
 import org.springframework.http.HttpStatus;
@@ -20,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.security.Principal;
+import java.util.List;
 
 @RequestMapping("/chord")
 @RequiredArgsConstructor
@@ -44,12 +49,26 @@ public class ChordController {
 
         Member member = this.memberService.getUser(principal.getName());
 
-        this.chordService.createChord(
-                chordForm.getArtist(),
-                chordForm.getSong(),
-                chordForm.getContent(),
-                member
-        );
+        System.out.println("##### chordForm.getContent()" + chordForm.getContent());
+
+        // JSON 문자열을 List<SyllableObject>로 변환
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            List<List<SyllableObject>> syllables = objectMapper.readValue(chordForm.getContent(), new TypeReference<List<List<SyllableObject>>>() {
+            });
+            String contentJson = objectMapper.writeValueAsString(syllables);
+            this.chordService.createChord(
+                    chordForm.getArtist(),
+                    chordForm.getSong(),
+                    contentJson,
+                    member
+            );
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            bindingResult.reject("content", "콘텐츠 변환 중 오류가 발생했습니다.");
+            return "chordCreate";
+        }
+
         return "redirect:/";
     }
 
@@ -71,15 +90,29 @@ public class ChordController {
 
         chordCreateForm.setArtist(chord.getArtist());
         chordCreateForm.setSong(chord.getSong());
-        chordCreateForm.setContent(chord.getContent());
-        return "chordCreate";
+
+        // JSON 문자열을 List<SyllableObject>로 변환 후 다시 JSON 문자열로 직렬화
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            List<List<SyllableObject>> contentList = objectMapper.readValue(chord.getContent(), new TypeReference<List<List<SyllableObject>>>() {
+            });
+            String contentJson = objectMapper.writeValueAsString(contentList);
+
+            System.out.println("@@@@contentJson" + contentJson);
+            chordCreateForm.setContent(contentJson);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Content를 객체로 변환하는 데 실패했습니다.");
+        }
+
+        return "chordEdit";
     }
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/edit/{id}")
     public String editChord(@Valid ChordCreateForm chordCreateForm, BindingResult bindingResult, Principal principal, @PathVariable("id") Long id) {
         if (bindingResult.hasErrors()) {
-            return "chordCreate";
+            return "chordEdit";
         }
 
         Chord chord = this.chordService.getChord(id);
@@ -88,7 +121,19 @@ public class ChordController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정 권한이 없습니다.");
         }
 
-        this.chordService.editChord(chord, chordCreateForm.getArtist(), chordCreateForm.getSong(), chordCreateForm.getContent());
+        // JSON 문자열을 List<SyllableObject>로 변환
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            List<List<SyllableObject>> syllables = objectMapper.readValue(chordCreateForm.getContent(), new TypeReference<List<List<SyllableObject>>>() {
+            });
+            String contentJson = objectMapper.writeValueAsString(syllables);
+            this.chordService.editChord(chord, chordCreateForm.getArtist(), chordCreateForm.getSong(), contentJson);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            bindingResult.reject("content", "콘텐츠 변환 중 오류가 발생했습니다.");
+            return "chordEdit";
+        }
+
         return String.format("redirect:/chord/%d", id);
     }
 

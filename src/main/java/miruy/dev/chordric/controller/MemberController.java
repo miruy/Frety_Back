@@ -2,7 +2,7 @@ package miruy.dev.chordric.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import miruy.dev.chordric.form.MemberCreateForm;
+import miruy.dev.chordric.model.MemberCreateForm;
 import miruy.dev.chordric.service.MemberService;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;

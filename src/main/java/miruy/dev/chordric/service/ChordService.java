@@ -3,7 +3,6 @@ package miruy.dev.chordric.service;
 import jakarta.persistence.criteria.*;
 import lombok.RequiredArgsConstructor;
 import miruy.dev.chordric.entity.Chord;
-import miruy.dev.chordric.entity.Comment;
 import miruy.dev.chordric.entity.Member;
 import miruy.dev.chordric.exception.DataNotFoundException;
 import miruy.dev.chordric.repository.ChordRepository;
@@ -59,6 +58,7 @@ public class ChordService {
         chord.setSong(song);
         chord.setContent(content);
         chord.setUpdateAt(LocalDateTime.now());
+
         this.chordRepository.save(chord);
     }
 

@@ -1,0 +1,210 @@
+<html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+<div layout:fragment="content">
+    <div class="space-y-10">
+        <div class="space-y-1 border-b pb-3">
+            <div class="text-4xl font-bold">악보 수정</div>
+            <div class="text-zinc-500">코드와 가사를 수정하여 완성도 높은 악보를 제작해 보세요.</div>
+        </div>
+
+        <form method="post" th:object="${chordCreateForm}" id="chordCreateForm" class="space-y-10">
+            <!-- CSRF 값 설정 -->
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+            <!-- 객체-배열 형태로 파싱된 데이터를 hidden 속성 사용하여 백엔드로 전달 -->
+            <input type="hidden" id="lyricsDataInput" name="content"/>
+
+            <!-- JSON 데이터를 히든 필드에 저장 -->
+            <input type="hidden" id="chordEditForm" th:value="${chordCreateForm.content}"/>
+
+            <div class="space-y-3">
+                <label class="input input-bordered flex items-center gap-2">
+                    Artist
+                    <input type="text" id="artist" th:field="*{artist}" class="grow"/>
+                </label>
+
+                <label class="input input-bordered flex items-center gap-2">
+                    Song
+                    <input type="text" id="song" th:field="*{song}" class="grow"/>
+                </label>
+            </div>
+
+            <!-- 악보 수정 방법 -->
+            <div>
+                <div class="flex space-x-2 items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-4">
+                        <path fill-rule="evenodd"
+                              d="M17.721 1.599a.75.75 0 0 1 .279.583v11.29a2.25 2.25 0 0 1-1.774 2.2l-2.041.44a2.216 2.216 0 0 1-.938-4.332l2.662-.577a.75.75 0 0 0 .591-.733V6.112l-8 1.73v7.684a2.25 2.25 0 0 1-1.774 2.2l-2.042.44a2.216 2.216 0 1 1-.935-4.331l2.659-.573A.75.75 0 0 0 7 12.529V4.236a.75.75 0 0 1 .591-.733l9.5-2.054a.75.75 0 0 1 .63.15Z"
+                              clip-rule="evenodd"/>
+                    </svg>
+                    <div class="text-sm font-semibold">악보 수정 방법</div>
+                </div>
+                <div class="text-sm ml-2.5">
+                    <div>1. 수정하고자 하는 가사의 음절을 클릭하면, 기타 코드를 수정할 수 있습니다. (공백에도 수정 가능)</div>
+                    <div>2. 악보 수정을 마쳤다면, 수정 완료 버튼을 눌러 수정된 가사를 Chordric에 공유해 보세요!</div>
+                </div>
+            </div>
+
+            <!--가사 한 행 입력 칸-->
+            <label class="input input-bordered flex items-center gap-2">
+                <input type="text" id="content" class="grow text-center"
+                       placeholder="한 행 씩 입력해주세요."
+                       onkeydown="handleEnter(event)"
+                />
+            </label>
+
+            <!-- 코드 지정가능한 가사 한 행 업로드 -->
+            <div id="uploadedLyrics"
+                 class="flex flex-col relative text-2xl items-center space-y-10 tracking-widest">
+
+                <!--코드 선택 박스-->
+                <div th:replace="~{fragments/chordSelector :: chordSelector}"></div>
+            </div>
+
+            <div th:replace="~{fragments/form_errors :: formErrorsFragment}"></div>
+
+            <input type="submit" value="수정 완료" class="btn w-full"/>
+        </form>
+    </div>
+
+    <script>
+        const lyricsData = []; // 각 음절과 코드 데이터를 관리할 배열
+        let selectedSyllable = null; // 현재 선택된 음절을 저장할 변수
+        const uploadedLyrics = document.getElementById('uploadedLyrics');
+
+        // 수정 완료 버튼 누를 때 백엔드로 전송되기 전 객체-배열 을 json문자열로 변환하여 input태그에 설정
+        document.getElementById('chordCreateForm').addEventListener('submit', function () {
+            const lyricsDataInput = document.getElementById('lyricsDataInput');
+            lyricsDataInput.value = JSON.stringify(lyricsData);
+        });
+
+        // 기존 가사 행 수정
+        document.addEventListener("DOMContentLoaded", function () {
+            // 히든 필드에서 JSON 데이터를 가져오기
+            const contentJson = document.getElementById('chordEditForm').value;
+
+            // JSON 문자열을 JavaScript 객체로 파싱
+            let contentList = JSON.parse(contentJson);
+
+            // 데이터를 표시할 컨테이너 요소 가져오기
+            const contentContainer = document.getElementById('uploadedLyrics');
+
+            // 각 음절 객체를 div 태그로 동적으로 추가
+            contentList.forEach((syllableRow, rowIndex) => {
+                // 각 행을 위한 div 생성
+                const lineContainer = document.createElement('div');
+                lineContainer.className = 'flex items-center tracking-wide';
+
+                // 현재 행 데이터 배열 생성
+                const lineData = [];
+
+                syllableRow.forEach((syllable) => {
+                    // 각 음절을 위한 span 생성
+                    const syllableSpan = document.createElement('span');
+                    syllableSpan.className = 'relative hover:bg-green-700 hover:bg-opacity-40 cursor-pointer inline-block tracking-wide';
+                    syllableSpan.innerHTML = syllable.text === ' ' ? '&nbsp;&nbsp;&nbsp;' : syllable.text;
+
+                    // 각 음절을 객체로 관리
+                    const syllableObject = {
+                        text: syllable.text,
+                        chord: syllable.chord
+                    };
+
+                    // 코드 표시를 위한 span 생성
+                    if (syllable.chord) {
+                        const chordSpan = document.createElement('span');
+                        chordSpan.className = 'chord absolute text-[15px] text-green-600 w-full text-center tracking-tighter';
+                        chordSpan.style.top = '-2em'; // 코드가 음절 위에 위치하도록 설정
+                        chordSpan.style.left = '50%';
+                        chordSpan.style.transform = 'translateX(-50%)'; // 코드가 음절의 중앙에 위치하도록 설정
+                        chordSpan.textContent = syllable.chord;
+                        syllableSpan.appendChild(chordSpan);
+                    }
+
+                    // 클릭 이벤트 추가 (기타 코드 지정용)
+                    syllableSpan.onclick = function () {
+                        // 이전에 선택된 음절이 있으면 선택 해제
+                        if (selectedSyllable) {
+                            selectedSyllable.classList.remove('bg-green-700', 'bg-opacity-40');
+                        }
+
+                        // 현재 클릭된 음절을 선택하고 스타일 추가
+                        selectedSyllable = syllableSpan;
+                        selectedSyllable.classList.add('bg-green-700', 'bg-opacity-40');
+
+                        // 코드 선택기 표시 및 위치 조정
+                        const chordSelector = document.getElementById('chordSelector');
+
+                        // hidden 클래스를 제거하여 chordSelector의 높이를 계산할 수 있도록 함
+                        chordSelector.classList.remove('hidden');
+
+                        const syllableRect = syllableSpan.getBoundingClientRect();
+
+                        // 셀렉트 박스의 위치를 음절의 왼쪽 중간으로 설정
+                        chordSelector.style.top = `${syllableRect.top + window.scrollY - chordSelector.offsetHeight - 400}px`;
+                        chordSelector.style.left = `${syllableRect.left + window.scrollX - chordSelector.offsetWidth - 120}px`; // 음절 왼쪽 옆, 약간 간격
+
+                        // 기존 코드 선택기를 클릭할 때마다 새로 설정하도록 이벤트 설정
+                        chordSelector.onclick = function (e) {
+                            if (e.target.tagName === 'A') {
+                                // 선택한 코드를 syllable 객체에 저장
+                                syllableObject.chord = e.target.textContent;
+
+                                // 기존 코드가 있다면 대체
+                                let existingChord = syllableSpan.querySelector('.chord');
+                                if (existingChord) {
+                                    existingChord.textContent = `${syllableObject.chord}`;
+                                } else {
+                                    // 코드가 처음으로 추가될 경우
+                                    const chordSpan = document.createElement('span');
+                                    chordSpan.className = 'chord absolute text-[15px] text-green-600 w-full text-center tracking-tighter';
+                                    chordSpan.style.top = '-2em'; // 코드가 음절 위에 위치하도록 설정
+                                    chordSpan.style.left = '50%';
+                                    chordSpan.style.transform = 'translateX(-50%)'; // 코드가 음절의 중앙에 위치하도록 설정
+                                    chordSpan.textContent = `${syllableObject.chord}`;
+                                    syllableSpan.appendChild(chordSpan);
+                                }
+
+                                // 코드 선택기 숨김
+                                chordSelector.classList.add('hidden');
+                            }
+                        };
+                    };
+
+                    // lineData 배열에 syllableObject 추가
+                    lineData.push(syllableObject);
+
+                    // 한 음절씩 나눈 가사를 행 컨테이너에 추가
+                    lineContainer.appendChild(syllableSpan);
+                });
+
+                // 가사 삭제 버튼 추가
+                const removeBtn = document.createElement('button');
+                removeBtn.className = 'absolute right-0 py-1.5 px-1.5 text-xs hover:text-white hover:bg-neutral rounded-lg';
+                removeBtn.textContent = '삭제';
+                removeBtn.onclick = function () {
+                    uploadedLyrics.removeChild(lineContainer);
+                    const index = lyricsData.indexOf(lineData);
+                    if (index > -1) {
+                        lyricsData.splice(index, 1); // 삭제된 행 데이터를 배열에서 제거
+                    }
+                };
+                lineContainer.appendChild(removeBtn);
+
+                // 전체 가사 데이터에 현재 행 데이터 추가
+                lyricsData.push(lineData);
+
+                contentContainer.appendChild(lineContainer);
+            });
+        });
+    </script>
+
+    <!--한글 입력 시 반복문제 해결-->
+    <script src="/script/handleComposing.js"></script>
+
+    <!--음절 클릭 이벤트-->
+    <script src="/script/handleSyllableClick.js"></script>
+
+    <!--행 업로드-->
+    <script src="/script/handleEnter.js"></script>
+</div>
+</html>
