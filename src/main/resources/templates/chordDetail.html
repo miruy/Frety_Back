@@ -46,7 +46,10 @@
             </div>
         </div>
 
-        <div class="py-20" th:text="${chord.content}"></div>
+        <!--content-->
+        <div class="py-20 relative text-xl space-y-10 tracking-widest" id="lyricsContainer"></div>
+        <input type="hidden" id="chordContent" th:value="${chord.content}"/>
+
 
         <div class="flex justify-between border rounded-lg p-3">
             <!--등록일, 수정일-->
@@ -208,6 +211,7 @@
     </dialog>
 
     <script>
+        // 악보 삭제
         function deleteMethod(element) {
             const uri = element.dataset.uri;
 
@@ -216,6 +220,7 @@
             }
         }
 
+        // 댓글 수정을 위한 댓글 가져오기
         function editCommentGet(element) {
             const commentId = element.getAttribute('commentId');
 
@@ -250,6 +255,7 @@
                 });
         }
 
+        // 댓글 수정
         function editCommentPost(element) {
             const commentId = element.getAttribute('data-comment-id');
             const commentContent = document.getElementById('editCommentContent').value;
@@ -277,10 +283,51 @@
             form.submit();
         }
 
+        // 좋아요
         function handleVote(element) {
             const uri = element.getAttribute('uri');
             location.href = uri
         }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // JSON 데이터를 숨겨진 필드에서 가져오기
+            const chordContentJson = document.getElementById('chordContent').value;
+            const contentList = JSON.parse(chordContentJson); // JSON 문자열을 객체로 변환
+
+            // 데이터를 표시할 컨테이너 요소 가져오기
+            const lyricsContainer = document.getElementById('lyricsContainer');
+
+            // 각 행을 순회하며 렌더링
+            contentList.forEach((syllableRow) => {
+                // 각 행을 위한 div 생성
+                const lineContainer = document.createElement('div');
+                lineContainer.className = 'flex items-center tracking-wide';
+
+                syllableRow.forEach((syllable) => {
+                    // 각 음절을 위한 span 생성
+                    const syllableSpan = document.createElement('span');
+                    syllableSpan.className = 'relative inline-block tracking-wide';
+                    syllableSpan.innerHTML = syllable.text === ' ' ? '&nbsp;&nbsp;&nbsp;' : syllable.text;
+
+                    // 코드가 있는 경우 코드도 추가
+                    if (syllable.chord) {
+                        const chordSpan = document.createElement('span');
+                        chordSpan.className = 'chord absolute text-[14.5px] font-semibold text-green-600 w-full tracking-tighter';
+                        chordSpan.style.top = '-1.7em';
+                        chordSpan.style.left = '50%';
+                        chordSpan.style.transform = 'translateX(-40%)';
+                        chordSpan.textContent = syllable.chord;
+                        syllableSpan.appendChild(chordSpan);
+                    }
+
+                    // lineContainer에 syllableSpan 추가
+                    lineContainer.appendChild(syllableSpan);
+                });
+
+                // lyricsContainer에 lineContainer 추가
+                lyricsContainer.appendChild(lineContainer);
+            });
+        });
     </script>
 </div>
 </html>

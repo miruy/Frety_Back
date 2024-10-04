@@ -43,6 +43,16 @@
                 </div>
             </div>
 
+            <div>
+                <!--코드 지정가능한 가사 한 행 업로드-->
+                <div id="uploadedLyrics"
+                     class="flex flex-col relative text-xl space-y-10 tracking-widest">
+
+                    <!--코드 선택 박스-->
+                    <div th:replace="~{fragments/chordSelector :: chordSelector}"></div>
+                </div>
+            </div>
+
             <!--가사 한 행 입력 칸-->
             <label class="input input-bordered flex items-center gap-2">
                 <input type="text" id="content" th:field="*{content}" class="grow text-center"
@@ -50,16 +60,6 @@
                        onkeydown="handleEnter(event)"
                 />
             </label>
-
-            <div>
-                <!--코드 지정가능한 가사 한 행 업로드-->
-                <div id="uploadedLyrics"
-                     class="flex flex-col relative text-2xl items-center space-y-10 tracking-widest">
-
-                    <!--코드 선택 박스-->
-                    <div th:replace="~{fragments/chordSelector :: chordSelector}"></div>
-                </div>
-            </div>
 
             <div th:replace="~{fragments/form_errors :: formErrorsFragment}"></div>
 

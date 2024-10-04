@@ -51,8 +51,8 @@ function handleEnter(event) {
                     const syllableRect = syllableSpan.getBoundingClientRect();
 
                     // 셀렉트 박스의 위치를 음절의 왼쪽 중간으로 설정
-                    chordSelector.style.top = `${syllableRect.top + window.scrollY - chordSelector.offsetHeight - 400}px`;
-                    chordSelector.style.left = `${syllableRect.left + window.scrollX - chordSelector.offsetWidth - 120}px`; // 음절 왼쪽 옆, 약간 간격
+                    chordSelector.style.top = `${syllableRect.top + window.scrollY - chordSelector.offsetHeight - 300}px`;
+                    chordSelector.style.left = `${syllableRect.left + window.scrollX - chordSelector.offsetWidth - -90}px`;
 
                     // 코드 선택 시 이벤트 핸들러 설정
                     chordSelector.onclick = function (e) {
@@ -66,10 +66,10 @@ function handleEnter(event) {
                             } else {
                                 // 코드가 처음으로 추가될 경우
                                 const chordSpan = document.createElement('span');
-                                chordSpan.className = 'chord absolute text-[15px] text-green-600 w-full text-center tracking-tighter';
-                                chordSpan.style.top = '-2em'; // 코드가 음절 위에 위치하도록 설정
+                                chordSpan.className = 'chord absolute text-[14.5px] font-semibold text-green-600 w-full tracking-tighter';
+                                chordSpan.style.top = '-1.7em'; // 코드가 음절 위에 위치하도록 설정
                                 chordSpan.style.left = '50%';
-                                chordSpan.style.transform = syllable === ' ' ? 'translateX(-55%)' : 'translateX(-55%)'; // 코드가 음절의 중앙에 위치하도록 설정
+                                chordSpan.style.transform = 'translateX(-40%)';
                                 chordSpan.textContent = `${syllableObject.chord}`;
                                 syllableSpan.appendChild(chordSpan);
                             }
