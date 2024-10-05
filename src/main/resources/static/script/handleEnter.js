@@ -50,9 +50,18 @@ function handleEnter(event) {
 
                     const syllableRect = syllableSpan.getBoundingClientRect();
 
-                    // 셀렉트 박스의 위치를 음절의 왼쪽 중간으로 설정
-                    chordSelector.style.top = `${syllableRect.top + window.scrollY - chordSelector.offsetHeight - 300}px`;
-                    chordSelector.style.left = `${syllableRect.left + window.scrollX - chordSelector.offsetWidth - -90}px`;
+                   // 셀렉트 박스의 위치
+                   chordSelector.style.top = `${syllableRect.top + window.scrollY - chordSelector.offsetHeight - 300}px`;
+
+                   // 현재 브라우저의 크기에 맞춰서 left 지정
+                   const screenWidth = window.innerWidth;
+                   if(screenWidth >= 1536) {
+                       chordSelector.style.left = `${syllableRect.left + window.scrollX - chordSelector.offsetWidth - 220}px`;
+                   } else if(screenWidth >= 1024) {
+                       chordSelector.style.left = `${syllableRect.left + window.scrollX - chordSelector.offsetWidth - -100}px`;
+                   }else if(screenWidth < 1024) {
+                       chordSelector.style.left = `${syllableRect.left + window.scrollX - chordSelector.offsetWidth - -160}px`;
+                   }
 
                     // 코드 선택 시 이벤트 핸들러 설정
                     chordSelector.onclick = function (e) {

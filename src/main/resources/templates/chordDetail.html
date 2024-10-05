@@ -50,12 +50,11 @@
         <div class="py-20 relative text-xl space-y-10 tracking-widest" id="lyricsContainer"></div>
         <input type="hidden" id="chordContent" th:value="${chord.content}"/>
 
-
         <div class="flex justify-between border rounded-lg p-3">
             <!--등록일, 수정일-->
             <div class="flex space-x-1">
                 <div class="flex flex-col items-center justify-center bg-base-200 rounded-lg text-xs text-black py-2 px-3 space-y-0.5 tracking-wider">
-                    <div>등록</div>
+                    <div>등록dddd</div>
                     <div th:if="${chord.createAt != null}"
                          th:text="${#temporals.format(chord.createAt, 'yyyy.MM.dd')}"></div>
                 </div>

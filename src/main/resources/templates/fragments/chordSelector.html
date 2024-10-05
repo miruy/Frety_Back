@@ -1,38 +1,58 @@
 <div th:fragment="chordSelector" id="chordSelector"
-     class="hidden z-[1000] absolute left-0 top-1/2 w-[120px] h-[250px] overflow-y-auto p-1 bg-white rounded-lg shadow-lg">
-    <ul class="menu menu-xs w-full">
-        <li>
-            <details open>
-                <summary>
-                    A 코드
-                </summary>
-                <ul>
-                    <li><a>A</a></li>
-                    <li><a>Am</a></li>
-                </ul>
-            </details>
-        </li>
-        <li>
-            <details>
-                <summary>
-                    B 코드
-                </summary>
-                <ul>
-                    <li><a>B</a></li>
-                    <li><a>Bm</a></li>
-                </ul>
-            </details>
-        </li>
-        <li>
-            <details>
-                <summary>
-                    C 코드
-                </summary>
-                <ul>
-                    <li><a>C</a></li>
-                    <li><a>Cm</a></li>
-                </ul>
-            </details>
-        </li>
-    </ul>
+     class="hidden z-[1000] absolute left-0 top-1/2 w-[120px] h-[250px] overflow-y-auto p-1 bg-white rounded-lg shadow-lg tracking-normal">
+    <!-- 이 부분은 JavaScript를 통해 동적으로 채워질 예정 -->
+
+    <script>
+        // 기타 코드 데이터를 객체로 정의 (기본, #, b 포함)
+        const chordData = {
+            "A 코드": ["A", "A#", "Ab", "Am", "A#m", "Abm", "A7", "Am7", "Asus4", "Asus2"],
+            "B 코드": ["B", "B#", "Bb", "Bm", "B#m", "Bbm", "B7", "Bm7", "Bsus4", "Bsus2"],
+            "C 코드": ["C", "C#", "Cb", "Cm", "C#m", "Cbm", "C7", "Cm7", "Csus4", "Csus2"],
+            "D 코드": ["D", "D#", "Db", "Dm", "D#m", "Dbm", "D7", "Dm7", "Dsus4", "Dsus2"],
+            "E 코드": ["E", "E#", "Eb", "Em", "E#m", "Ebm", "E7", "Em7", "Esus4", "Esus2"],
+            "F 코드": ["F", "F#", "Fb", "Fm", "F#m", "Fbm", "F7", "Fm7", "Fsus4", "Fsus2"],
+            "G 코드": ["G", "G#", "Gb", "Gm", "G#m", "Gbm", "G7", "Gm7", "Gsus4", "Gsus2"]
+        };
+
+        // 코드 선택 박스를 동적으로 생성
+        function createChordSelector() {
+            const chordSelector = document.getElementById('chordSelector');
+            const ulElement = document.createElement('ul');
+            ulElement.className = 'menu menu-xs w-full';
+
+            // 각 코드 그룹에 대해 반복문을 사용하여 목록 생성
+            Object.keys(chordData).forEach((chordGroup) => {
+                const liElement = document.createElement('li');
+                const detailsElement = document.createElement('details');
+
+                // B 코드만 open 속성을 추가
+                if (chordGroup === "B 코드") {
+                    detailsElement.setAttribute('open', 'open');
+                }
+
+                const summaryElement = document.createElement('summary');
+                summaryElement.textContent = chordGroup;
+
+                // 서브 목록 생성
+                const subUlElement = document.createElement('ul');
+                chordData[chordGroup].forEach((chord) => {
+                    const subLiElement = document.createElement('li');
+                    const linkElement = document.createElement('a');
+                    linkElement.textContent = chord;
+                    subLiElement.appendChild(linkElement);
+                    subUlElement.appendChild(subLiElement);
+                });
+
+                detailsElement.appendChild(summaryElement);
+                detailsElement.appendChild(subUlElement);
+                liElement.appendChild(detailsElement);
+                ulElement.appendChild(liElement);
+            });
+
+            chordSelector.appendChild(ulElement);
+        }
+
+        // DOMContentLoaded 이벤트 발생 시 코드 선택 박스를 생성
+        document.addEventListener("DOMContentLoaded", createChordSelector);
+    </script>
 </div>
