@@ -320,18 +320,18 @@
                         // 마우스 호버 시 툴팁 생성
                         chordSpan.addEventListener('mouseover', (event) => {
                             const tooltipCard = document.createElement('div');
-                            tooltipCard.className = 'tooltip-card absolute p-3 bg-white shadow-lg border rounded-lg';
+                            tooltipCard.className = 'tooltip-card absolute px-3 pt-3 bg-white shadow-lg border rounded-lg';
                             tooltipCard.style.position = 'absolute';
                             tooltipCard.style.left = `${event.pageX + 10}px`;
                             tooltipCard.style.top = `${event.pageY + 10}px`;
 
                             // 코드 설명 추가
-                            tooltipCard.innerHTML = `<div>${syllable.chord} 코드의 설명입니다.</div>`;
+                            tooltipCard.innerHTML = `<div class="text-center font-semibold">${syllable.chord}</div>`;
 
                             // 코드 다이어그램을 툴팁에 추가
                             const tooltipChordDiagramDiv = document.createElement('div');
                             tooltipChordDiagramDiv.id = `tooltipChordric_${syllable.chord}_${syllableIndex}`;
-                            tooltipChordDiagramDiv.className = 'w-[55px] bg-transparent mt-2';
+                            tooltipChordDiagramDiv.className = 'w-[55px] bg-transparent';
                             tooltipCard.appendChild(tooltipChordDiagramDiv);
 
                             document.body.appendChild(tooltipCard);
