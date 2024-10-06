@@ -750,265 +750,247 @@ const chordDataMap = {
            },
        ],
     },
-
-    // D 코드
     "D": {
         fingers: [
             [1, 2],
             [2, 3],
             [3, 2],
+            [4, 0],
             [5, 'x'],
             [6, 'x'],
         ],
         barres: [],
-        position: 1,
     },
     "D#": {
-        fingers: [
-            [1, 3],
+         fingers: [
             [2, 4],
-            [3, 3],
-            [4, 1],
-            [5, 'x'],
-            [6, 'x'],
+            [3, 4],
+            [4, 4],
+            [5, 2],
+            [6, 'x']
         ],
         barres: [
             {
-                fromString: 4,
+                fromString: 5,
                 toString: 1,
-                fret: 1,
+                fret: 2,
                 color: '#000000',
             },
         ],
-        position: 1,
     },
     "Db": {
         fingers: [
-            [1, 2],
-            [2, 3],
-            [3, 1],
-            [5, 'x'],
-            [6, 'x'],
-        ],
-        barres: [
-            {
-                fromString: 4,
-                toString: 1,
-                fret: 1,
-                color: '#000000',
-            },
-        ],
-        position: 1,
+           [2, 4],
+           [3, 4],
+           [4, 4],
+           [5, 2],
+           [6, 'x']
+       ],
+       barres: [
+           {
+               fromString: 5,
+               toString: 1,
+               fret: 2,
+               color: '#000000',
+           },
+       ],
     },
     "Dm": {
         fingers: [
             [1, 1],
             [2, 3],
             [3, 2],
+            [4, 0],
             [5, 'x'],
             [6, 'x'],
         ],
         barres: [],
-        position: 1,
     },
     "D#m": {
-        fingers: [
-            [1, 2],
-            [2, 4],
-            [3, 3],
-            [4, 1],
-            [5, 'x'],
-            [6, 'x'],
+         fingers: [
+            [2, 3],
+            [3, 4],
+            [4, 4],
+            [6, 'x']
         ],
         barres: [
             {
-                fromString: 4,
+                fromString: 5,
                 toString: 1,
-                fret: 1,
+                fret: 2,
                 color: '#000000',
             },
         ],
-        position: 1,
     },
     "Dbm": {
         fingers: [
-            [1, 1],
-            [2, 2],
-            [3, 1],
-            [5, 'x'],
-            [6, 'x'],
+            [2, 3],
+            [3, 4],
+            [4, 4],
+            [6, 'x']
         ],
         barres: [
             {
-                fromString: 4,
+                fromString: 5,
                 toString: 1,
-                fret: 1,
+                fret: 2,
                 color: '#000000',
             },
         ],
-        position: 1,
     },
     "D7": {
         fingers: [
             [1, 2],
             [2, 1],
             [3, 2],
+            [4, 0],
             [5, 'x'],
             [6, 'x'],
         ],
         barres: [],
-        position: 1,
     },
     "Dm7": {
         fingers: [
             [1, 1],
             [2, 1],
             [3, 2],
+            [4, 0],
             [5, 'x'],
             [6, 'x'],
         ],
         barres: [],
-        position: 1,
     },
     "Dsus4": {
         fingers: [
+            [3, 2],
             [1, 3],
             [2, 3],
-            [3, 2],
+            [4, 0],
             [5, 'x'],
             [6, 'x'],
         ],
         barres: [],
-        position: 1,
     },
     "Dsus2": {
         fingers: [
-            [1, 2],
             [3, 2],
+            [2, 3],
+            [1, 0],
+            [4, 0],
             [5, 'x'],
             [6, 'x'],
         ],
         barres: [],
-        position: 1,
     },
-    // Dmaj7 코드
-        "DM7": {
-            fingers: [
-                [1, 2],
-                [2, 2],
-                [3, 2],
-                [5, 'x'],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // D6 코드
-        "D6": {
-            fingers: [
-                [1, 2],
-                [2, 0],
-                [3, 2],
-                [5, 'x'],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // Dm6 코드
-        "Dm6": {
-            fingers: [
-                [1, 1],
-                [2, 0],
-                [3, 2],
-                [5, 'x'],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // D9 코드
-        "D9": {
-            fingers: [
-                [1, 2],
-                [2, 0],
-                [3, 2],
-                [4, 0],
-                [5, 'x'],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // Dadd9 코드
-        "Dadd9": {
-            fingers: [
-                [1, 2],
-                [2, 0],
-                [3, 2],
-                [4, 4],
-                [5, 'x'],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // Ddim 코드
-        "Ddim": {
-            fingers: [
-                [1, 1],
-                [2, 2],
-                [3, 1],
-                [5, 'x'],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // Daug 코드
-        "Daug": {
-            fingers: [
-                [1, 3],
-                [2, 3],
-                [3, 2],
-                [5, 'x'],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // D5 코드
-        "D5": {
-            fingers: [
-                [1, 2],
-                [2, 3],
-                [5, 'x'],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // D13 코드
-        "D13": {
-            fingers: [
-                [1, 2],
-                [2, 0],
-                [3, 2],
-                [4, 0],
-                [5, 3],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
+    "DM7": {
+        fingers: [
+            [1, 2],
+            [2, 2],
+            [3, 2],
+            [4, 0],
+            [5, 'x'],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
+    "D6": {
+        fingers: [
+            [1, 2],
+            [2, 0],
+            [3, 2],
+            [4, 0],
+            [5, 'x'],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
+    "Dm6": {
+        fingers: [
+            [1, 1],
+            [2, 0],
+            [3, 2],
+            [4, 0],
+            [5, 'x'],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
+    "D9": {
+        fingers: [
+            [4, 2],
+            [2, 3],
+            [3, 3],
+            [5, 3],
+            [1, 'x'],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
+    "Dadd9": {
+        fingers: [
+            [4, 4],
+            [2, 5],
+            [5, 5],
+            [6, 'x'],
+        ],
+        barres: [
+            {
+                fromString: 3,
+                toString: 1,
+                fret: 2,
+                color: '#000000',
+            },
+        ],
+    },
+    "Ddim": {
+        fingers: [
+            [1, 2],
+            [2, 4],
+            [3, 5],
+            [4, 'x'],
+            [5, 'x'],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
+    "Daug": {
+        fingers: [
+            [1, 2],
+            [2, 3],
+            [3, 3],
+            [4, 0],
+            [5, 'x'],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
+    "D5": {
+        fingers: [
+            [3, 2],
+            [2, 3],
+            [1, 'x'],
+            [4, 0],
+            [5, 'x'],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
+    "D13": {
+        fingers: [
+           [4, 2],
+           [3, 3],
+           [5, 3],
+           [6, 'x'],
+       ],
+       barres: [
+           {
+               fromString: 2,
+               toString: 1,
+               fret: 5,
+               color: '#000000',
+           },
+       ],
+    },
 
     // E 코드
     "E": {

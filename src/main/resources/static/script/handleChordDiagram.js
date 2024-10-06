@@ -41,7 +41,7 @@ const commonConfigs = {
 
 // 각 코드별 추가 속성
 const customConfigs = {
-    // A#, B#, B#m, C#, C#m
+    // A#, B#, B#m, C#, C#m, D#, D#m
    Ab: {
       noPosition: true,
       tuning: ['4', '', '', '', '', ''],
@@ -67,6 +67,26 @@ const customConfigs = {
        tuning: ['3', '', '', '', '', ''],
    },
    Caug: {
+        noPosition: true,
+        tuning: ['4', '', '', '', '', ''],
+   },
+   Db: {
+        noPosition: true,
+        tuning: ['4', '', '', '', '', ''],
+   },
+   Dbm: {
+        noPosition: true,
+        tuning: ['4', '', '', '', '', ''],
+   },
+   D9: {
+        noPosition: true,
+        tuning: ['4', '', '', '', '', ''],
+   },
+   Ddim: {
+        noPosition: true,
+        tuning: ['4', '', '', '', '', ''],
+   },
+   D13: {
         noPosition: true,
         tuning: ['4', '', '', '', '', ''],
    },
