@@ -41,7 +41,7 @@ const commonConfigs = {
 
 // 각 코드별 추가 속성
 const customConfigs = {
-    // A#, B#, B#m
+    // A#, B#, B#m, C#, C#m
    Ab: {
       noPosition: true,
       tuning: ['4', '', '', '', '', ''],
@@ -62,33 +62,13 @@ const customConfigs = {
        noPosition: true,
        tuning: ['3', '', '', '', '', ''],
    },
-   Db: {
+   Cm7: {
        noPosition: true,
-       tuning: ['4', '', '', '', '', ''],
+       tuning: ['3', '', '', '', '', ''],
    },
-   Dm: {
-       noPosition: true,
-       tuning: ['5', '', '', '', '', ''],
-   },
-   Eb: {
-       noPosition: true,
-       tuning: ['6', '', '', '', '', ''],
-   },
-   Em: {
-       noPosition: true,
-       tuning: ['7', '', '', '', '', ''],
-   },
-   Fm: {
-       noPosition: true,
-       tuning: ['8', '', '', '', '', ''],
-   },
-   Gb: {
-       noPosition: true,
-       tuning: ['9', '', '', '', '', ''],
-   },
-   Gm: {
-       noPosition: true,
-       tuning: ['10', '', '', '', '', ''],
+   Caug: {
+        noPosition: true,
+        tuning: ['4', '', '', '', '', ''],
    },
 
     // 기본 설정이 없을 때 사용할 공통 설정

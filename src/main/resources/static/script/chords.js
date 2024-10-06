@@ -508,18 +508,20 @@ const chordDataMap = {
     "C": {
         fingers: [
             [2, 1],
-            [3, 2],
-            [4, 3],
+            [4, 2],
+            [5, 3],
+            [1, 0],
+            [3, 0],
             [6, 'x'],
         ],
         barres: [],
     },
     "C#": {
         fingers: [
-            [2, 2],
+            [2, 3],
             [3, 3],
             [4, 4],
-            [5, 1],
+            [6, 'x'],
         ],
         barres: [
             {
@@ -529,7 +531,6 @@ const chordDataMap = {
                 color: '#000000',
             },
         ],
-        position: 1,
     },
     "Cb": {
         fingers: [
@@ -537,6 +538,7 @@ const chordDataMap = {
             [3, 4],
             [4, 4],
             [5, 2],
+            [6, 'x']
         ],
         barres: [
             {
@@ -546,48 +548,13 @@ const chordDataMap = {
                 color: '#000000',
             },
         ],
-        position: 1,
     },
     "Cm": {
         fingers: [
             [2, 3],
             [3, 4],
             [4, 4],
-            [6, 'x'],
-        ],
-        barres: [
-            {
-                fromString: 5,
-                toString: 1,
-                fret: 3,
-                color: '#000000',
-            },
-        ],
-        position: 1,
-    },
-    "C#m": {
-        fingers: [
-            [2, 2],
-            [3, 3],
-            [4, 4],
-            [5, 1],
-        ],
-        barres: [
-            {
-                fromString: 5,
-                toString: 1,
-                fret: 1,
-                color: '#000000',
-            },
-        ],
-        position: 1,
-    },
-    "Cbm": {
-        fingers: [
-            [2, 4],
-            [3, 4],
-            [4, 4],
-            [5, 2],
+            [6, 'x']
         ],
         barres: [
             {
@@ -597,22 +564,54 @@ const chordDataMap = {
                 color: '#000000',
             },
         ],
-        position: 1,
+    },
+    "C#m": {
+        fingers: [
+            [2, 3],
+            [3, 4],
+            [4, 4],
+            [6, 'x']
+        ],
+        barres: [
+            {
+                fromString: 5,
+                toString: 1,
+                fret: 2,
+                color: '#000000',
+            },
+        ],
+    },
+    "Cbm": {
+        fingers: [
+            [2, 3],
+            [3, 4],
+            [4, 4],
+            [5, 2],
+            [6, 'x']
+        ],
+        barres: [
+            {
+                fromString: 5,
+                toString: 1,
+                fret: 2,
+                color: '#000000',
+            },
+        ],
     },
     "C7": {
         fingers: [
             [2, 1],
-            [3, 3],
             [4, 2],
+            [3, 3],
+            [5, 3],
+            [1, 0],
             [6, 'x'],
         ],
         barres: [],
-        position: 1,
     },
     "Cm7": {
         fingers: [
             [2, 3],
-            [3, 4],
             [4, 4],
             [6, 'x'],
         ],
@@ -620,148 +619,137 @@ const chordDataMap = {
             {
                 fromString: 5,
                 toString: 1,
-                fret: 3,
+                fret: 2,
                 color: '#000000',
             },
         ],
-        position: 1,
     },
     "Csus4": {
         fingers: [
             [2, 1],
-            [3, 3],
+            [1, 3],
             [4, 3],
+            [5, 3],
+            [3, 0],
             [6, 'x'],
         ],
         barres: [],
-        position: 1,
     },
     "Csus2": {
         fingers: [
             [2, 1],
-            [3, 2],
+            [1, 3],
+            [5, 3],
+            [3, 0],
+            [4, 0],
             [6, 'x'],
         ],
         barres: [],
-        position: 1,
     },
-      // Cmaj7 코드
-        "CM7": {
-            fingers: [
-                [2, 0],
-                [3, 2],
-                [4, 3],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // C6 코드
-        "C6": {
-            fingers: [
-                [2, 1],
-                [3, 2],
-                [5, 0],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // Cm6 코드
-        "Cm6": {
-            fingers: [
-                [1, 3],
-                [2, 1],
-                [3, 3],
-                [4, 2],
-                [5, 'x'],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // C9 코드
-        "C9": {
-            fingers: [
-                [1, 3],
-                [2, 1],
-                [3, 3],
-                [4, 2],
-                [5, 'x'],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // Cadd9 코드
-        "Cadd9": {
-            fingers: [
-                [1, 3],
-                [2, 3],
-                [3, 2],
-                [4, 0],
-                [5, 3],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // Cdim 코드
-        "Cdim": {
-            fingers: [
-                [1, 1],
-                [2, 2],
-                [3, 1],
-                [4, 2],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // Caug 코드
-        "Caug": {
-            fingers: [
-                [2, 1],
-                [3, 2],
-                [4, 3],
-                [5, 4],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // C5 코드
-        "C5": {
-            fingers: [
-                [3, 5],
-                [4, 3],
-                [5, 3],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // C13 코드
-        "C13": {
-            fingers: [
-                [1, 3],
-                [2, 3],
-                [3, 5],
-                [4, 5],
-                [5, 3],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
+    "CM7": {
+        fingers: [
+            [4, 2],
+            [5, 3],
+            [1, 0],
+            [2, 0],
+            [3, 0],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
+    "C6": {
+        fingers: [
+            [2, 1],
+            [3, 2],
+            [4, 2],
+            [5, 3],
+            [1, 0],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
+    "Cm6": {
+        fingers: [
+            [4, 1],
+            [3, 2],
+            [5, 3],
+            [2, 4],
+            [1, 'x'],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
+    "C9": {
+        fingers: [
+            [4, 2],
+            [2, 3],
+            [3, 3],
+            [5, 3],
+            [1, 0],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
+    "Cadd9": {
+        fingers: [
+            [4, 2],
+            [2, 3],
+            [5, 3],
+            [1, 0],
+            [3, 0],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
+    "Cdim": {
+        fingers: [
+            [1, 2],
+            [2, 4],
+            [3, 5],
+            [4, 'x'],
+            [5, 'x'],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
+    "Caug": {
+        fingers: [
+            [1, 2],
+            [2, 3],
+            [3, 3],
+            [4, 'x'],
+            [5, 'x'],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
+    "C5": {
+        fingers: [
+            [2, 1],
+            [1, 3],
+            [3, 'x'],
+            [4, 'x'],
+            [5, 'x'],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
+    "C13": {
+       fingers: [
+           [4, 2],
+           [3, 3],
+           [5, 3],
+           [6, 'x'],
+       ],
+       barres: [
+           {
+               fromString: 2,
+               toString: 1,
+               fret: 5,
+               color: '#000000',
+           },
+       ],
+    },
 
     // D 코드
     "D": {
