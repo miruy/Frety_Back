@@ -320,7 +320,7 @@
                         // 마우스 호버 시 툴팁 생성
                         chordSpan.addEventListener('mouseover', (event) => {
                             const tooltipCard = document.createElement('div');
-                            tooltipCard.className = 'tooltip-card absolute px-3 pt-3 bg-white shadow-lg border rounded-lg';
+                            tooltipCard.className = 'tooltip-card absolute pl-3 pr-2 pt-2 pb-1 bg-white shadow-lg border rounded-lg';
                             tooltipCard.style.position = 'absolute';
                             tooltipCard.style.left = `${event.pageX + 10}px`;
                             tooltipCard.style.top = `${event.pageY + 10}px`;
@@ -331,16 +331,21 @@
                             // 코드 다이어그램을 툴팁에 추가
                             const tooltipChordDiagramDiv = document.createElement('div');
                             tooltipChordDiagramDiv.id = `tooltipChordric_${syllable.chord}_${syllableIndex}`;
-                            tooltipChordDiagramDiv.className = 'w-[55px] bg-transparent';
+                            tooltipChordDiagramDiv.className = 'w-[60px] bg-transparent';
                             tooltipCard.appendChild(tooltipChordDiagramDiv);
 
                             document.body.appendChild(tooltipCard);
 
                             // 다이어그램 그리기
                             setTimeout(() => {
+                                const customConfig = {
+                                    ...customConfigs[syllable.chord] || customConfigs.default,
+                                    svgTitle: `Chordric_${syllable.chord}`,
+                                };
+
                                 drawChord(`#${tooltipChordDiagramDiv.id}`, chordDataMap[syllable.chord], {
                                     ...commonConfigs,
-                                    svgTitle: `Tooltip_${syllable.chord}`,
+                                    ...customConfig,
                                 });
                             }, 0);
 

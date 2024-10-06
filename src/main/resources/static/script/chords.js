@@ -1,22 +1,22 @@
 // 코드 데이터 맵
 const chordDataMap = {
-    // A 코드
     "A": {
         fingers: [
             [2, 2],
             [3, 2],
             [4, 2],
+            [1, 0], // open-string
+            [5, 0], // silent-string(mute)
             [6, 'x'],
         ],
         barres: [],
-        position: 1,
     },
     "A#": {
         fingers: [
             [2, 3],
             [3, 3],
             [4, 3],
-            [5, 1],
+            [6, 'x'],
         ],
         barres: [
             {
@@ -26,24 +26,23 @@ const chordDataMap = {
                 color: '#000000',
             },
         ],
-        position: 1,
     },
     "Ab": {
         fingers: [
-            [3, 4],
+            [3, 3],
             [4, 4],
             [5, 4],
-            [6, 2],
+            [1, 0],
+            [6, 0],
         ],
         barres: [
             {
                 fromString: 6,
                 toString: 1,
-                fret: 1,
+                fret: 2,
                 color: '#000000',
             },
         ],
-        position: 1,
     },
     "Am": {
         fingers: [
@@ -53,7 +52,6 @@ const chordDataMap = {
             [6, 'x'],
         ],
         barres: [],
-        position: 1,
     },
     "A#m": {
         fingers: [
@@ -70,161 +68,184 @@ const chordDataMap = {
                 color: '#000000',
             },
         ],
-        position: 1,
     },
     "Abm": {
         fingers: [
-            [3, 3],
             [4, 4],
             [5, 4],
-            [6, 2],
+            [1, 0],
+            [6, 0],
         ],
         barres: [
             {
                 fromString: 6,
                 toString: 1,
-                fret: 1,
+                fret: 2,
                 color: '#000000',
             },
         ],
-        position: 1,
     },
     "A7": {
         fingers: [
             [2, 2],
             [4, 2],
+            [1, 0],
+            [3, 0],
+            [5, 0],
             [6, 'x'],
         ],
         barres: [],
-        position: 1,
     },
     "Am7": {
         fingers: [
             [2, 1],
             [4, 2],
+            [1, 0],
+            [3, 0],
+            [5, 0],
             [6, 'x'],
         ],
         barres: [],
-        position: 1,
     },
     "Asus4": {
         fingers: [
-            [2, 2],
-            [3, 3],
-            [4, 2],
+            [3, 2],
+            [2, 3],
+            [1, 0],
+            [4, 0],
+            [5, 0],
             [6, 'x'],
         ],
         barres: [],
-        position: 1,
     },
     "Asus2": {
         fingers: [
             [3, 2],
             [4, 2],
+            [1, 0],
+            [2, 0],
+            [5, 0],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
+    "AM7": {
+        fingers: [
+            [3, 1],
+            [2, 2],
+            [4, 2],
+            [1, 0],
+            [5, 0],
+            [6, 'x'],
+        ],
+        barres: [],
+        },
+    "A6": {
+        fingers: [
+            [5, 0],
+            [6, 'x'],
+        ],
+        barres: [
+            {
+                fromString: 4,
+                toString: 1,
+                fret: 2,
+                color: '#000000',
+            },
+        ],
+    },
+    "Am6": {
+        fingers: [
+            [2, 1],
+            [1, 2],
+            [3, 2],
+            [4, 2],
+            [5, 0],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
+    "A9": {
+        fingers: [
+            [2, 2],
+            [4, 2],
+            [6, 2],
+            [1, 'x'],
+        ],
+        barres: [
+            {
+                fromString: 5,
+                toString: 3,
+                fret: 1,
+                color: '#000000',
+            },
+        ],
+    },
+    "Aadd9": {
+        fingers: [
+            [3, 4],
+            [5, 4],
+            [6, 5],,
+            [1, 'x'],
+        ],
+        barres: [
+            {
+                fromString: 4,
+                toString: 2,
+                fret: 2,
+                color: '#000000',
+            },
+        ],
+        position: 1,
+    },
+    "Adim": {
+        fingers: [
+            [2, 1],
+            [4, 1],
+            [3, 2],
+            [1, 'x'],
+            [5, 0],
             [6, 'x'],
         ],
         barres: [],
         position: 1,
     },
-    "Amaj7": {
-            fingers: [
-                [1, 1],
-                [2, 2],
-                [3, 2],
-                [4, 2],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-        "A6": {
-            fingers: [
-                [1, 2],
-                [3, 2],
-                [4, 2],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-        "Am6": {
-            fingers: [
-                [1, 2],
-                [3, 2],
-                [4, 2],
-                [5, 2],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-        "A9": {
-            fingers: [
-                [1, 2],
-                [2, 4],
-                [3, 2],
-                [4, 4],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-        "Aadd9": {
-            fingers: [
-                [2, 2],
-                [3, 2],
-                [4, 2],
-                [5, 0],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-        "Adim": {
-            fingers: [
-                [1, 1],
-                [2, 2],
-                [3, 3],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-        "Aaug": {
-            fingers: [
-                [1, 1],
-                [2, 2],
-                [3, 2],
-                [4, 3],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-        "A5": {
-            fingers: [
-                [2, 2],
-                [3, 2],
-                [4, 2],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-        "A13": {
-            fingers: [
-                [1, 1],
-                [2, 2],
-                [3, 3],
-                [4, 4],
-                [5, 5],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-    // B 코드
+    "Aaug": {
+        fingers: [
+            [1, 1],
+            [2, 2],
+            [3, 2],
+            [4, 3],
+            [5, 0],
+            [6, 'x'],
+        ],
+        barres: [],
+        position: 1,
+    },
+    "A5": {
+        fingers: [
+            [3, 2],
+            [4, 2],
+            [1, 'x'],
+            [2, 'x'],
+            [5, 0],
+            [6, 'x'],
+        ],
+        barres: [],
+        position: 1,
+    },
+    "A13": {
+        fingers: [
+            [1, 2],
+            [2, 2],
+            [4, 2],
+            [3, 0],
+            [5, 0],
+            [6, 'x'],
+        ],
+        barres: [],
+        position: 1,
+    },
     "B": {
         fingers: [
             [2, 4],
@@ -377,7 +398,7 @@ const chordDataMap = {
         position: 1,
     },
     // Bmaj7 코드
-        "Bmaj7": {
+        "BM7": {
             fingers: [
                 [1, 2],
                 [2, 3],
@@ -636,7 +657,7 @@ const chordDataMap = {
         position: 1,
     },
       // Cmaj7 코드
-        "Cmaj7": {
+        "CM7": {
             fingers: [
                 [2, 0],
                 [3, 2],
@@ -894,7 +915,7 @@ const chordDataMap = {
         position: 1,
     },
     // Dmaj7 코드
-        "Dmaj7": {
+        "DM7": {
             fingers: [
                 [1, 2],
                 [2, 2],
@@ -1136,7 +1157,7 @@ const chordDataMap = {
         position: 1,
     },
      // Emaj7 코드
-        "Emaj7": {
+        "EM7": {
             fingers: [
                 [2, 1],
                 [3, 1],
@@ -1385,7 +1406,7 @@ const chordDataMap = {
         position: 1,
     },
     // Fmaj7 코드
-        "Fmaj7": {
+        "FM7": {
             fingers: [
                 [2, 1],
                 [3, 2],
@@ -1648,7 +1669,7 @@ const chordDataMap = {
         position: 1,
     },
     // Gmaj7 코드
-        "Gmaj7": {
+        "GM7": {
             fingers: [
                 [1, 2],
                 [2, 0],
