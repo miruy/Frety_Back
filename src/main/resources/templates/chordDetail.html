@@ -1,4 +1,4 @@
-<html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html layout:decorate="~{layout}">
 <div layout:fragment="content">
     <div class="px-5 space-y-10">
         <div>
@@ -47,14 +47,14 @@
         </div>
 
         <!--content-->
-        <div class="py-20 relative text-xl space-y-10 tracking-widest" id="lyricsContainer"></div>
+        <div class="py-20 relative text-xl space-y-20 tracking-widest" id="lyricsContainer"></div>
         <input type="hidden" id="chordContent" th:value="${chord.content}"/>
 
         <div class="flex justify-between border rounded-lg p-3">
             <!--등록일, 수정일-->
             <div class="flex space-x-1">
                 <div class="flex flex-col items-center justify-center bg-base-200 rounded-lg text-xs text-black py-2 px-3 space-y-0.5 tracking-wider">
-                    <div>등록dddd</div>
+                    <div>등록</div>
                     <div th:if="${chord.createAt != null}"
                          th:text="${#temporals.format(chord.createAt, 'yyyy.MM.dd')}"></div>
                 </div>
@@ -288,6 +288,7 @@
             location.href = uri
         }
 
+        // 악보 데이터 가져오기
         document.addEventListener("DOMContentLoaded", function () {
             // JSON 데이터를 숨겨진 필드에서 가져오기
             const chordContentJson = document.getElementById('chordContent').value;
@@ -297,26 +298,59 @@
             const lyricsContainer = document.getElementById('lyricsContainer');
 
             // 각 행을 순회하며 렌더링
-            contentList.forEach((syllableRow) => {
+            contentList.forEach((syllableRow, rowIndex) => {
                 // 각 행을 위한 div 생성
                 const lineContainer = document.createElement('div');
-                lineContainer.className = 'flex items-center tracking-wide';
+                lineContainer.className = 'flex items-center justify-center tracking-wide';
 
-                syllableRow.forEach((syllable) => {
-                    // 각 음절을 위한 span 생성
+                syllableRow.forEach((syllable, syllableIndex) => {
+                    // 음절
                     const syllableSpan = document.createElement('span');
-                    syllableSpan.className = 'relative inline-block tracking-wide';
+                    syllableSpan.className = 'relative inline-block tracking-wide cursor-pointer';
                     syllableSpan.innerHTML = syllable.text === ' ' ? '&nbsp;&nbsp;&nbsp;' : syllable.text;
 
-                    // 코드가 있는 경우 코드도 추가
+                    // 코드가 있는 경우 코드 추가
                     if (syllable.chord) {
+                        // 코드 이름
                         const chordSpan = document.createElement('span');
-                        chordSpan.className = 'chord absolute text-[14.5px] font-semibold text-green-600 w-full tracking-tighter';
-                        chordSpan.style.top = '-1.7em';
-                        chordSpan.style.left = '50%';
-                        chordSpan.style.transform = 'translateX(-40%)';
+                        chordSpan.className = `chord absolute text-[14.5px] -top-[1.7em] ${syllable.chord.length=== 1 && 'left-0.5'} ${syllable.chord.length=== 2 && '-left-[2px]'} ${syllable.chord.length=== 3 && '-left-[8px]'} ${syllable.chord.length=== 4 && '-left-[9px]'} ${syllable.chord.length=== 5 && '-left-[12px]'} font-semibold w-full tracking-tighter`;
                         chordSpan.textContent = syllable.chord;
                         syllableSpan.appendChild(chordSpan);
+
+                        // 마우스 호버 시 툴팁 생성
+                        chordSpan.addEventListener('mouseover', (event) => {
+                            const tooltipCard = document.createElement('div');
+                            tooltipCard.className = 'tooltip-card absolute p-3 bg-white shadow-lg border rounded-lg';
+                            tooltipCard.style.position = 'absolute';
+                            tooltipCard.style.left = `${event.pageX + 10}px`;
+                            tooltipCard.style.top = `${event.pageY + 10}px`;
+
+                            // 코드 설명 추가
+                            tooltipCard.innerHTML = `<div>${syllable.chord} 코드의 설명입니다.</div>`;
+
+                            // 코드 다이어그램을 툴팁에 추가
+                            const tooltipChordDiagramDiv = document.createElement('div');
+                            tooltipChordDiagramDiv.id = `tooltipChordric_${syllable.chord}_${syllableIndex}`;
+                            tooltipChordDiagramDiv.className = 'w-[55px] bg-transparent mt-2';
+                            tooltipCard.appendChild(tooltipChordDiagramDiv);
+
+                            document.body.appendChild(tooltipCard);
+
+                            // 다이어그램 그리기
+                            setTimeout(() => {
+                                drawChord(`#${tooltipChordDiagramDiv.id}`, chordDataMap[syllable.chord], {
+                                    ...commonConfigs,
+                                    svgTitle: `Tooltip_${syllable.chord}`,
+                                });
+                            }, 0);
+
+                            // 마우스 아웃 시 툴팁 제거
+                            chordSpan.addEventListener('mouseout', () => {
+                                if (tooltipCard) {
+                                    tooltipCard.remove();
+                                }
+                            });
+                        });
                     }
 
                     // lineContainer에 syllableSpan 추가
@@ -328,5 +362,12 @@
             });
         });
     </script>
+
+    <!--코드 다이어그램 생성-->
+    <script src="/script/handleChordDiagram.js"></script>
+
+    <!--코드 맵-->
+    <script src="/script/chords.js"></script>
+
 </div>
 </html>

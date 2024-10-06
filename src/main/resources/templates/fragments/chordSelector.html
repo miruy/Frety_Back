@@ -1,17 +1,37 @@
 <div th:fragment="chordSelector" id="chordSelector"
      class="hidden z-[1000] absolute left-0 top-1/2 w-[120px] h-[250px] overflow-y-auto p-1 bg-white rounded-lg shadow-lg tracking-normal">
-    <!-- 이 부분은 JavaScript를 통해 동적으로 채워질 예정 -->
 
     <script>
-        // 기타 코드 데이터를 객체로 정의 (기본, #, b 포함)
+        // 기타 코드 데이터
         const chordData = {
-            "A 코드": ["A", "A#", "Ab", "Am", "A#m", "Abm", "A7", "Am7", "Asus4", "Asus2"],
-            "B 코드": ["B", "B#", "Bb", "Bm", "B#m", "Bbm", "B7", "Bm7", "Bsus4", "Bsus2"],
-            "C 코드": ["C", "C#", "Cb", "Cm", "C#m", "Cbm", "C7", "Cm7", "Csus4", "Csus2"],
-            "D 코드": ["D", "D#", "Db", "Dm", "D#m", "Dbm", "D7", "Dm7", "Dsus4", "Dsus2"],
-            "E 코드": ["E", "E#", "Eb", "Em", "E#m", "Ebm", "E7", "Em7", "Esus4", "Esus2"],
-            "F 코드": ["F", "F#", "Fb", "Fm", "F#m", "Fbm", "F7", "Fm7", "Fsus4", "Fsus2"],
-            "G 코드": ["G", "G#", "Gb", "Gm", "G#m", "Gbm", "G7", "Gm7", "Gsus4", "Gsus2"]
+            "A 코드": [
+                "A", "A#", "Ab", "Am", "A#m", "Abm", "A7", "Am7", "Asus4", "Asus2",
+                "Amaj7", "A6", "Am6", "A9", "Aadd9", "Adim", "Aaug", "A5", "A13"
+            ],
+            "B 코드": [
+                "B", "B#", "Bb", "Bm", "B#m", "Bbm", "B7", "Bm7", "Bsus4", "Bsus2",
+                "Bmaj7", "B6", "Bm6", "B9", "Badd9", "Bdim", "Baug", "B5", "B13"
+            ],
+            "C 코드": [
+                "C", "C#", "Cb", "Cm", "C#m", "Cbm", "C7", "Cm7", "Csus4", "Csus2",
+                "Cmaj7", "C6", "Cm6", "C9", "Cadd9", "Cdim", "Caug", "C5", "C13"
+            ],
+            "D 코드": [
+                "D", "D#", "Db", "Dm", "D#m", "Dbm", "D7", "Dm7", "Dsus4", "Dsus2",
+                "Dmaj7", "D6", "Dm6", "D9", "Dadd9", "Ddim", "Daug", "D5", "D13"
+            ],
+            "E 코드": [
+                "E", "E#", "Eb", "Em", "E#m", "Ebm", "E7", "Em7", "Esus4", "Esus2",
+                "Emaj7", "E6", "Em6", "E9", "Eadd9", "Edim", "Eaug", "E5", "E13"
+            ],
+            "F 코드": [
+                "F", "F#", "Fb", "Fm", "F#m", "Fbm", "F7", "Fm7", "Fsus4", "Fsus2",
+                "Fmaj7", "F6", "Fm6", "F9", "Fadd9", "Fdim", "Faug", "F5", "F13"
+            ],
+            "G 코드": [
+                "G", "G#", "Gb", "Gm", "G#m", "Gbm", "G7", "Gm7", "Gsus4", "Gsus2",
+                "Gmaj7", "G6", "Gm6", "G9", "Gadd9", "Gdim", "Gaug", "G5", "G13"
+            ]
         };
 
         // 코드 선택 박스를 동적으로 생성
@@ -20,7 +40,16 @@
             const ulElement = document.createElement('ul');
             ulElement.className = 'menu menu-xs w-full';
 
-            // 각 코드 그룹에 대해 반복문을 사용하여 목록 생성
+            // 코드 삭제 버튼
+            const deleteLiElement = document.createElement('li');
+            const deleteLinkElement = document.createElement('a');
+            deleteLinkElement.textContent = "삭제";
+            deleteLinkElement.dataset.chord = null;
+
+            deleteLiElement.appendChild(deleteLinkElement);
+            ulElement.appendChild(deleteLiElement);
+
+            // 코드 목록 생성
             Object.keys(chordData).forEach((chordGroup) => {
                 const liElement = document.createElement('li');
                 const detailsElement = document.createElement('details');
