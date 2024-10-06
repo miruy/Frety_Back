@@ -1217,14 +1217,12 @@ const chordDataMap = {
         ],
         barres: [],
     },
-
-    // F 코드
     "F": {
         fingers: [
-            [2, 2],
-            [3, 3],
-            [4, 4],
-            [6, 1],
+            [3, 2],
+            [4, 3],
+            [5, 3],
+            [6, 0],
         ],
         barres: [
             {
@@ -1234,14 +1232,13 @@ const chordDataMap = {
                 color: '#000000',
             },
         ],
-        position: 1,
     },
     "F#": {
         fingers: [
-            [2, 3],
-            [3, 4],
-            [4, 5],
-            [6, 2],
+            [3, 3],
+            [4, 4],
+            [5, 4],
+            [6, 0],
         ],
         barres: [
             {
@@ -1251,237 +1248,223 @@ const chordDataMap = {
                 color: '#000000',
             },
         ],
-        position: 1,
     },
     "Fb": {
         fingers: [
-            [2, 1],
-            [3, 2],
-            [4, 3],
+            [2, 4],
+            [3, 4],
+            [4, 4],
             [6, 'x'],
         ],
         barres: [
             {
-                fromString: 6,
-                toString: 1,
-                fret: 1,
-                color: '#000000',
-            },
-        ],
-        position: 1,
-    },
-    "Fm": {
-        fingers: [
-            [3, 4],
-            [4, 3],
-            [6, 1],
-        ],
-        barres: [
-            {
-                fromString: 6,
-                toString: 1,
-                fret: 1,
-                color: '#000000',
-            },
-        ],
-        position: 1,
-    },
-    "F#m": {
-        fingers: [
-            [3, 4],
-            [4, 3],
-            [6, 2],
-        ],
-        barres: [
-            {
-                fromString: 6,
+                fromString: 5,
                 toString: 1,
                 fret: 2,
                 color: '#000000',
             },
         ],
-        position: 1,
     },
-    "Fbm": {
-        fingers: [
-            [2, 1],
-            [3, 1],
-            [4, 1],
-            [6, 1],
-        ],
-        barres: [
-            {
-                fromString: 6,
-                toString: 1,
-                fret: 1,
-                color: '#000000',
-            },
-        ],
-        position: 1,
-    },
-    "F7": {
-        fingers: [
-            [2, 2],
-            [3, 3],
-            [4, 1],
-            [6, 1],
-        ],
-        barres: [],
-        position: 1,
-    },
-    "Fm7": {
-        fingers: [
-            [4, 1],
-            [6, 1],
-        ],
-        barres: [
-            {
-                fromString: 6,
-                toString: 1,
-                fret: 1,
-                color: '#000000',
-            },
-        ],
-        position: 1,
-    },
-    "Fsus4": {
-        fingers: [
-            [2, 3],
-            [3, 3],
-            [6, 1],
-        ],
-        barres: [],
-        position: 1,
-    },
-    "Fsus2": {
+    "Fm": {
         fingers: [
             [4, 3],
             [5, 3],
-            [6, 1],
+            [6, 0],
+        ],
+        barres: [
+            {
+                fromString: 6,
+                toString: 1,
+                fret: 1,
+                color: '#000000',
+            },
+        ],
+    },
+    "F#m": {
+       fingers: [
+           [4, 4],
+           [5, 4],
+           [6, 0],
+       ],
+       barres: [
+           {
+               fromString: 6,
+               toString: 1,
+               fret: 2,
+               color: '#000000',
+           },
+       ],
+    },
+    "Fbm": {
+        fingers: [
+            [2, 3],
+            [3, 4],
+            [4, 4],
+            [6, 'x'],
+        ],
+        barres: [
+            {
+                fromString: 5,
+                toString: 1,
+                fret: 2,
+                color: '#000000',
+            },
+        ],
+    },
+    "F7": {
+        fingers: [
+            [3, 2],
+            [5, 3],
+            [6, 0],
+        ],
+        barres: [
+            {
+                fromString: 6,
+                toString: 1,
+                fret: 1,
+                color: '#000000',
+            },
+        ],
+    },
+    "Fm7": {
+        fingers: [
+            [5, 3],
+            [6, 0],
+        ],
+        barres: [
+            {
+                fromString: 6,
+                toString: 1,
+                fret: 1,
+                color: '#000000',
+            },
+        ],
+    },
+    "Fsus4": {
+        fingers: [
+            [3, 3],
+            [4, 3],
+            [6, 0],
+        ],
+        barres: [
+            {
+                fromString: 6,
+                toString: 1,
+                fret: 1,
+                color: '#000000',
+            },
+        ],
+    },
+    "Fsus2": {
+        fingers: [
+            [1, 1],
+            [2, 1],
+            [4, 3],
+            [3, 0],
+            [5, 'x'],
+            [5, 'x'],
         ],
         barres: [],
-        position: 1,
     },
-    // Fmaj7 코드
-        "FM7": {
-            fingers: [
-                [2, 1],
-                [3, 2],
-                [4, 3],
-                [5, 'x'],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // F6 코드
-        "F6": {
-            fingers: [
-                [1, 1],
-                [2, 1],
-                [3, 2],
-                [4, 3],
-                [5, 'x'],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // Fm6 코드
-        "Fm6": {
-            fingers: [
-                [2, 1],
-                [3, 1],
-                [4, 3],
-                [6, 1],
-            ],
-            barres: [
-                {
-                    fromString: 6,
-                    toString: 1,
-                    fret: 1,
-                    color: '#000000',
-                },
-            ],
-            position: 1,
-        },
-
-        // F9 코드
-        "F9": {
-            fingers: [
-                [2, 3],
-                [3, 1],
-                [4, 3],
-                [5, 1],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // Fadd9 코드
-        "Fadd9": {
-            fingers: [
-                [2, 1],
-                [3, 2],
-                [4, 3],
-                [5, 3],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // Fdim 코드
-        "Fdim": {
-            fingers: [
-                [1, 1],
-                [2, 2],
-                [3, 1],
-                [4, 2],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // Faug 코드
-        "Faug": {
-            fingers: [
-                [2, 2],
-                [3, 3],
-                [4, 3],
-                [6, 1],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // F5 코드
-        "F5": {
-            fingers: [
-                [4, 3],
-                [5, 3],
-                [6, 1],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // F13 코드
-        "F13": {
-            fingers: [
-                [1, 1],
-                [2, 3],
-                [3, 2],
-                [4, 3],
-                [6, 1],
-            ],
-            barres: [],
-            position: 1,
-        },
+    "FM7": {
+        fingers: [
+            [2, 1],
+            [3, 2],
+            [4, 3],
+            [1, 'x'],
+            [5, 'x'],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
+    "F6": {
+        fingers: [
+            [1, 1],
+            [2, 1],
+            [6, 1],
+            [3, 2],
+            [4, 0],
+            [5, 0],
+        ],
+        barres: [],
+    },
+    "Fm6": {
+        fingers: [
+            [2, 1],
+            [3, 1],
+            [6, 1],
+            [5, 3],
+            [1, 'x'],
+            [4, 0],
+        ],
+        barres: [],
+    },
+    "F9": {
+        fingers: [
+            [1, 1],
+            [2, 1],
+            [4, 1],
+            [6, 1],
+            [3, 0],
+            [5, 0],
+        ],
+        barres: [],
+    },
+    "Fadd9": {
+        fingers: [
+            [2, 1],
+            [3, 2],
+            [1, 3],
+            [4, 3],
+            [5, 'x'],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
+    "Fdim": {
+        fingers: [
+            [1, 1],
+            [3, 1],
+            [4, 3],
+            [2, 0],
+            [5, 'x'],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
+    "Faug": {
+        fingers: [
+            [1, 1],
+            [2, 2],
+            [3, 2],
+            [4, 3],
+            [5, 'x'],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
+    "F5": {
+        fingers: [
+            [6, 1],
+            [4, 3],
+            [5, 3],
+            [1, 'x'],
+            [2, 'x'],
+            [3, 'x'],
+        ],
+        barres: [],
+    },
+    "F13": {
+        fingers: [
+            [4, 1],
+            [6, 1],
+            [1, 3],
+            [2, 3],
+            [3, 0],
+            [5, 0],
+        ],
+        barres: [],
+    },
 
     // G 코드
     "G": {

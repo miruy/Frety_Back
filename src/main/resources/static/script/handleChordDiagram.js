@@ -98,6 +98,14 @@ const customConfigs = {
         noPosition: true,
         tuning: ['6', '', '', '', '', ''],
    },
+   Fb: {
+        noPosition: true,
+        tuning: ['7', '', '', '', '', ''],
+   },
+   Fbm: {
+        noPosition: true,
+        tuning: ['7', '', '', '', '', ''],
+   },
 
     // 기본 설정이 없을 때 사용할 공통 설정
     default: {
