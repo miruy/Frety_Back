@@ -196,7 +196,6 @@ const chordDataMap = {
                 color: '#000000',
             },
         ],
-        position: 1,
     },
     "Adim": {
         fingers: [
@@ -208,7 +207,6 @@ const chordDataMap = {
             [6, 'x'],
         ],
         barres: [],
-        position: 1,
     },
     "Aaug": {
         fingers: [
@@ -220,7 +218,6 @@ const chordDataMap = {
             [6, 'x'],
         ],
         barres: [],
-        position: 1,
     },
     "A5": {
         fingers: [
@@ -232,7 +229,6 @@ const chordDataMap = {
             [6, 'x'],
         ],
         barres: [],
-        position: 1,
     },
     "A13": {
         fingers: [
@@ -244,7 +240,6 @@ const chordDataMap = {
             [6, 'x'],
         ],
         barres: [],
-        position: 1,
     },
     "B": {
         fingers: [
@@ -252,6 +247,7 @@ const chordDataMap = {
             [3, 4],
             [4, 4],
             [5, 2],
+            [6, 'x']
         ],
         barres: [
             {
@@ -261,25 +257,13 @@ const chordDataMap = {
                 color: '#000000',
             },
         ],
-        position: 1,
     },
     "B#": {
-        // B#은 C 코드와 동일
-        fingers: [
-            [2, 1],
-            [3, 2],
-            [4, 3],
-            [6, 'x'],
-        ],
-        barres: [],
-        position: 1,
-    },
-    "Bb": {
         fingers: [
             [2, 3],
             [3, 3],
             [4, 3],
-            [5, 1],
+            [6, 'x'],
         ],
         barres: [
             {
@@ -289,7 +273,22 @@ const chordDataMap = {
                 color: '#000000',
             },
         ],
-        position: 1,
+    },
+    "Bb": {
+        fingers: [
+            [2, 3],
+            [3, 3],
+            [4, 3],
+            [6, 'x'],
+        ],
+        barres: [
+            {
+                fromString: 5,
+                toString: 1,
+                fret: 1,
+                color: '#000000',
+            },
+        ],
     },
     "Bm": {
         fingers: [
@@ -297,6 +296,7 @@ const chordDataMap = {
             [3, 4],
             [4, 4],
             [5, 2],
+            [6, 'x']
         ],
         barres: [
             {
@@ -306,15 +306,13 @@ const chordDataMap = {
                 color: '#000000',
             },
         ],
-        position: 1,
     },
     "B#m": {
-        // B#m은 사실상 Cm과 동일
         fingers: [
-            [2, 3],
-            [3, 4],
-            [4, 4],
-            [5, 1],
+            [2, 2],
+            [3, 3],
+            [4, 3],
+            [6, 'x'],
         ],
         barres: [
             {
@@ -324,14 +322,13 @@ const chordDataMap = {
                 color: '#000000',
             },
         ],
-        position: 1,
     },
     "Bbm": {
         fingers: [
-            [2, 3],
+            [2, 2],
             [3, 3],
             [4, 3],
-            [5, 1],
+            [6, 'x'],
         ],
         barres: [
             {
@@ -341,24 +338,23 @@ const chordDataMap = {
                 color: '#000000',
             },
         ],
-        position: 1,
     },
     "B7": {
         fingers: [
-            [2, 4],
-            [3, 2],
             [4, 1],
+            [1, 2],
+            [3, 2],
             [5, 2],
+            [2, 0],
+            [6, 'x'],
         ],
         barres: [],
-        position: 1,
     },
     "Bm7": {
         fingers: [
             [2, 3],
-            [3, 4],
             [4, 4],
-            [5, 2],
+            [6, 'x'],
         ],
         barres: [
             {
@@ -368,14 +364,13 @@ const chordDataMap = {
                 color: '#000000',
             },
         ],
-        position: 1,
     },
     "Bsus4": {
         fingers: [
-            [2, 4],
             [3, 4],
             [4, 4],
-            [5, 2],
+            [2, 5],
+            [6, 'x'],
         ],
         barres: [
             {
@@ -385,136 +380,131 @@ const chordDataMap = {
                 color: '#000000',
             },
         ],
-        position: 1,
     },
     "Bsus2": {
         fingers: [
-            [2, 4],
             [3, 4],
             [4, 4],
             [6, 'x'],
         ],
-        barres: [],
-        position: 1,
+        barres: [
+            {
+                fromString: 5,
+                toString: 1,
+                fret: 2,
+                color: '#000000',
+            },
+        ],
     },
-    // Bmaj7 코드
-        "BM7": {
-            fingers: [
-                [1, 2],
-                [2, 3],
-                [3, 4],
-                [5, 1],
-            ],
-            barres: [
-                {
-                    fromString: 5,
-                    toString: 1,
-                    fret: 1,
-                    color: '#000000',
-                },
-            ],
-            position: 1,
-        },
-
-        // B6 코드
-        "B6": {
-            fingers: [
-                [2, 4],
-                [3, 4],
-                [4, 4],
-                [5, 2],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // Bm6 코드
-        "Bm6": {
-            fingers: [
-                [2, 4],
-                [3, 4],
-                [4, 4],
-                [5, 2],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // B9 코드
-        "B9": {
-            fingers: [
-                [1, 2],
-                [2, 4],
-                [3, 2],
-                [4, 4],
-                [5, 2],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // Badd9 코드
-        "Badd9": {
-            fingers: [
-                [1, 2],
-                [2, 4],
-                [3, 4],
-                [5, 2],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // Bdim 코드
-        "Bdim": {
-            fingers: [
-                [1, 1],
-                [2, 2],
-                [3, 3],
-                [5, 1],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // Baug 코드
-        "Baug": {
-            fingers: [
-                [2, 4],
-                [3, 4],
-                [4, 4],
-                [5, 2],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // B5 코드
-        "B5": {
-            fingers: [
-                [2, 4],
-                [3, 4],
-                [4, 4],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // B13 코드
-        "B13": {
-            fingers: [
-                [1, 2],
-                [2, 4],
-                [3, 4],
-                [5, 2],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-    // C 코드
+    "BM7": {
+        fingers: [
+            [3, 3],
+            [2, 4],
+            [4, 4],
+            [6, 'x'],
+        ],
+        barres: [
+            {
+                fromString: 5,
+                toString: 1,
+                fret: 2,
+                color: '#000000',
+            },
+        ],
+    },
+    "B6": {
+        fingers: [
+            [3, 1],
+            [4, 1],
+            [1, 2],
+            [5, 2],
+            [2, 0],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
+    "Bm6": {
+        fingers: [
+            [3, 1],
+            [1, 2],
+            [5, 2],
+            [2, 0],
+            [4, 0],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
+    "B9": {
+        fingers: [
+            [4, 1],
+            [2, 2],
+            [3, 2],
+            [5, 2],
+            [1, 'x'],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
+    "Badd9": {
+        fingers: [
+            [4, 1],
+            [2, 2],
+            [5, 2],
+            [3, 4],
+            [1, 'x'],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
+    "Bdim": {
+        fingers: [
+            [5, 2],
+            [2, 3],
+            [4, 3],
+            [3, 4],
+            [1, 'x'],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
+    "Baug": {
+        fingers: [
+            [1, 2],
+            [2, 3],
+            [3, 3],
+            [4, 'x'],
+            [5, 'x'],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
+    "B5": {
+        fingers: [
+            [1, 2],
+            [2, 0],
+            [3, 'x'],
+            [4, 'x'],
+            [5, 'x'],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
+    "B13": {
+        fingers: [
+            [4, 1],
+            [3, 2],
+            [5, 2],
+            [6, 'x'],
+        ],
+        barres: [
+            {
+                fromString: 2,
+                toString: 1,
+                fret: 4,
+                color: '#000000',
+            },
+        ],
+    },
     "C": {
         fingers: [
             [2, 1],
@@ -523,7 +513,6 @@ const chordDataMap = {
             [6, 'x'],
         ],
         barres: [],
-        position: 1,
     },
     "C#": {
         fingers: [
