@@ -41,7 +41,7 @@ const commonConfigs = {
 
 // 각 코드별 추가 속성
 const customConfigs = {
-    // A#, B#, B#m, C#, C#m, D#, D#m
+    // A#, B#, B#m, C#, C#m, D#, D#m, E#
    Ab: {
       noPosition: true,
       tuning: ['4', '', '', '', '', ''],
@@ -89,6 +89,14 @@ const customConfigs = {
    D13: {
         noPosition: true,
         tuning: ['4', '', '', '', '', ''],
+   },
+   Eb: {
+        noPosition: true,
+        tuning: ['6', '', '', '', '', ''],
+   },
+   Ebm: {
+        noPosition: true,
+        tuning: ['6', '', '', '', '', ''],
    },
 
     // 기본 설정이 없을 때 사용할 공통 설정
