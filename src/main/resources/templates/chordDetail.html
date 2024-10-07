@@ -162,8 +162,9 @@
                     </div>
                 </div>
 
-                <div class="chat chat-start space-y-1">
-                    <div class="chat-header flex ml-1 items-center space-x-1">
+                <!--댓글-->
+                <div class="space-y-1">
+                    <div class="flex ml-1 items-center space-x-1">
                         <div th:if="${comment.author != null}" th:text="${comment.author.username}"
                              class="text-[14px]"></div>
 
@@ -175,7 +176,9 @@
                               th:text="${@dateTimeUtil.getTimeAgo(comment.createdAt)}"
                               class="text-xs opacity-50"></time>
                     </div>
-                    <div th:text="${comment.content}" class="chat-bubble text-[15px] flex items-center"></div>
+                    <div class="flex flex-wrap bg-neutral rounded-lg p-3 items-center w-fit max-w-full max-h-32 overflow-y-auto">
+                        <span th:text="${comment.content}" class="text-white text-[15px] break-words w-full"></span>
+                    </div>
                 </div>
             </div>
         </div>
