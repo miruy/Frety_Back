@@ -5,12 +5,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Getter
 @Setter
 @Entity
-public class Comment {
+public class Reply {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,12 +23,8 @@ public class Comment {
     private LocalDateTime updateAt;
 
     @ManyToOne
-    private Chord chord;
+    private Comment comment;
 
     @ManyToOne
     private Member author;
-
-    // orphanRemoval = true: Comment에서 Reply가 제거되면 데이터베이스에서도 답글 삭제
-    @OneToMany(mappedBy = "comment", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private List<Reply> replies;
 }
