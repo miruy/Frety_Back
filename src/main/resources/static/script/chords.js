@@ -1478,76 +1478,10 @@ const chordDataMap = {
     },
     "G#": {
         fingers: [
-            [1, 4],
-            [2, 3],
-            [6, 4],
-        ],
-        barres: [
-            {
-                fromString: 6,
-                toString: 1,
-                fret: 1,
-                color: '#000000',
-            },
-        ],
-        position: 1,
-    },
-    "Gb": {
-        fingers: [
-            [1, 2],
-            [2, 1],
-            [6, 2],
-        ],
-        barres: [
-            {
-                fromString: 6,
-                toString: 1,
-                fret: 1,
-                color: '#000000',
-            },
-        ],
-        position: 1,
-    },
-    "Gm": {
-        fingers: [
-            [2, 3],
             [3, 3],
-            [4, 3],
-            [6, 3],
-        ],
-        barres: [
-            {
-                fromString: 6,
-                toString: 1,
-                fret: 3,
-                color: '#000000',
-            },
-        ],
-        position: 1,
-    },
-    "G#m": {
-        fingers: [
-            [2, 4],
-            [3, 4],
             [4, 4],
-            [6, 4],
-        ],
-        barres: [
-            {
-                fromString: 6,
-                toString: 1,
-                fret: 4,
-                color: '#000000',
-            },
-        ],
-        position: 1,
-    },
-    "Gbm": {
-        fingers: [
-            [2, 1],
-            [3, 1],
-            [4, 1],
-            [6, 2],
+            [5, 4],
+            [6, 0],
         ],
         barres: [
             {
@@ -1557,172 +1491,212 @@ const chordDataMap = {
                 color: '#000000',
             },
         ],
-        position: 1,
     },
-    "G7": {
+    "Gb": {
         fingers: [
-            [1, 1],
-            [2, 0],
-            [3, 0],
-            [4, 0],
-            [5, 2],
-            [6, 3],
-        ],
-        barres: [],
-        position: 1,
-    },
-    "Gm7": {
-        fingers: [
-            [2, 3],
             [3, 3],
-            [4, 3],
-            [6, 3],
+            [4, 4],
+            [5, 4],
+            [6, 0],
         ],
         barres: [
             {
                 fromString: 6,
                 toString: 1,
-                fret: 3,
+                fret: 2,
                 color: '#000000',
             },
         ],
-        position: 1,
+    },
+    "Gm": {
+        fingers: [
+            [4, 4],
+            [5, 4],
+            [6, 0],
+        ],
+        barres: [
+            {
+                fromString: 6,
+                toString: 1,
+                fret: 2,
+                color: '#000000',
+            },
+        ],
+    },
+    "G#m": {
+        fingers: [
+            [4, 4],
+            [5, 4],
+            [6, 0],
+        ],
+        barres: [
+            {
+                fromString: 6,
+                toString: 1,
+                fret: 2,
+                color: '#000000',
+            },
+        ],
+    },
+    "Gbm": {
+        fingers: [
+            [4, 4],
+            [5, 4],
+            [6, 0],
+        ],
+        barres: [
+            {
+                fromString: 6,
+                toString: 1,
+                fret: 2,
+                color: '#000000',
+            },
+        ],
+    },
+    "G7": {
+        fingers: [
+            [1, 1],
+            [5, 2],
+            [6, 3],
+            [4, 0],
+            [3, 0],
+            [2, 0],
+        ],
+        barres: [],
+    },
+    "Gm7": {
+        fingers: [
+            [5, 4],
+            [6, 0],
+        ],
+        barres: [
+            {
+                fromString: 6,
+                toString: 1,
+                fret: 2,
+                color: '#000000',
+            },
+        ],
     },
     "Gsus4": {
         fingers: [
             [1, 3],
-            [2, 1],
-            [5, 0],
+            [2, 3],
+            [5, 3],
             [6, 3],
+            [4, 0],
+            [3, 0],
         ],
         barres: [],
-        position: 1,
     },
     "Gsus2": {
         fingers: [
             [1, 3],
-            [2, 0],
-            [5, 0],
+            [2, 3],
             [6, 3],
+            [3, 0],
+            [4, 0],
+            [5, 0],
         ],
         barres: [],
-        position: 1,
     },
-    // Gmaj7 코드
-        "GM7": {
-            fingers: [
-                [1, 2],
-                [2, 0],
-                [3, 0],
-                [4, 0],
-                [6, 3],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // G6 코드
-        "G6": {
-            fingers: [
-                [2, 2],
-                [3, 0],
-                [4, 0],
-                [6, 3],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // Gm6 코드
-        "Gm6": {
-            fingers: [
-                [2, 1],
-                [3, 3],
-                [4, 3],
-                [6, 3],
-            ],
-            barres: [
-                {
-                    fromString: 6,
-                    toString: 1,
-                    fret: 3,
-                    color: '#000000',
-                },
-            ],
-            position: 1,
-        },
-
-        // G9 코드
-        "G9": {
-            fingers: [
-                [1, 3],
-                [2, 2],
-                [3, 3],
-                [4, 0],
-                [6, 3],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // Gadd9 코드
-        "Gadd9": {
-            fingers: [
-                [1, 3],
-                [2, 0],
-                [3, 2],
-                [4, 0],
-                [6, 3],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // Gdim 코드
-        "Gdim": {
-            fingers: [
-                [1, 1],
-                [2, 2],
-                [3, 1],
-                [4, 2],
-                [6, 'x'],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // Gaug 코드
-        "Gaug": {
-            fingers: [
-                [2, 1],
-                [3, 1],
-                [4, 1],
-                [6, 3],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // G5 코드
-        "G5": {
-            fingers: [
-                [5, 0],
-                [6, 3],
-            ],
-            barres: [],
-            position: 1,
-        },
-
-        // G13 코드
-        "G13": {
-            fingers: [
-                [1, 1],
-                [2, 0],
-                [3, 2],
-                [4, 3],
-                [6, 3],
-            ],
-            barres: [],
-            position: 1,
-        },
+    "GM7": {
+        fingers: [
+            [1, 2],
+            [5, 2],
+            [6, 3],
+            [2, 0],
+            [3, 0],
+            [4, 0],
+        ],
+        barres: [],
+    },
+    "G6": {
+        fingers: [
+            [5, 2],
+            [6, 3],
+            [1, 0],
+            [2, 0],
+            [3, 0],
+            [4, 0],
+        ],
+        barres: [],
+    },
+    "Gm6": {
+        fingers: [
+            [5, 1],
+            [2, 3],
+            [6, 3],
+            [1, 0],
+            [3, 0],
+            [4, 0],
+        ],
+        barres: [],
+    },
+    "G9": {
+        fingers: [
+            [3, 2],
+            [5, 2],
+            [4, 3],
+            [6, 3],
+            [1, 'x'],
+            [2, 0],
+        ],
+        barres: [],
+    },
+    "Gadd9": {
+        fingers: [
+            [3, 2],
+            [5, 2],
+            [1, 3],
+            [6, 3],
+            [1, 'x'],
+            [4, 0],
+        ],
+        barres: [],
+    },
+    "Gdim": {
+        fingers: [
+            [3, 2],
+            [6, 2],
+            [5, 3],
+            [4, 4],
+            [1, 'x'],
+            [2, 'x'],
+        ],
+        barres: [],
+    },
+    "Gaug": {
+        fingers: [
+            [4, 1],
+            [5, 2],
+            [1, 3],
+            [6, 3],
+            [2, 0],
+            [3, 0],
+        ],
+        barres: [],
+    },
+    "G5": {
+        fingers: [
+            [1, 3],
+            [2, 3],
+            [3, 0],
+            [4, 'x'],
+            [5, 'x'],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
+    "G13": {
+        fingers: [
+            [5, 2],
+            [4, 3],
+            [6, 3],
+            [1, 0],
+            [2, 0],
+            [3, 0],
+        ],
+        barres: [],
+    },
 };

@@ -30,10 +30,12 @@ const commonConfigs = {
     fontFamily: 'Open Sans, Arial, sans-serif',
     color: '#000000',
     backgroundColor: 'none',
+    fingerSize: 0.7,
+    barreChordStrokeWidth: 0.1,
     barreChordRadius: 0.5,
     emptyStringIndicatorSize: 0.7,
-    strokeWidth: 4,
-    nutWidth: 12,
+    strokeWidth: 5,
+    nutWidth: 14,
     fixedDiagramPosition: false,
     sidePadding: 0.2,
     tuningsFontSize: 75,
@@ -41,7 +43,7 @@ const commonConfigs = {
 
 // 각 코드별 추가 속성
 const customConfigs = {
-    // A#, B#, B#m, C#, C#m, D#, D#m, E#
+    // A#, B#, B#m, C#, C#m, D#, D#m, E#, G#, G#m
    Ab: {
       noPosition: true,
       tuning: ['4', '', '', '', '', ''],
@@ -105,6 +107,18 @@ const customConfigs = {
    Fbm: {
         noPosition: true,
         tuning: ['7', '', '', '', '', ''],
+   },
+   Gm: {
+        noPosition: true,
+        tuning: ['3', '', '', '', '', ''],
+   },
+   Gm7: {
+        noPosition: true,
+        tuning: ['3', '', '', '', '', ''],
+   },
+   Gdim: {
+        noPosition: true,
+        tuning: ['3', '', '', '', '', ''],
    },
 
     // 기본 설정이 없을 때 사용할 공통 설정
