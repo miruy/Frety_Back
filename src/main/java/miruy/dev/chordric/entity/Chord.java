@@ -26,7 +26,7 @@ public class Chord {
     private String capo;
 
     @Column(length = 100)
-    private String key;
+    private String chordKey;
 
     @Column(length = 100)
     private String Difficulty;
