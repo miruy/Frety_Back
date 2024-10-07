@@ -33,10 +33,12 @@ public class ChordService {
         return chordRepository.findPopularChords(pageable);
     }
 
-    public void createChord(String singer, String title, String content, Member member) {
+    public void createChord(String singer, String title, String capo, String playingStyle, String content, Member member) {
         Chord chord = new Chord();
         chord.setArtist(singer);
         chord.setSong(title);
+        chord.setCapo(capo);
+        chord.setPlayingStyle(playingStyle);
         chord.setContent(content);
         chord.setCreateAt(LocalDateTime.now());
         chord.setAuthor(member);
@@ -53,9 +55,11 @@ public class ChordService {
         }
     }
 
-    public void editChord(Chord chord, String artist, String song, String content) {
+    public void editChord(Chord chord, String artist, String song, String capo, String playingStyle, String content) {
         chord.setArtist(artist);
         chord.setSong(song);
+        chord.setCapo(capo);
+        chord.setPlayingStyle(playingStyle);
         chord.setContent(content);
         chord.setUpdateAt(LocalDateTime.now());
 

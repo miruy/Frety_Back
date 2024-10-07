@@ -22,17 +22,9 @@ public class Chord {
     @Column(length = 200)
     private String song;
 
-    @Column(length = 100)
     private String capo;
 
-    @Column(length = 100)
-    private String chordKey;
-
-    @Column(length = 100)
-    private String Difficulty;
-
-    @Column(length = 100)
-    private String playingStyles;
+    private String playingStyle;
 
     @Column(columnDefinition = "TEXT") // 길이 제한 없음 의미
     private String content;

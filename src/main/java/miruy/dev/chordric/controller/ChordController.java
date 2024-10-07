@@ -49,8 +49,6 @@ public class ChordController {
 
         Member member = this.memberService.getUser(principal.getName());
 
-        System.out.println("##### chordForm.getContent()" + chordForm.getContent());
-
         // JSON 문자열을 List<SyllableObject>로 변환
         ObjectMapper objectMapper = new ObjectMapper();
         try {
@@ -60,6 +58,8 @@ public class ChordController {
             this.chordService.createChord(
                     chordForm.getArtist(),
                     chordForm.getSong(),
+                    chordForm.getCapo(),
+                    chordForm.getPlayingStyle(),
                     contentJson,
                     member
             );
@@ -90,6 +90,8 @@ public class ChordController {
 
         chordCreateForm.setArtist(chord.getArtist());
         chordCreateForm.setSong(chord.getSong());
+        chordCreateForm.setCapo(chord.getCapo());
+        chordCreateForm.setPlayingStyle(chord.getPlayingStyle());
 
         // JSON 문자열을 List<SyllableObject>로 변환 후 다시 JSON 문자열로 직렬화
         ObjectMapper objectMapper = new ObjectMapper();
@@ -98,7 +100,6 @@ public class ChordController {
             });
             String contentJson = objectMapper.writeValueAsString(contentList);
 
-            System.out.println("@@@@contentJson" + contentJson);
             chordCreateForm.setContent(contentJson);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
@@ -127,7 +128,7 @@ public class ChordController {
             List<List<SyllableObject>> syllables = objectMapper.readValue(chordCreateForm.getContent(), new TypeReference<List<List<SyllableObject>>>() {
             });
             String contentJson = objectMapper.writeValueAsString(syllables);
-            this.chordService.editChord(chord, chordCreateForm.getArtist(), chordCreateForm.getSong(), contentJson);
+            this.chordService.editChord(chord, chordCreateForm.getArtist(), chordCreateForm.getSong(), chordCreateForm.getCapo(), chordCreateForm.getPlayingStyle(), contentJson);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
             bindingResult.reject("content", "콘텐츠 변환 중 오류가 발생했습니다.");

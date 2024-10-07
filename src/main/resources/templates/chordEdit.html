@@ -26,6 +26,13 @@
                     Song
                     <input type="text" id="song" th:field="*{song}" class="grow"/>
                 </label>
+
+                <div class="flex space-x-2">
+                    <!--카포 선택 박스-->
+                    <div th:replace="~{fragments/capoSelector :: capoSelector}"></div>
+                    <!--주법 선택 박스-->
+                    <div th:replace="~{fragments/playingStylesSelector :: playingStylesSelector}"></div>
+                </div>
             </div>
 
             <!-- 악보 수정 방법 -->

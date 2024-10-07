@@ -1,8 +1,18 @@
-<div th:fragment="playingStylesSelector" id="playingStylesSelector">
-    <select class="select select-bordered w-full max-w-xs">
-        <option disabled selected>연주법</option>
-        <option>퍼커시브</option>
-        <option>핑거스타일</option>
-        <option>아르페지오</option>
+<label th:fragment="playingStylesSelector" id="playingStylesSelector" class="form-control w-full">
+    <div class="label">
+        <span class="label-text">Style</span>
+    </div>
+
+    <select name="playingStyle" th:field="*{playingStyle}" class="select select-bordered">
+        <option value="스트럼 (Strumming)">스트럼 (Strumming)</option>
+        <option value="퍼커시브 (Percussive Playing)">퍼커시브 (Percussive Playing)</option>
+        <option value="아르페지오 (Arpeggio)">아르페지오 (Arpeggio)</option>
+        <option value="칼립소 (Calypso)">칼립소 (Calypso)</option>
+        <option value="슬로우 고고 (Slow Go-Go)">슬로우 고고 (Slow Go-Go)</option>
+        <option value="컨트리 (Country Style)">컨트리 (Country Style)</option>
+        <option value="슬로우 락 (Slow Rock)">슬로우 락 (Slow Rock)</option>
+        <option value="셔플 (Shuffle)">셔플 (Shuffle)</option>
+        <option value="쓰리핑거 (Three-Finger Picking)">쓰리핑거 (Three-Finger Picking)</option>
+        <option value="보사노바 (Bossa Nova)">보사노바 (Bossa Nova)</option>
     </select>
-</div>
+</label>

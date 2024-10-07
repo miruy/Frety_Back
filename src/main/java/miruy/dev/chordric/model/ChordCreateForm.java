@@ -21,6 +21,8 @@ public class ChordCreateForm {
 
     @NotEmpty(message = "코드를 입력하세요.")
     private String content;
-//    @NotEmpty(message = "코드를 입력하세요.")
-//    private List<SyllableObject> content;
+
+    private String capo;
+
+    private String playingStyle;
 }
