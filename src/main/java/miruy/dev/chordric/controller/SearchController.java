@@ -18,6 +18,10 @@ public class SearchController {
     @GetMapping("/search")
     public String search(@RequestParam("keyword") String keyword, @RequestParam(value = "page", defaultValue = "0") int page, Model model) {
         if (keyword == null || keyword.trim().isEmpty()) {
+
+            model.addAttribute("results", Page.empty());  // 빈 결과
+            model.addAttribute("keyword", keyword);
+
             return "searchResults";
         }
 

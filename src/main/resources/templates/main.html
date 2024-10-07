@@ -2,24 +2,24 @@
 <div layout:fragment="content">
     <div class="space-y-10">
         <div class="space-y-1 border-b pb-3">
-            <div class="text-4xl font-bold">Chordric</div>
-            <div class="text-zinc-500">세상에 단 하나뿐인 당신의 기타 코드</div>
+            <div class="text-4xl font-bold">Frety</div>
+            <div class="text-zinc-500">프렛 위에서 완성되는 당신의 기타 코드</div>
         </div>
 
         <div>
             <div class="flex justify-end">
-                <a class="btn" th:href="@{/chord/create}">코드 등록</a>
+                <a class="btn" th:href="@{/chord/create}">악보 제작</a>
             </div>
 
             <div role="tablist" class="tabs tabs-lifted">
 
-                <!--최근 등록된 코드-->
+                <!--최근 등록된 악보-->
                 <input
                         type="radio"
                         name="my_tabs_2"
                         role="tab"
                         class="tab"
-                        aria-label="최근 등록된 코드"
+                        aria-label="최근 등록된 악보"
                         th:checked="${activeTab == 'latest'}"
                         th:attr="data-current-page=${currentPage}"
                         onclick="locationToTab('latest', this.getAttribute('data-current-page'))"
@@ -33,7 +33,7 @@
                                 <th>NO</th>
                                 <th>Artist</th>
                                 <th>Song</th>
-                                <th>작성자</th>
+                                <th>악보 제작자</th>
                                 <th>등록일</th>
                             </tr>
                             </thead>
@@ -78,13 +78,13 @@
                     </div>
                 </div>
 
-                <!--인기 코드 (댓글이 가장 많은 코드)-->
+                <!--인기 악보 (댓글이 가장 많은 코드)-->
                 <input
                         type="radio"
                         name="my_tabs_2"
                         role="tab"
                         class="tab"
-                        aria-label="인기 코드"
+                        aria-label="인기 악보"
                         th:checked="${activeTab == 'popular'}"
                         th:attr="data-current-page=${currentPage}"
                         onclick="locationToTab('popular', this.getAttribute('data-current-page'))"
@@ -97,7 +97,7 @@
                                 <th>NO</th>
                                 <th>Artist</th>
                                 <th>Song</th>
-                                <th>작성자</th>
+                                <th>악보 제작자</th>
                                 <th>등록일</th>
                             </tr>
                             </thead>
