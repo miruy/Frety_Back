@@ -291,16 +291,16 @@ const chordDataMap = {
     },
     "B#": {
         fingers: [
-            [2, 3],
-            [3, 3],
-            [4, 3],
+            [2, 4],
+            [3, 4],
+            [4, 4],
             [6, 'x'],
         ],
         barres: [
             {
                 fromString: 5,
                 toString: 1,
-                fret: 1,
+                fret: 2,
                 color: '#000000',
             },
         ],
@@ -351,16 +351,16 @@ const chordDataMap = {
     },
     "B#m": {
         fingers: [
-            [2, 2],
-            [3, 3],
-            [4, 3],
+            [2, 3],
+            [3, 4],
+            [4, 4],
             [6, 'x'],
         ],
         barres: [
             {
                 fromString: 5,
                 toString: 1,
-                fret: 1,
+                fret: 2,
                 color: '#000000',
             },
         ],
@@ -560,8 +560,8 @@ const chordDataMap = {
     },
     "C#": {
         fingers: [
-            [2, 3],
-            [3, 3],
+            [2, 4],
+            [3, 4],
             [4, 4],
             [6, 'x'],
         ],
@@ -569,7 +569,7 @@ const chordDataMap = {
             {
                 fromString: 5,
                 toString: 1,
-                fret: 1,
+                fret: 2,
                 color: '#000000',
             },
         ],
@@ -1068,15 +1068,17 @@ const chordDataMap = {
     },
     "E#": {
         fingers: [
-            [3, 2],
-            [4, 3],
-            [5, 3],
+            [2, 4],
+            [3, 4],
+            [4, 4],
+            [5, 2],
+            [6, 'x']
         ],
         barres: [
             {
-                fromString: 6,
+                fromString: 5,
                 toString: 1,
-                fret: 1,
+                fret: 2,
                 color: '#000000',
             },
         ],
@@ -1109,18 +1111,20 @@ const chordDataMap = {
         barres: [],
     },
     "E#m": {
-        fingers: [
-            [4, 3],
-            [5, 3],
-        ],
-        barres: [
-            {
-                fromString: 6,
-                toString: 1,
-                fret: 1,
-                color: '#000000',
-            },
-        ],
+       fingers: [
+           [2, 3],
+           [3, 4],
+           [4, 4],
+           [6, 'x']
+       ],
+       barres: [
+           {
+               fromString: 5,
+               toString: 1,
+               fret: 2,
+               color: '#000000',
+           },
+       ],
     },
     "Ebm": {
         fingers: [

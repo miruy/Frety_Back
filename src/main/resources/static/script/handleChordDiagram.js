@@ -41,85 +41,44 @@ const commonConfigs = {
     tuningsFontSize: 75,
 };
 
-// 각 코드별 추가 속성
+const definedCustomConfigs = {
+    tuning4: { noPosition: true, tuning: ['4', '', '', '', '', ''] },
+    tuning3: { noPosition: true, tuning: ['3', '', '', '', '', ''] },
+    tuning6: { noPosition: true, tuning: ['6', '', '', '', '', ''] },
+    tuning7: { noPosition: true, tuning: ['7', '', '', '', '', ''] },
+    tuning8: { noPosition: true, tuning: ['8', '', '', '', '', ''] },
+};
+
 const customConfigs = {
-    // A#, B#, B#m, C#, C#m, D#, D#m, E#, G#, G#m
-   Ab: {
-      noPosition: true,
-      tuning: ['4', '', '', '', '', ''],
-   },
-   Abm: {
-      noPosition: true,
-      tuning: ['4', '', '', '', '', ''],
-   },
-   A9: {
-       noPosition: true,
-       tuning: ['4', '', '', '', '', ''],
-   },
-   Baug: {
-       noPosition: true,
-       tuning: ['3', '', '', '', '', ''],
-   },
-   Cm: {
-       noPosition: true,
-       tuning: ['3', '', '', '', '', ''],
-   },
-   Cm7: {
-       noPosition: true,
-       tuning: ['3', '', '', '', '', ''],
-   },
-   Caug: {
-        noPosition: true,
-        tuning: ['4', '', '', '', '', ''],
-   },
-   Db: {
-        noPosition: true,
-        tuning: ['4', '', '', '', '', ''],
-   },
-   Dbm: {
-        noPosition: true,
-        tuning: ['4', '', '', '', '', ''],
-   },
-   D9: {
-        noPosition: true,
-        tuning: ['4', '', '', '', '', ''],
-   },
-   Ddim: {
-        noPosition: true,
-        tuning: ['4', '', '', '', '', ''],
-   },
-   D13: {
-        noPosition: true,
-        tuning: ['4', '', '', '', '', ''],
-   },
-   Eb: {
-        noPosition: true,
-        tuning: ['6', '', '', '', '', ''],
-   },
-   Ebm: {
-        noPosition: true,
-        tuning: ['6', '', '', '', '', ''],
-   },
-   Fb: {
-        noPosition: true,
-        tuning: ['7', '', '', '', '', ''],
-   },
-   Fbm: {
-        noPosition: true,
-        tuning: ['7', '', '', '', '', ''],
-   },
-   Gm: {
-        noPosition: true,
-        tuning: ['3', '', '', '', '', ''],
-   },
-   Gm7: {
-        noPosition: true,
-        tuning: ['3', '', '', '', '', ''],
-   },
-   Gdim: {
-        noPosition: true,
-        tuning: ['3', '', '', '', '', ''],
-   },
+    "Ab": definedCustomConfigs.tuning4,
+    "Abm": definedCustomConfigs.tuning4,
+    "A9": definedCustomConfigs.tuning4,
+    "B#": definedCustomConfigs.tuning3,
+    "B#m": definedCustomConfigs.tuning3,
+    "Baug": definedCustomConfigs.tuning3,
+    "C#": definedCustomConfigs.tuning4,
+    "C#m": definedCustomConfigs.tuning4,
+    "Cm": definedCustomConfigs.tuning3,
+    "Cm7": definedCustomConfigs.tuning3,
+    "Caug": definedCustomConfigs.tuning4,
+    "D#": definedCustomConfigs.tuning6,
+    "D#m": definedCustomConfigs.tuning6,
+    "Db": definedCustomConfigs.tuning4,
+    "Dbm": definedCustomConfigs.tuning4,
+    "D9": definedCustomConfigs.tuning4,
+    "Ddim": definedCustomConfigs.tuning4,
+    "D13": definedCustomConfigs.tuning4,
+    "E#": definedCustomConfigs.tuning8,
+    "E#m": definedCustomConfigs.tuning8,
+    "Eb": definedCustomConfigs.tuning6,
+    "Ebm": definedCustomConfigs.tuning6,
+    "Fb": definedCustomConfigs.tuning7,
+    "Fbm": definedCustomConfigs.tuning7,
+    "G#": definedCustomConfigs.tuning4,
+    "G#m": definedCustomConfigs.tuning4,
+    "Gm": definedCustomConfigs.tuning3,
+    "Gm7": definedCustomConfigs.tuning3,
+    "Gdim": definedCustomConfigs.tuning3,
 
     // 기본 설정이 없을 때 사용할 공통 설정
     default: {
