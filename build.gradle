@@ -9,7 +9,7 @@ version = '0.0.1-SNAPSHOT'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }
 
@@ -42,7 +42,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
 
     // H2
-    developmentOnly 'com.h2database:h2'
+    implementation 'com.h2database:h2'
 
     // Thymleaf
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
@@ -52,11 +52,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
 
-}
-
-// -parameters 플래그 : 컴파일러가 메서드의 파라미터 이름 정보를 클래스 파일에 저장
-tasks.withType(JavaCompile) {
-    options.compilerArgs << '-parameters'
 }
 
 tasks.named('test') {
