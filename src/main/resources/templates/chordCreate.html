@@ -44,8 +44,8 @@
                     <div class="text-sm font-semibold">악보 제작 방법</div>
                 </div>
                 <div class="text-sm ml-2.5">
-                    <div>1. 입력 칸에 가사를 입력한 후, 엔터를 눌러보세요.</div>
-                    <div>2. 가사의 각 음절을 클릭하면, 기타 코드를 지정할 수 있습니다. (공백에도 지정 가능)</div>
+                    <div>1. 입력 칸에 가사를 입력한 후, <span class="font-bold">Enter Key(엔터)</span>를 눌러 가사를 업로드 하세요.</div>
+                    <div>2. 가사의 각 <span class="font-bold">음절</span>을 클릭하면, 기타 코드를 지정할 수 있습니다. (공백에도 지정 가능)</div>
                     <div>3. 악보 작성을 마쳤다면, 등록 버튼을 눌러 당신의 악보를 Frety에 공유해 보세요!</div>
                 </div>
             </div>
@@ -60,13 +60,13 @@
 
             <!--가사 입력 칸-->
             <textarea id="content" th:field="*{content}" class="textarea textarea-bordered w-full h-[400px] text-center"
-                      placeholder="한 행 씩 입력해주세요."
+                      placeholder="입력 후 Enter Key(엔터)를 눌러주세요."
                       onkeydown="handleEnter(event)"
             ></textarea>
 
             <div th:replace="~{fragments/form_errors :: formErrorsFragment}"></div>
 
-            <input type="submit" value="등록" class="btn w-full"/>
+            <input type="submit" value="악보 등록" class="btn w-full"/>
         </form>
     </div>
 
