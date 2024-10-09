@@ -189,18 +189,8 @@
                     lineContainer.appendChild(syllableSpan);
                 });
 
-                // 가사 삭제 버튼 추가
-                const removeBtn = document.createElement('button');
-                removeBtn.className = 'absolute right-0 py-1.5 px-1.5 text-xs hover:text-white hover:bg-neutral rounded-lg';
-                removeBtn.textContent = '삭제';
-                removeBtn.onclick = function () {
-                    uploadedLyrics.removeChild(lineContainer);
-                    const index = lyricsData.indexOf(lineData);
-                    if (index > -1) {
-                        lyricsData.splice(index, 1); // 삭제된 행 데이터를 배열에서 제거
-                    }
-                };
-                lineContainer.appendChild(removeBtn);
+                // 한 행 삭제 버튼
+                removeLine(lineContainer, lineData);
 
                 // 전체 가사 데이터에 현재 행 데이터 추가
                 lyricsData.push(lineData);
@@ -219,10 +209,19 @@
     <!--한글 입력 시 반복문제 해결-->
     <script src="/script/handleComposing.js"></script>
 
-    <!--음절 클릭 이벤트-->
-    <script src="/script/handleSyllableClick.js"></script>
-
-    <!--행 업로드-->
+    <!--가사 입력-->
     <script src="/script/handleEnter.js"></script>
+
+    <!--음절 클릭-->
+    <script src="/script/handleSyllable.js"></script>
+
+    <!--한 행씩 업로드-->
+    <script src="/script/addLineToView.js"></script>
+
+    <!--코드 선택-->
+    <script src="/script/selectedChord.js"></script>
+
+    <!--한 행 삭제-->
+    <script src="/script/removeLine.js"></script>
 </div>
 </html>
