@@ -8,14 +8,15 @@
 <br>
 
 # 기술 스택
-- Language : Java, Javascript, HTML
-- Library : svguitar
-- Framework : Springboot 3.3.4
+- Language : Java, Javascript, HTML, Thymeleaf
+- Library : svguitar, TailwindCSS, Daisy UI
+- Tool : Intelli J
+- Framework : Springboot 3.3.4, Spring Security
 - JDK : 21
 - BuildTool : Gradle
-- DB : H2 (MySQL, RDS로 이전 예정)
+- DB : H2(in-memory)
 - Server : AWS EC2, Ubuntu 24.04
-- CI / CD : Github Actions, Git Container Registry, Docker
+- CI / CD : Github Actions, Git Container Registry, Docker, Ngnix Proxy Manager
 
 <br>
 <br>
