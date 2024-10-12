@@ -20,3 +20,9 @@
 <br>
 
 # 아키텍처
+![Frety 1차 서버구성도](https://github.com/user-attachments/assets/4648fe7a-f11c-4653-bb77-2b13b62f7341)
+
+<br>
+
+# 프로젝트 구조
+
