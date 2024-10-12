@@ -7,4 +7,16 @@
 
 <br>
 
+# 기술 스택
+- Language : Java, Javascript, HTML
+- Library : svguitar
+- Framework : Springboot 3.3.4
+- JDK : 21
+- BuildTool : Gradle
+- DB : H2 (MySQL, RDS로 이전 예정)
+- Server : AWS EC2, Ubuntu 24.04
+- CI / CD : Github Actions, Git Container Registry, Docker
 
+<br>
+
+# 아키텍처
