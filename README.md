@@ -22,7 +22,7 @@
 <br>
 
 # 프로젝트 구조
-<img width="300" alt="image" src="https://github.com/user-attachments/assets/4a032c69-ae42-416c-aa64-091f46a646cf">
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/3686cc17-3851-4bd6-8b9a-4dedeb2c461d">
 
 <br>
 <br>
