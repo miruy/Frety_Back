@@ -98,31 +98,34 @@
             </div>
         </div>
 
-        <!-- 댓글 작성 폼 -->
-        <form th:action="@{|/comment/create/${chord.id}|}"
+        <!-- 로그아웃 상태면 작성불가능 댓글 작성 폼 -->
+        <div sec:authorize="isAnonymous()" class="flex flex-col items-end space-y-3"
+        >
+            <textarea
+                    disabled
+                    class="textarea textarea-bordered w-full h-40 min-h-40 max-h-80"
+                    placeholder="댓글을 남겨보세요!"
+
+                    rows="15">
+            </textarea>
+
+            <input class="btn btn-neutral" type="submit" value="등록"/>
+        </div>
+
+        <form sec:authorize="isAuthenticated()"
+              th:action="@{|/comment/create/${chord.id}|}"
               method="post"
               th:object="${commentCreateForm}"
               class="flex flex-col items-end space-y-3"
         >
             <div th:replace="~{fragments/form_errors :: formErrorsFragment}"></div>
 
-            <!--로그아웃 상태면 작성불가능-->
-            <textarea
-                    sec:authorize="isAnonymous()" disabled
-                    th:field="*{commentContent}"
-                    class="textarea textarea-bordered w-full h-40 min-h-40 max-h-80"
-                    placeholder="댓글을 남겨보세요!"
-                    name="commentContent"
-                    rows="15">
-            </textarea>
-
             <!--로그인 상태면 작성가능-->
             <textarea
-                    sec:authorize="isAuthenticated()"
                     th:field="*{commentContent}"
                     class="textarea textarea-bordered w-full h-40 min-h-40 max-h-80"
                     placeholder="댓글을 남겨보세요!"
-                    name="commentContent"
+
                     rows="15">
             </textarea>
 

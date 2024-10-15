@@ -14,7 +14,6 @@ import org.springframework.security.web.header.writers.frameoptions.XFrameOption
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
-@EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
     @Bean
@@ -22,14 +21,8 @@ public class SecurityConfig {
         http
                 // 로그인하지 않아도 모든 요청 허용
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-                        .requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
-
-                // h2 console 관련 필터
-                .csrf((csrf) -> csrf
-                        .ignoringRequestMatchers(new AntPathRequestMatcher("/h2-console/**")))
-                .headers((headers) -> headers
-                        .addHeaderWriter(new XFrameOptionsHeaderWriter(
-                                XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN)))
+                        .requestMatchers("/**").permitAll()
+                )
 
                 // 로그인 요청
                 .formLogin((formLogin) -> formLogin
@@ -48,10 +41,5 @@ public class SecurityConfig {
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
     }
 }

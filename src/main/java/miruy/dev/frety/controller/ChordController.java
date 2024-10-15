@@ -76,6 +76,7 @@ public class ChordController {
     public String detail(Model model, @PathVariable("id") long id, CommentCreateForm commentCreateForm) {
         Chord chord = this.chordService.getChord(id);
         model.addAttribute("chord", chord);
+        model.addAttribute("commentCreateForm", commentCreateForm);
         return "chordDetail";
     }
 
