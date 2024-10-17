@@ -14,7 +14,7 @@
 - Framework : Springboot 3.3.4, Spring Security
 - JDK : 21
 - BuildTool : Gradle
-- DB : H2(in-memory)
+- DB : MySQL, AWS RDS
 - Server : AWS EC2, Ubuntu 24.04
 - CI / CD : Github Actions, Git Container Registry, Docker, Ngnix Proxy Manager
 
