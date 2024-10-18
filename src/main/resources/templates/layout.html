@@ -1,24 +1,8 @@
 <!doctype html>
 <html data-theme="light" lang="ko" xmlns:th="http://www.w3.org/1999/html">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<th:block th:replace="fragments/head :: headFragment"/>
 
-    <!-- daisy UI CDN / tailwind CSS CDN-->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css"/>
-
-    <!-- style CSS -->
-    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
-
-    <!--svguitar-->
-    <script src="https://omnibrain.github.io/svguitar/js/svguitar.umd.js"></script>
-
-    <title>Frety</title>
-</head>
 <body>
-
 <!--drawer 겸 nav 안에 body content 있음-->
 <div th:replace="~{navbar :: navbarFragment}"></div>
 </body>
