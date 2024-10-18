@@ -16,7 +16,7 @@ public class MainController {
 
     private final ChordService chordService;
 
-    @GetMapping({"/", "/list"})
+    @GetMapping({"/", "/chord"})
     public String getChordList(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "latest", required = false) String activeTab,
