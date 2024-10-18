@@ -53,6 +53,84 @@ const chordDataMap = {
         ],
         barres: [],
     },
+     "Am11": {
+        fingers: [
+            [3, 4],
+            [4, 4],
+            [6, 4],
+            [6, 0],
+        ],
+        barres: [
+            {
+                fromString: 5,
+                toString: 1,
+                fret: 2,
+                color: '#000000',
+            },
+        ],
+    },
+    "A#7": {
+        fingers: [
+           [2, 3],
+           [4, 3],
+           [6, 'x']
+           ],
+        barres: [
+            {
+                fromString: 5,
+                toString: 1,
+                fret: 1,
+                color: '#000000',
+            },
+        ],
+    },
+    "A#M7": {
+        fingers: [
+            [3, 2],
+            [2, 3],
+            [4, 3],
+            [6, 'x']
+        ],
+        barres: [
+            {
+                fromString: 5,
+                toString: 1,
+                fret: 1,
+                color: '#000000',
+            },
+        ],
+    },
+    "A#m7": {
+        fingers: [
+            [2, 2],
+            [4, 3],
+            [6, 'x']
+        ],
+           barres: [
+               {
+                   fromString: 5,
+                   toString: 1,
+                   fret: 1,
+                   color: '#000000',
+               },
+           ],
+       },
+       "A#sus4": {
+           fingers: [
+               [3, 3],
+               [4, 3],
+               [2, 4],
+               [6, 'x']
+           ],
+           barres: [
+               {
+                   fromString: 5,
+                   toString: 1,
+                   fret: 1,
+                   color: '#000000',
+               },
+           ],
+       },
     "A#m": {
         fingers: [
             [2, 2],
@@ -212,6 +290,17 @@ const chordDataMap = {
         ],
         barres: [],
     },
+     "A#9": {
+        fingers: [
+            [1, 'x'],
+            [2, 1],
+            [3, 1],
+            [4, 'x'],
+            [5, 1],
+            [6, 'x'],
+        ],
+        barres: [],
+     },
     "Aadd9": {
         fingers: [
             [3, 4],
@@ -305,6 +394,28 @@ const chordDataMap = {
             },
         ],
     },
+    "B#9": {
+          fingers: [
+              [4, 2],
+              [2, 3],
+              [3, 3],
+              [5, 3],
+              [1, 0],
+              [6, 'x'],
+          ],
+          barres: [],
+    },
+    "B7sus4": {
+          fingers: [
+              [3, 2],
+              [4, 2],
+              [5, 2],
+              [1, 0],
+              [2, 0],
+              [6, 'x'],
+          ],
+          barres: [],
+    },
     "Bb": {
         fingers: [
             [2, 3],
@@ -338,12 +449,96 @@ const chordDataMap = {
             },
         ],
     },
+    "B#7": {
+            fingers: [
+               [2, 4],
+               [4, 4],
+               [6, 'x']
+               ],
+            barres: [
+                {
+                    fromString: 5,
+                    toString: 1,
+                    fret: 2,
+                    color: '#000000',
+                },
+            ],
+        },
+        "B#M7": {
+            fingers: [
+                [3, 3],
+                [2, 4],
+                [4, 4],
+                [6, 'x']
+            ],
+            barres: [
+                {
+                    fromString: 5,
+                    toString: 1,
+                    fret: 2,
+                    color: '#000000',
+                },
+            ],
+        },
+        "B#m7": {
+            fingers: [
+                [2, 3],
+                [4, 4],
+                [6, 'x']
+            ],
+               barres: [
+                   {
+                       fromString: 5,
+                       toString: 1,
+                       fret: 2,
+                       color: '#000000',
+                   },
+               ],
+           },
+           "B#sus4": {
+               fingers: [
+                   [3, 4],
+                   [4, 4],
+                   [2, 5],
+                   [6, 'x']
+               ],
+               barres: [
+                   {
+                       fromString: 5,
+                       toString: 1,
+                       fret: 2,
+                       color: '#000000',
+                   },
+               ],
+           },
     "Bm11": {
         fingers: [
             [3, 2],
             [5, 2],
             [2, 3],
             [1, 0],
+            [4, 0],
+            [6, 'x']
+        ],
+        barres: [],
+    },
+    "Bm7/G": {
+        fingers: [
+            [1, 2],
+            [3, 2],
+            [6, 3],
+            [2, 0],
+            [4, 0],
+            [5, 0],
+        ],
+        barres: [],
+    },
+    "Bm9": {
+        fingers: [
+            [1, 2],
+            [2, 2],
+            [3, 2],
+            [5, 2],
             [4, 0],
             [6, 'x']
         ],
@@ -574,6 +769,72 @@ const chordDataMap = {
             },
         ],
     },
+    "C#9": {
+        fingers: [
+            [4, 3],
+            [2, 4],
+            [3, 4],
+            [5, 4],
+            [1, 'x'],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
+     "C7sus4": {
+        fingers: [
+            [2, 5],
+            [6, 'x'],
+        ],
+        barres: [
+            {
+                fromString: 5,
+                toString: 1,
+                fret: 2,
+                color: '#000000',
+            },
+        ],
+    },
+    "Cm11": {
+        fingers: [
+            [3, 3],
+            [5, 3],
+            [6, 'x'],
+        ],
+        barres: [
+            {
+                fromString: 4,
+                toString: 1,
+                fret: 1,
+                color: '#000000',
+            },
+        ],
+    },
+    "Cm7/G": {
+        fingers: [
+            [2, 3],
+            [4, 4],
+            [6, 0],
+        ],
+        barres: [
+            {
+                fromString: 6,
+                toString: 1,
+                fret: 2,
+                color: '#000000',
+            },
+        ],
+    },
+    "Cm9": {
+        fingers: [
+            [4, 1],
+            [2, 3],
+            [3, 3],
+            [5, 3],
+            [1, 'x'],
+            [6, 'x'],
+        ],
+        barres: [],
+    },
     "Cb": {
         fingers: [
             [2, 4],
@@ -596,6 +857,68 @@ const chordDataMap = {
             [2, 3],
             [3, 4],
             [4, 4],
+            [6, 'x']
+        ],
+        barres: [
+            {
+                fromString: 5,
+                toString: 1,
+                fret: 2,
+                color: '#000000',
+            },
+        ],
+    },
+    "C#7": {
+        fingers: [
+            [2, 4],
+            [4, 4],
+            [6, 'x']
+        ],
+        barres: [
+            {
+                fromString: 5,
+                toString: 1,
+                fret: 2,
+                color: '#000000',
+            },
+        ],
+    },
+    "C#M7": {
+        fingers: [
+            [3, 3],
+            [2, 4],
+            [4, 4],
+            [6, 'x']
+        ],
+        barres: [
+            {
+                fromString: 5,
+                toString: 1,
+                fret: 2,
+                color: '#000000',
+            },
+        ],
+    },
+    "C#m7": {
+        fingers: [
+            [2, 3],
+            [4, 4],
+            [6, 'x']
+        ],
+        barres: [
+            {
+                fromString: 5,
+                toString: 1,
+                fret: 2,
+                color: '#000000',
+            },
+        ],
+    },
+    "C#sus4": {
+        fingers: [
+            [3, 4],
+            [4, 4],
+            [2, 5],
             [6, 'x']
         ],
         barres: [
@@ -848,6 +1171,68 @@ const chordDataMap = {
         ],
         barres: [],
     },
+   "D#7": {
+       fingers: [
+           [2, 4],
+           [4, 4],
+           [6, 'x']
+       ],
+       barres: [
+           {
+               fromString: 5,
+               toString: 1,
+               fret: 2,
+               color: '#000000',
+           },
+       ],
+   },
+   "D#M7": {
+       fingers: [
+           [3, 3],
+           [2, 4],
+           [4, 4],
+           [6, 'x']
+       ],
+       barres: [
+           {
+               fromString: 5,
+               toString: 1,
+               fret: 2,
+               color: '#000000',
+           },
+       ],
+   },
+   "D#m7": {
+       fingers: [
+           [2, 3],
+           [4, 4],
+           [6, 'x']
+       ],
+       barres: [
+           {
+               fromString: 5,
+               toString: 1,
+               fret: 2,
+               color: '#000000',
+           },
+       ],
+   },
+   "D#sus4": {
+       fingers: [
+           [3, 4],
+           [4, 4],
+           [2, 5],
+           [6, 'x']
+       ],
+       barres: [
+           {
+               fromString: 5,
+               toString: 1,
+               fret: 2,
+               color: '#000000',
+           },
+       ],
+   },
     "D#m": {
          fingers: [
             [2, 3],
@@ -1110,6 +1495,65 @@ const chordDataMap = {
         ],
         barres: [],
     },
+     "E#7": {
+           fingers: [
+               [3, 2],
+               [5, 3],
+               [6, 0],
+           ],
+           barres: [
+               {
+                   fromString: 6,
+                   toString: 1,
+                   fret: 1,
+                   color: '#000000',
+               },
+           ],
+       },
+       "E#M7": {
+           fingers: [
+                  [3, 2],
+                  [4, 2],
+                  [6, 0],
+              ],
+              barres: [
+                  {
+                      fromString: 6,
+                      toString: 1,
+                      fret: 1,
+                      color: '#000000',
+                  },
+              ],
+       },
+       "E#m7": {
+           fingers: [
+               [5, 3],
+               [6, 0]
+           ],
+           barres: [
+               {
+                   fromString: 6,
+                   toString: 1,
+                   fret: 1,
+                   color: '#000000',
+               },
+           ],
+       },
+       "E#sus4": {
+           fingers: [
+               [3, 3],
+               [4, 3],
+               [6, 0]
+           ],
+           barres: [
+               {
+                   fromString: 6,
+                   toString: 1,
+                   fret: 1,
+                   color: '#000000',
+               },
+           ],
+       },
     "E#m": {
        fingers: [
            [2, 3],
@@ -1359,6 +1803,63 @@ const chordDataMap = {
             },
         ],
     },
+     "F#7": {
+           fingers: [
+               [3, 3],
+               [5, 4],
+               [6, 0],
+           ],
+           barres: [
+               {
+                   fromString: 6,
+                   toString: 1,
+                   fret: 2,
+                   color: '#000000',
+               },
+           ],
+       },
+       "F#M7": {
+           fingers: [
+                  [3, 3],
+                  [4, 3],
+                  [5, 4],
+                  [6, 0],
+              ],
+              barres: [
+                  {
+                      fromString: 6,
+                      toString: 1,
+                      fret: 2,
+                      color: '#000000',
+                  },
+              ],
+       },
+       "F#sus4": {
+           fingers: [
+               [3, 4],
+               [4, 4],
+               [6, 0]
+           ],
+           barres: [
+               {
+                   fromString: 6,
+                   toString: 1,
+                   fret: 2,
+                   color: '#000000',
+               },
+           ],
+       },
+        "F#m7-5": {
+              fingers: [
+                  [2, 1],
+                  [3, 2],
+                  [4, 2],
+                  [6, 2],
+                  [1, 0],
+                  [5, 0],
+              ],
+              barres: [],
+          },
     "F#m": {
        fingers: [
            [4, 4],
@@ -1373,6 +1874,17 @@ const chordDataMap = {
                color: '#000000',
            },
        ],
+    },
+    "F#m7": {
+       fingers: [
+           [1, 0],
+           [2, 2],
+           [3, 2],
+           [4, 2],
+           [5, 0],
+           [6, 2],
+       ],
+       barres: [],
     },
     "Fbm": {
         fingers: [
@@ -1602,6 +2114,66 @@ const chordDataMap = {
             },
         ],
     },
+     "G#7": {
+           fingers: [
+               [3, 3],
+               [5, 4],
+               [6, 0],
+           ],
+           barres: [
+               {
+                   fromString: 6,
+                   toString: 1,
+                   fret: 2,
+                   color: '#000000',
+               },
+           ],
+       },
+       "G#M7": {
+           fingers: [
+                  [3, 3],
+                  [4, 3],
+                  [5, 4],
+                  [6, 0],
+              ],
+              barres: [
+                  {
+                      fromString: 6,
+                      toString: 1,
+                      fret: 2,
+                      color: '#000000',
+                  },
+              ],
+       },
+       "G#m7": {
+              fingers: [
+                     [5, 4],
+                     [6, 0],
+                 ],
+                 barres: [
+                     {
+                         fromString: 6,
+                         toString: 1,
+                         fret: 2,
+                         color: '#000000',
+                     },
+                 ],
+          },
+       "G#sus4": {
+           fingers: [
+               [3, 4],
+               [4, 4],
+               [6, 0]
+           ],
+           barres: [
+               {
+                   fromString: 6,
+                   toString: 1,
+                   fret: 2,
+                   color: '#000000',
+               },
+           ],
+       },
     "G#m": {
         fingers: [
             [4, 4],

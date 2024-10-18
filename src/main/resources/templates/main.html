@@ -38,11 +38,11 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="chord : ${latestChords}"
+                            <tr th:each="chord, stat : ${latestChords}"
                                 th:attr="data-href=@{|/chord/${chord.id}|}"
                                 onclick="window.location.href=this.getAttribute('data-href')"
                                 class="hover:bg-gray-100 text-[15px] text-center cursor-pointer tracking-wide">
-                                <td th:text="${chord.id}"></td>
+                                <td th:text="${stat.index + 1}"></td>
                                 <td th:text="${chord.artist}"></td>
                                 <td class="flex items-center justify-center space-x-2">
                                     <div th:text="${chord.song}"></div>
