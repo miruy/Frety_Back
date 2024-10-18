@@ -1,6 +1,11 @@
 // 가사 입력 후 엔터
 function handleEnter(event) {
     if (event.key === 'Enter' && !isComposing) {
+
+        if (event.shiftKey) {
+            return; // 줄바꿈 유지
+        }
+
         event.preventDefault();
         const input = document.getElementById('content');
 
