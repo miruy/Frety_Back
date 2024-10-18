@@ -36,7 +36,12 @@ public class ChordController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/create")
-    public String createChord(ChordCreateForm chordForm) {
+    public String createChord(ChordCreateForm chordForm, Model model) {
+
+        // SEO metadata
+        model.addAttribute("title", "악보 제작");
+        model.addAttribute("description", "Frety에 직접 제작한 기타 악보를 등록하고, 다른 사람들과 공유해보세요.");
+
         return "chordCreate";
     }
 
@@ -77,12 +82,17 @@ public class ChordController {
         Chord chord = this.chordService.getChord(id);
         model.addAttribute("chord", chord);
         model.addAttribute("commentCreateForm", commentCreateForm);
+
+        // SEO metadata
+        model.addAttribute("title", chord.getArtist() + " - " + chord.getSong());
+        model.addAttribute("description", chord.getArtist() + " - " + chord.getSong() + " 기타 코드");
+
         return "chordDetail";
     }
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/edit/{id}")
-    public String editChord(ChordCreateForm chordCreateForm, @PathVariable("id") long id, Principal principal) {
+    public String editChord(ChordCreateForm chordCreateForm, @PathVariable("id") long id, Principal principal, Model model) {
         Chord chord = this.chordService.getChord(id);
 
         if (!chord.getAuthor().getUsername().equals(principal.getName())) {
@@ -106,6 +116,10 @@ public class ChordController {
             e.printStackTrace();
             throw new RuntimeException("Content를 객체로 변환하는 데 실패했습니다.");
         }
+
+        // SEO metadata
+        model.addAttribute("title", "악보 수정");
+        model.addAttribute("description", "악보 수정을 통해 완성도 높은 악보를 만들어 보세요.");
 
         return "chordEdit";
     }

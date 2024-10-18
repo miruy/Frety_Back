@@ -22,6 +22,9 @@ public class SearchController {
             model.addAttribute("results", Page.empty());  // 빈 결과
             model.addAttribute("keyword", keyword);
 
+            // SEO metadata
+            model.addAttribute("title", "악보 검색");
+            model.addAttribute("description", "검색어를 입력해주세요.");
             return "searchResults";
         }
 
@@ -30,6 +33,10 @@ public class SearchController {
 
         model.addAttribute("results", results);
         model.addAttribute("keyword", keyword);
+
+        // SEO metadata
+        model.addAttribute("title", "악보 검색 | " + keyword);
+        model.addAttribute("description", keyword + " 관련 악보 검색 결과입니다.");
 
         return "searchResults";
     }

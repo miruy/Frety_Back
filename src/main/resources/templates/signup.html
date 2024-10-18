@@ -1,9 +1,17 @@
+<!DOCTYPE html>
 <html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <title th:text="${title}"></title>
+    <meta th:attr="content=${title}" name="title">
+    <meta th:attr="content=${description}" name="description">
+</head>
+
+<body>
 <div layout:fragment="content">
     <div class="mx-auto w-auto sm:w-[70%] md:w-[60%] xl:w-[50%] 2xl:w-[60%] space-y-10">
         <div class="space-y-1 border-b pb-3">
             <div class="text-4xl font-bold">회원가입</div>
-            <div class="text-zinc-500">간단한 회원가입으로 Frety를 이용해 보세요.</div>
+            <div class="text-zinc-500">간단한 회원가입으로 Frety를 자유롭게 이용해 보세요.</div>
         </div>
 
         <form th:action="@{/signup}" method="post" th:object="${memberCreateForm}" class="space-y-5">
@@ -67,4 +75,5 @@
         </form>
     </div>
 </div>
+</body>
 </html>

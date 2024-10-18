@@ -36,6 +36,10 @@ public class MainController {
         // 현재 탭
         model.addAttribute("activeTab", activeTab);
 
+        // SEO metadata
+        model.addAttribute("title", "Frety");
+        model.addAttribute("description", "프렛위에서 완성되는 당신의 기타 코드");
+
         return "main";
     }
 }

@@ -1,4 +1,12 @@
+<!DOCTYPE html>
 <html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <title th:text="${title}"></title>
+    <meta th:attr="content=${title}" name="title">
+    <meta th:attr="content=${description}" name="description">
+</head>
+
+<body>
 <div layout:fragment="content">
     <div class="mx-auto w-auto sm:w-[70%] md:w-[60%] xl:w-[50%] 2xl:w-[60%] space-y-10">
         <div class="space-y-1 border-b pb-3">
@@ -70,4 +78,5 @@
         </form>
     </div>
 </div>
+</body>
 </html>

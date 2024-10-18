@@ -1,9 +1,49 @@
+<!DOCTYPE html>
 <html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <title th:text="${title}"></title>
+    <meta th:attr="content=${title}" name="title">
+    <meta th:attr="content=${description}" name="description">
+
+    <meta property="og:title" th:attr="content=${title}"/>
+    <meta property="og:description" th:attr="content=${description}"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://www.frety.me"/>
+    <meta property="og:site_name" content="Frety - 프렛티"/>
+    <meta property="og:locale" content="ko_KR"/>
+    <meta property="og:image" content="https://www.frety.me/guitar.png"/>
+    <meta property="og:image:width" content="800"/>
+    <meta property="og:image:height" content="600"/>
+    <meta property="og:image:alt" content="frety_main_image"/>
+
+    <link rel="canonical" href="https://www.frety.me"/>
+    <link rel="alternate" href="https://www.frety.me" hrefLang="ko_KR"/>
+
+    <!--JSON-LD-->
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org/",
+            "@type": "website",
+            "name": "Frety",
+            "description": "프렛위에서 완성되는 당신의 기타 코드",
+            "url": "https://www.frety.me",
+            "image": {
+                "@type": "websiteImage",
+                "url": "https://www.frety.me/guitar.png",
+                "width": 800,
+                "height": 600,
+                "alt": "frety_main_image"
+            }
+        }
+    </script>
+</head>
+
+<body>
 <div layout:fragment="content">
     <div class="space-y-10">
         <div class="space-y-1 border-b pb-3">
             <div class="text-4xl font-bold">Frety</div>
-            <div class="text-zinc-500">프렛 위에서 완성되는 당신의 기타 코드</div>
+            <div class="text-zinc-500">프렛위에서 완성되는 당신의 기타 코드</div>
         </div>
 
         <div>
@@ -151,4 +191,5 @@
         }
     </script>
 </div>
+</body>
 </html>
