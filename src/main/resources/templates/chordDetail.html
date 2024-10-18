@@ -52,7 +52,6 @@
         <div class="py-20 relative text-xl space-y-20 tracking-widest" id="lyricsContainer"></div>
         <input type="hidden" id="chordContent" th:value="${chord.content}"/>
 
-
         <div>
             <!--악보 제작자-->
             <div class="flex items-center justify-end mb-2 space-x-0.5">
@@ -540,7 +539,7 @@
                     if (syllable.chord) {
                         // 코드 이름
                         const chordSpan = document.createElement('span');
-                        chordSpan.className = `chord absolute text-[14.5px] -top-[1.7em] ${syllable.chord.length=== 1 && 'left-0.5'} ${syllable.chord.length=== 2 && '-left-[2px]'} ${syllable.chord.length=== 3 && '-left-[8px]'} ${syllable.chord.length=== 4 && '-left-[9px]'} ${syllable.chord.length=== 5 && '-left-[12px]'} ${syllable.chord.length=== 6 && '-left-[13px]'} font-semibold w-full tracking-tighter`;
+                        chordSpan.className = `chord absolute text-[14.5px] -top-[1.7em] ${syllable.chord.length=== 1 && 'left-0.5'} ${syllable.chord.length=== 2 && '-left-[2px]'} ${syllable.chord.length=== 3 && '-left-[8px]'} ${syllable.chord.length=== 4 && '-left-[9px]'} ${syllable.chord.length=== 5 && '-left-[12px]'} ${syllable.chord.length=== 6 && '-left-[16px]'} font-semibold w-[100px] tracking-tighter`;
                         chordSpan.textContent = syllable.chord;
                         syllableSpan.appendChild(chordSpan);
 
