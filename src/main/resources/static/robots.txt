@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.frety.me
+
+# Sitemaps
+Sitemap: https://www.frety.me/sitemap.xml
