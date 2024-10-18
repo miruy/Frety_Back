@@ -37,3 +37,7 @@ out/
 .vscode/
 
 .env
+
+robots.txt
+
+sitemap.xml
