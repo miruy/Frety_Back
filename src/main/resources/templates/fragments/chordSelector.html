@@ -1,6 +1,10 @@
 <div th:fragment="chordSelector" id="chordSelector"
      class="hidden z-[1000] absolute left-0 top-1/2 w-[150px] h-[300px] overflow-y-auto border border-gray-100 p-1 bg-white rounded-lg shadow-lg tracking-normal">
 
+<!--    <input type="text" id="chordSearch" class="w-full p-2 mb-2 border border-gray-300 rounded-lg" placeholder="코드 검색" oninput="filterChords(event)" />-->
+
+<!--    <div class="bg-yellow-300 py-2"></div>-->
+
     <script>
         // 기타 코드 데이터
         const chordData = {
@@ -50,7 +54,7 @@
             // 코드 삭제 버튼
             const deleteLiElement = document.createElement('li');
             const deleteLinkElement = document.createElement('a');
-            deleteLinkElement.textContent = "삭제";
+            deleteLinkElement.textContent = "코드 제거";
             deleteLinkElement.dataset.chord = null;
 
             deleteLiElement.appendChild(deleteLinkElement);
@@ -86,6 +90,32 @@
             });
 
             chordSelector.appendChild(ulElement);
+        }
+
+        // 코드 검색 및 바로 필터링
+        function filterChords(event) {
+            console.log(event.data);
+
+            const inputChar = event.data || ''; // event.data로 입력된 글자 가져오기
+            const searchTerm = event.target.value;
+
+            // 검색어와 일치하는 코드만 필터링
+            const filteredChordData = {};
+
+            Object.keys(chordData).forEach((chordGroup) => {
+                const filteredChords = chordData[chordGroup].filter((chord) =>
+                    chord.toLowerCase().includes(searchTerm)
+                );
+                if (filteredChords.length > 0) {
+                    filteredChordData[chordGroup] = filteredChords;
+                }
+            });
+
+            // 필터링된 결과로 코드 선택 박스 다시 생성
+            createChordSelector(filteredChordData);
+
+            console.log("입력된 문자:", inputChar);  // 입력된 개별 문자 확인
+            console.log("검색어:", searchTerm); // 현재 검색어 출력
         }
 
         // DOMContentLoaded 이벤트 발생 시 코드 선택 박스를 생성

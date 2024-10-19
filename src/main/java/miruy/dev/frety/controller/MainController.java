@@ -7,7 +7,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RequiredArgsConstructor
@@ -35,11 +34,6 @@ public class MainController {
 
         // 현재 탭
         model.addAttribute("activeTab", activeTab);
-
-        // SEO metadata
-        model.addAttribute("title", "Frety");
-        model.addAttribute("description", "프렛위에서 완성되는 당신의 기타 코드");
-
         return "main";
     }
 }

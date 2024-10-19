@@ -10,7 +10,7 @@ function selectedChord(e, syllableSpan, syllableObject) {
         let existingChord = syllableSpan.querySelector('.chord');
 
         // 삭제 선택 시 chord === null
-        if (syllableObject.chord === "삭제") {
+        if (syllableObject.chord === "코드 제거") {
             syllableObject.chord = null;
             existingChord.remove();
         }
@@ -35,7 +35,7 @@ function selectedChord(e, syllableSpan, syllableObject) {
 // 코드 선택기 위치 조정
 function handleChordSelectorPosition(syllableRect) {
     const chordSelector = document.getElementById('chordSelector');
-    chordSelector.style.top = `${syllableRect.top + window.scrollY - chordSelector.offsetHeight - 260}px`;
+    chordSelector.style.top = `${syllableRect.top + window.scrollY - chordSelector.offsetHeight - 320}px`;
 
     // 현재 브라우저의 크기에 맞춰서 left 지정
     const screenWidth = window.innerWidth;
