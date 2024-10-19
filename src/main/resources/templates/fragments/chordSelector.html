@@ -164,7 +164,19 @@
             }
         }
 
-        // DOMContentLoaded 이벤트 발생 시 코드 선택 박스를 생성
-        document.addEventListener("DOMContentLoaded", createChordSelector);
+        // ESC 키를 눌렀을 때 코드 선택기를 숨기는 함수
+        function checkEsc(event) {
+            if (event.key === 'Escape') {
+                const chordSelector = document.getElementById('chordSelector');
+                chordSelector.classList.add('hidden'); // hidden 클래스 추가
+            }
+        }
+
+        /// DOMContentLoaded 이후 document에 keydown 이벤트 리스너 추가
+        document.addEventListener("DOMContentLoaded", function() {
+            createChordSelector();
+            // document에서 ESC 키 감지
+            document.addEventListener("keydown", checkEsc);
+        });
     </script>
 </div>
