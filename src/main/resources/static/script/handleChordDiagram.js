@@ -7,14 +7,14 @@ function drawChord(selector, chordData, configData) {
         .configure(configData)
         .draw();
 
-    // 튜닝 위치 수동 설정
+    // 튜닝 위치 수동 설정 (프렛 번호)
     const svgElement = document.querySelector(selector);
     if (svgElement) {
         const tuningText = svgElement.querySelectorAll('text.tuning');
         if (tuningText.length > 1) {
             // 원하는 튜닝 위치로 이동
             tuningText[0].setAttribute('x', parseFloat(tuningText[0].getAttribute('x')) - 177); // x 값을 줄여서 왼쪽으로 이동
-            tuningText[0].setAttribute('y', parseFloat(tuningText[0].getAttribute('y')) + 45); // y 값을 늘려서 아래로 이동
+            tuningText[0].setAttribute('y', parseFloat(tuningText[0].getAttribute('y')) + 50); // y 값을 늘려서 아래로 이동
         }
     }
 }
