@@ -17,11 +17,11 @@ function selectedChord(e, syllableSpan, syllableObject) {
         // 기존 코드가 있다면 대체
         if (existingChord) {
             existingChord.textContent = `${syllableObject.chord}`;
-            existingChord.className = `chord absolute text-[14.5px] -top-[1.7em] ${syllable.chord.length=== 1 && 'left-0.5 w-[20px]'} ${syllable.chord.length=== 2 && '-left-[2px] w-[20px]'} ${syllable.chord.length=== 3 && '-left-[8px] w-[40px]'} ${syllable.chord.length=== 4 && '-left-[9px] w-[50px]'} ${syllable.chord.length=== 5 && '-left-[12px] w-[60px]'} ${syllable.chord.length=== 6 && '-left-[16px] w-[60px]'} font-semibold tracking-tighter`;
+            existingChord.className = `chord absolute text-[12px] -top-[1.7em] ${syllableObject.chord.length=== 1 && 'left-0.5 w-[20px]'} ${syllableObject.chord.length=== 2 && '-left-[2px] w-[20px]'} ${syllableObject.chord.length=== 3 && '-left-[8px] w-[40px]'} ${syllableObject.chord.length=== 4 && '-left-[9px] w-[50px]'} ${syllableObject.chord.length=== 5 && '-left-[12px] w-[60px]'} ${syllableObject.chord.length=== 6 && '-left-[16px] w-[60px]'} font-semibold tracking-tighter`;
         } else {
             // 코드가 처음으로 추가될 경우
             const chordSpan = document.createElement('span');
-            chordSpan.className = `chord absolute text-[14.5px] -top-[1.7em] ${syllable.chord.length=== 1 && 'left-0.5 w-[20px]'} ${syllable.chord.length=== 2 && '-left-[2px] w-[20px]'} ${syllable.chord.length=== 3 && '-left-[8px] w-[40px]'} ${syllable.chord.length=== 4 && '-left-[9px] w-[50px]'} ${syllable.chord.length=== 5 && '-left-[12px] w-[60px]'} ${syllable.chord.length=== 6 && '-left-[16px] w-[60px]'} font-semibold tracking-tighter`;
+            chordSpan.className = `chord absolute text-[12px] -top-[1.7em] ${syllableObject.chord.length=== 1 && 'left-0.5 w-[20px]'} ${syllableObject.chord.length=== 2 && '-left-[2px] w-[20px]'} ${syllableObject.chord.length=== 3 && '-left-[8px] w-[40px]'} ${syllableObject.chord.length=== 4 && '-left-[9px] w-[50px]'} ${syllableObject.chord.length=== 5 && '-left-[12px] w-[60px]'} ${syllableObject.chord.length=== 6 && '-left-[16px] w-[60px]'} font-semibold tracking-tighter`;
             chordSpan.textContent = `${syllableObject.chord}`;
             syllableSpan.appendChild(chordSpan);
         }

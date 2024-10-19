@@ -608,7 +608,7 @@
                             // 코드와 다이어그램을 담는 chordSpan 생성
                             const chordSpan = document.createElement('span');
                             // 다이어그램 표시/숨김에 따라 코드이름 위치 다름
-                            chordSpan.className = `chord absolute flex flex-col items-center justify-center text-[14.5px] ${showDiagram ? '-top-[5em]' : '-top-[1.7em]'} ${syllable.chord.length === 1 && 'left-0.5 w-[20px]'} ${syllable.chord.length === 2 && '-left-[2px] w-[20px]'} ${syllable.chord.length === 3 && '-left-[8px] w-[40px]'} ${syllable.chord.length === 4 && '-left-[9px] w-[50px]'} ${syllable.chord.length === 5 && '-left-[12px] w-[60px]'} ${syllable.chord.length === 6 && '-left-[16px] w-[60px]'} font-semibold tracking-tighter`;
+                            chordSpan.className = `chord absolute flex flex-col items-center justify-center text-[12px] ${showDiagram ? '-top-[5.5em]' : '-top-[1.7em]'} ${syllable.chord.length === 1 && 'left-0.5 w-[20px]'} ${syllable.chord.length === 2 && '-left-[2px] w-[20px]'} ${syllable.chord.length === 3 && '-left-[8px] w-[40px]'} ${syllable.chord.length === 4 && '-left-[9px] w-[50px]'} ${syllable.chord.length === 5 && '-left-[12px] w-[60px]'} ${syllable.chord.length === 6 && '-left-[16px] w-[60px]'} font-semibold tracking-tighter`;
 
                             // 코드 이름 추가
                             const chordNameSpan = document.createElement('span');
@@ -618,7 +618,7 @@
                             // 다이어그램 표시할 div 생성
                             const chordDiagramDiv = document.createElement('div');
                             chordDiagramDiv.id = `chordDiagram_${rowIndex}_${syllableIndex}`;
-                            chordDiagramDiv.className = 'w-[50px] absolute top-[15px]';
+                            chordDiagramDiv.className = 'w-[45px] absolute top-[13px]';
                             chordSpan.appendChild(chordDiagramDiv);
 
                             syllableSpan.appendChild(chordSpan);
@@ -643,18 +643,18 @@
                                 // 마우스 호버 시 툴팁 생성
                                 chordSpan.addEventListener('mouseover', (event) => {
                                     const tooltipCard = document.createElement('div');
-                                    tooltipCard.className = 'tooltip-card absolute pl-3 pr-2 pt-2 pb-1 bg-white shadow-lg border rounded-lg';
+                                    tooltipCard.className = 'tooltip-card absolute flex justify-center pl-3 pr-2 pt-2 pb-1 bg-white shadow-lg border rounded-lg text-center';
                                     tooltipCard.style.position = 'absolute';
                                     tooltipCard.style.left = `${event.pageX + 10}px`;
                                     tooltipCard.style.top = `${event.pageY + 10}px`;
 
                                     // 코드 설명 추가
-                                    tooltipCard.innerHTML = `<div class="text-center font-semibold">${syllable.chord}</div>`;
+                                    tooltipCard.innerHTML = `<div class="font-semibold absolute top-2">${syllable.chord}</div>`;
 
                                     // 코드 다이어그램을 툴팁에 추가
                                     const tooltipChordDiagramDiv = document.createElement('div');
                                     tooltipChordDiagramDiv.id = `tooltipChordDiagram_${rowIndex}_${syllableIndex}`;
-                                    tooltipChordDiagramDiv.className = 'w-[60px] bg-transparent';
+                                    tooltipChordDiagramDiv.className = 'w-[60px] mt-4';
                                     tooltipCard.appendChild(tooltipChordDiagramDiv);
 
                                     document.body.appendChild(tooltipCard);
