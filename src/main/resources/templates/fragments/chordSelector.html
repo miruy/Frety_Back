@@ -1,9 +1,16 @@
-<div th:fragment="chordSelector" id="chordSelector"
-     class="hidden z-[1000] absolute left-0 top-1/2 w-[150px] h-[300px] overflow-y-auto border border-gray-100 p-1 bg-white rounded-lg shadow-lg tracking-normal">
+<div th:fragment="chordSelector">
+    <div id="chordSelector"
+         class="hidden z-[1000] absolute left-0 top-1/2 w-[200px] h-[366px] overflow-y-auto border border-gray-100 p-2 bg-white rounded-lg shadow-lg tracking-normal">
+        <input type="text" id="chordSearch"
+               class="input input-bordered input-sm w-full rounded-md my-2 placeholder:text-[13px]" placeholder="코드 검색"
+               oninput="filterChords(event)"
+               onkeydown="checkEnter(event)"
+        />
 
-<!--    <input type="text" id="chordSearch" class="w-full p-2 mb-2 border border-gray-300 rounded-lg" placeholder="코드 검색" oninput="filterChords(event)" />-->
-
-<!--    <div class="bg-yellow-300 py-2"></div>-->
+        <div id="filteredChords"
+             class="hidden border-t h-[300px] overflow-y-auto border-gray-200 p-2 text-[13px] tracking-normal">
+        </div>
+    </div>
 
     <script>
         // 기타 코드 데이터
@@ -45,10 +52,13 @@
             ]
         };
 
+        // 코드 선택기 목록 전연 변수로 정의
+        let ulElement;
+
         // 코드 선택 박스를 동적으로 생성
         function createChordSelector() {
             const chordSelector = document.getElementById('chordSelector');
-            const ulElement = document.createElement('ul');
+            ulElement = document.createElement('ul');
             ulElement.className = 'menu menu-xs w-full';
 
             // 코드 삭제 버튼
@@ -65,8 +75,8 @@
                 const liElement = document.createElement('li');
                 const detailsElement = document.createElement('details');
 
-                // B 코드만 open 속성을 추가
-                if (chordGroup === "B 코드") {
+                // C 코드만 open 속성을 추가
+                if (chordGroup === "C 코드") {
                     detailsElement.setAttribute('open', 'open');
                 }
 
@@ -92,30 +102,66 @@
             chordSelector.appendChild(ulElement);
         }
 
-        // 코드 검색 및 바로 필터링
+        // 코드 검색 및 필터링
         function filterChords(event) {
-            console.log(event.data);
 
-            const inputChar = event.data || ''; // event.data로 입력된 글자 가져오기
+            // 입력된 키워드 한글자
+            const inputChar = event.data || '';
+
+            // 누적된 키워드 (실시간 최종 검색어)
             const searchTerm = event.target.value;
 
-            // 검색어와 일치하는 코드만 필터링
+            // 검색어와 일치하는 코드만 담을 객체 정의
             const filteredChordData = {};
 
-            Object.keys(chordData).forEach((chordGroup) => {
-                const filteredChords = chordData[chordGroup].filter((chord) =>
-                    chord.toLowerCase().includes(searchTerm)
-                );
-                if (filteredChords.length > 0) {
-                    filteredChordData[chordGroup] = filteredChords;
-                }
+            // 검색어가 chordData에 있는지 확인 후 있는 데이터를 위 객체에 담기
+            Object.keys(chordData).forEach(chordGroup => {
+               const chords = chordData[chordGroup];
+
+               const matchingChords = chords.filter(chord => chord.includes(searchTerm));
+
+               if (matchingChords.length > 0) {
+                   filteredChordData[chordGroup] = matchingChords;
+               }
             });
 
-            // 필터링된 결과로 코드 선택 박스 다시 생성
-            createChordSelector(filteredChordData);
+            // 필터링된 결과를 화면에 표시
+            const filteredChordDiv = document.getElementById('filteredChords');
 
-            console.log("입력된 문자:", inputChar);  // 입력된 개별 문자 확인
-            console.log("검색어:", searchTerm); // 현재 검색어 출력
+             // 기존 내용을 초기화
+            filteredChordDiv.innerHTML = '';
+
+           // 검색어가 없으면 코드 선택기 목록 표시
+            if (searchTerm === null || !searchTerm || Object.keys(filteredChordData).length === 0) {
+                filteredChordDiv.classList.add('hidden');
+                ulElement.classList.remove('hidden');
+                return;
+            }
+
+            // 검색어가 있으면 코드 선택기 목록 숨김
+            filteredChordDiv.classList.remove('hidden');
+            ulElement.classList.add('hidden');
+
+            // 필터링된 결과를 <div>에 추가
+            Object.keys(filteredChordData).forEach(chordGroup => {
+                const chordList = document.createElement('div');
+                chordList.classList.add('flex', 'flex-col');
+
+                filteredChordData[chordGroup].forEach(chord => {
+                    const listItem = document.createElement('a');
+                    listItem.textContent = chord;
+                    listItem.classList.add('hover:bg-zinc-100', 'px-2', 'rounded', 'cursor-pointer');
+                    chordList.appendChild(listItem);
+                });
+                filteredChordDiv.appendChild(chordList);
+            });
+        }
+
+        // 검색어 입력 중 엔터 눌렀을 때 이벤트 제한
+        function checkEnter(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+            }
         }
 
         // DOMContentLoaded 이벤트 발생 시 코드 선택 박스를 생성

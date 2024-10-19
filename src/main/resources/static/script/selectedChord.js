@@ -1,6 +1,5 @@
 // 코드 선택
 function selectedChord(e, syllableSpan, syllableObject) {
-    // 클릭된 타겟이 li-a 태그라면
     if (e.target.tagName === 'A') {
 
         // 선택된 코드를 syllableObject(음절-코드)에 저장
@@ -9,7 +8,7 @@ function selectedChord(e, syllableSpan, syllableObject) {
         // 기존 코드가 있다면 가져오기
         let existingChord = syllableSpan.querySelector('.chord');
 
-        // 삭제 선택 시 chord === null
+        // 코드 제거 선택 시 chord === null
         if (syllableObject.chord === "코드 제거") {
             syllableObject.chord = null;
             existingChord.remove();
@@ -29,13 +28,27 @@ function selectedChord(e, syllableSpan, syllableObject) {
 
         // 코드 선택기 숨김
         chordSelector.classList.add('hidden');
+
+        // 검색창 데이터 초기화
+        const chordSearchInput = document.getElementById('chordSearch');
+        chordSearchInput.value = '';
+
+        // 필터링된 결과 초기화
+        const filteredChordDiv = document.getElementById('filteredChords');
+        filteredChordDiv.innerHTML = '';
+
+        // 검색어가 없거나 필터링된 결과가 없으면 코드 목록 다시 표시
+        if (!chordSearchInput.value || Object.keys(filteredChordData).length === 0) {
+            filteredChordDiv.classList.add('hidden');
+            ulElement.classList.remove('hidden');
+        }
     }
 }
 
 // 코드 선택기 위치 조정
 function handleChordSelectorPosition(syllableRect) {
     const chordSelector = document.getElementById('chordSelector');
-    chordSelector.style.top = `${syllableRect.top + window.scrollY - chordSelector.offsetHeight - 320}px`;
+    chordSelector.style.top = `${syllableRect.top + window.scrollY - chordSelector.offsetHeight - 250}px`;
 
     // 현재 브라우저의 크기에 맞춰서 left 지정
     const screenWidth = window.innerWidth;
