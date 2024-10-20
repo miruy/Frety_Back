@@ -2,19 +2,24 @@
 <html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
 <head>
     <title th:text="${title}"></title>
-    <meta th:attr="content=${title}" name="title">
-    <meta th:attr="content=${description}" name="description">
+    <meta name="title" th:content="${description}"/>
+    <meta name="description" th:content="${description + ' Frety(프렛티)'}" />
 
-    <meta property="og:title" th:attr="content=${title}"/>
-    <meta property="og:description" th:attr="content=${description}"/>
+    <meta property="og:title" th:content="${description}" />
+    <meta property="og:description" th:content="${description + ' Frety(프렛티)'}" />
     <meta property="og:type" content="website"/>
-    <meta property="og:url" th:attr="content=${'https://www.frety.me/chord/' + chord.id}"/>
+    <meta property="og:url" th:content="${'https://www.frety.me/chord/' + chord.id}" />
     <meta property="og:site_name" content="Frety - 프렛티"/>
     <meta property="og:locale" content="ko_KR"/>
     <meta property="og:image" content="https://www.frety.me/guitar.png"/>
     <meta property="og:image:width" content="400"/>
     <meta property="og:image:height" content="200"/>
     <meta property="og:image:alt" content="frety_chord_image"/>
+
+    <meta name="twitter:card" content="frety_chord_image" />
+    <meta name="twitter:title" th:content="${description}" />
+    <meta name="twitter:description" th:content="${description + ' Frety(프렛티)'}" />
+    <meta name="twitter:image" content="https://www.frety.me/guitar.png" />
 
     <link rel="canonical" th:href="'https://www.frety.me/chord/' + ${chord.id}"/>
     <link rel="alternate" th:href="'https://www.frety.me/chord/' + ${chord.id}" hrefLang="ko_KR"/>
@@ -24,15 +29,15 @@
         {
             "@context": "http://schema.org/",
             "@type": "website",
-            "name": "[[${title}]]",
-            "description": "[[${description}]]",
+            "name": "[[${description}]]",
+            "description": "[[${description + ' Frety(프렛티)'}]]",
             "url": "https://www.frety.me/chord/[[${chord.id}]]",
             "image": {
-                "@type": "websiteImage",
+                "@type": "ImageObject",
                 "url": "https://www.frety.me/guitar.png",
                 "width": 400,
                 "height": 200,
-                "alt": "frety_chord_image"
+                "caption": "frety_chord_image"
             }
         }
     </script>
@@ -706,7 +711,6 @@
 
     <!--코드 맵-->
     <script src="/script/chords.js"></script>
-
 </div>
 </body>
 </html>
