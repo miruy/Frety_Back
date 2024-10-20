@@ -1,0 +1,20 @@
+<div th:fragment="pagenation">
+    <div class="join flex justify-center" th:if="${totalPages > 0}">
+        <button class="join-item btn btn-xs"
+                th:classappend="${!hasPrevious} ? 'btn-disabled'">
+            <a th:href="@{${pageUrl}(page=${currentPage - 1})}">이전</a>
+        </button>
+
+        <button class="join-item btn btn-xs"
+                th:each="page: ${#numbers.sequence(0, totalPages-1)}"
+                th:if="${page >= currentPage-5 and page <= currentPage+5}"
+                th:classappend="${page == currentPage} ? 'btn-active'">
+            <a th:text="${page + 1}" th:href="@{${pageUrl}(page=${page})}"></a>
+        </button>
+
+        <button class="join-item btn btn-xs"
+                th:classappend="${!hasNext} ? 'btn-disabled'">
+            <a th:href="@{${pageUrl}(page=${currentPage + 1})}">다음</a>
+        </button>
+    </div>
+</div>

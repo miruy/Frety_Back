@@ -15,10 +15,10 @@ public class MainController {
 
     private final ChordService chordService;
 
-    @GetMapping({"/", "/chord"})
+    @GetMapping({"/", "/list"})
     public String getChordList(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "latest", required = false) String activeTab,
+            @RequestParam(defaultValue = "latest", required = false) String tab,
             Model model) {
 
         // 최신 등록된 코드 페이지 (10개씩 가져옴)
@@ -29,11 +29,8 @@ public class MainController {
         Page<Chord> popularChords = chordService.getPopularChords(page, 10);
         model.addAttribute("popularChords", popularChords);
 
-        // 현재 페이지 번호와 총 페이지 수 전달 (페이지네이션용)
-        model.addAttribute("currentPage", page);
-
         // 현재 탭
-        model.addAttribute("activeTab", activeTab);
+        model.addAttribute("tab", tab);
         return "main";
     }
 }

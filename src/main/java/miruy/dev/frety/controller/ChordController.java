@@ -34,6 +34,11 @@ public class ChordController {
     private final ChordService chordService;
     private final MemberService memberService;
 
+    @GetMapping
+    public String redirectToHome() {
+        return "redirect:/";
+    }
+
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/create")
     public String createChord(ChordCreateForm chordForm, Model model) {

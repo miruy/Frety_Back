@@ -60,7 +60,10 @@
                         role="tab"
                         class="tab"
                         aria-label="최근 등록된 악보"
-                        checked="checked"/>
+                        th:checked="${tab == 'latest'}"
+                        th:attr="data-current-page=${latestChords.number}"
+                        onclick="locationToTab('latest', this.getAttribute('data-current-page'))"
+                />
                 <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6 space-y-10 py-10">
                     <div class="overflow-x-auto">
                         <table class="table">
@@ -93,25 +96,14 @@
                         </table>
                     </div>
 
-                    <!--페이징처리-->
-                    <div class="join flex justify-center" th:if="${!latestChords.isEmpty()}">
-                        <button class="join-item btn btn-xs"
-                                th:classappend="${!latestChords.hasPrevious()} ? 'btn-disabled'">
-                            <a th:href="@{|/list?activeTab=latest&page=${currentPage - 1}|}">이전</a>
-                        </button>
-
-                        <button class="join-item btn btn-xs"
-                                th:each="page: ${#numbers.sequence(0, latestChords.totalPages-1)}"
-                                th:if="${page >= currentPage-5 and page <= currentPage+5}"
-                                th:classappend="${page == latestChords.number} ? 'btn-active'">
-                            <a th:text="${page}" th:href="@{|/list?activeTab=latest&page=${page}|}"></a>
-                        </button>
-
-                        <button class="join-item btn btn-xs"
-                                th:classappend="${!latestChords.hasNext()} ? 'btn-disabled'">
-                            <a th:href="@{|/list?activeTab=latest&page=${currentPage + 1}|}">다음</a>
-                        </button>
-                    </div>
+                    <!--페이징처리 버튼-->
+                    <div th:replace="~{fragments/pagenation :: pagenation(
+                            currentPage=${latestChords.number},
+                            totalPages=${latestChords.totalPages},
+                            hasPrevious=${latestChords.hasPrevious()},
+                            hasNext=${latestChords.hasNext()},
+                            pageUrl=@{|/list?tab=latest|}
+                    )}"></div>
                 </div>
 
                 <!--인기 악보-->
@@ -121,6 +113,9 @@
                         role="tab"
                         class="tab"
                         aria-label="인기 악보"
+                        th:checked="${tab == 'popular'}"
+                        th:attr="data-current-page=${popularChords.number}"
+                        onclick="locationToTab('popular', this.getAttribute('data-current-page'))"
                 />
                 <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6 space-y-10 py-10">
                     <div class="overflow-x-auto">
@@ -154,30 +149,25 @@
                         </table>
                     </div>
 
-                    <!--페이징처리-->
-                    <div class="join flex justify-center" th:if="${!popularChords.isEmpty()}">
-                        <button class="join-item btn btn-xs"
-                                th:classappend="${!popularChords.hasPrevious()} ? 'btn-disabled'">
-                            <a th:href="@{|/list?activeTab=popular&page=${currentPage - 1}|}">이전</a>
-                        </button>
-
-                        <button class="join-item btn btn-xs"
-                                th:each="page: ${#numbers.sequence(0, popularChords.totalPages-1)}"
-                                th:if="${page >= currentPage-5 and page <= currentPage+5}"
-                                th:classappend="${page == popularChords.number} ? 'btn-active'">
-                            <a th:text="${page}" th:href="@{|/list?activeTab=popular&page=${page}|}"></a>
-                        </button>
-
-                        <button class="join-item btn btn-xs"
-                                th:classappend="${!popularChords.hasNext()} ? 'btn-disabled'">
-                            <a th:href="@{|/list?activeTab=popular&page=${currentPage + 1}|}">다음</a>
-                        </button>
-                    </div>
+                    <!--페이징처리 버튼-->
+                    <div th:replace="~{fragments/pagenation :: pagenation(
+                            currentPage=${popularChords.number},
+                            totalPages=${popularChords.totalPages},
+                            hasPrevious=${popularChords.hasPrevious()},
+                            hasNext=${popularChords.hasNext()},
+                            pageUrl=@{|/list?tab=popular|}
+                    )}"></div>
                 </div>
 
             </div>
         </div>
     </div>
+
+    <script>
+        function locationToTab(tab, currentPage) {
+            window.location.href = `/list?tab=${tab}&page=${currentPage}`;
+        }
+    </script>
 </div>
 </body>
 </html>
