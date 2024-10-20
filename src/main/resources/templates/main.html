@@ -60,12 +60,8 @@
                         role="tab"
                         class="tab"
                         aria-label="최근 등록된 악보"
-                        th:checked="${activeTab == 'latest'}"
-                        th:attr="data-current-page=${currentPage}"
-                        onclick="locationToTab('latest', this.getAttribute('data-current-page'))"
-
-                />
-                <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6 space-y-7">
+                        checked="checked"/>
+                <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6 space-y-10 py-10">
                     <div class="overflow-x-auto">
                         <table class="table">
                             <thead>
@@ -118,18 +114,15 @@
                     </div>
                 </div>
 
-                <!--인기 악보 (댓글이 가장 많은 코드)-->
+                <!--인기 악보-->
                 <input
                         type="radio"
                         name="my_tabs_2"
                         role="tab"
                         class="tab"
                         aria-label="인기 악보"
-                        th:checked="${activeTab == 'popular'}"
-                        th:attr="data-current-page=${currentPage}"
-                        onclick="locationToTab('popular', this.getAttribute('data-current-page'))"
                 />
-                <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6 space-y-7">
+                <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6 space-y-10 py-10">
                     <div class="overflow-x-auto">
                         <table class="table">
                             <thead>
@@ -181,15 +174,10 @@
                         </button>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
-
-    <script>
-        function locationToTab(tab, currentPage) {
-            window.location.href = `/list?activeTab=${tab}&page=${currentPage}`;
-        }
-    </script>
 </div>
 </body>
 </html>
