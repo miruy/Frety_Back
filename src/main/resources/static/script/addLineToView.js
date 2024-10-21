@@ -7,8 +7,27 @@ function addLineToView(line) {
     const syllables = line.split('');
 
     const lineData = [];
-    syllables.forEach(syllable => {
 
+    // 공백 10개 추가 (앞쪽)
+    for (let i = 0; i < 10; i++) {
+        const blankSyllable = {
+            text: ' ',
+            chord: null,
+        };
+        lineData.push(blankSyllable);
+
+        // 공백 음절을 span으로 생성
+        const syllableSpan = document.createElement('span');
+        syllableSpan.className = 'relative hover:bg-green-700 hover:bg-opacity-40 cursor-pointer inline-block tracking-wide';
+        syllableSpan.innerHTML = '&nbsp;&nbsp;&nbsp;'; // 공백 처리
+
+        // 앞 10개 공백 음절 클릭
+        clickSyllable(syllableSpan, blankSyllable);
+
+        lineContainer.appendChild(syllableSpan);
+    }
+
+    syllables.forEach(syllable => {
         // 각 음절을 span으로 생성
         const syllableSpan = document.createElement('span');
         syllableSpan.className = 'relative hover:bg-green-700 hover:bg-opacity-40 cursor-pointer inline-block tracking-wide';
@@ -21,15 +40,37 @@ function addLineToView(line) {
         };
 
         // 한 음절 클릭
-        clickSyllable(syllableSpan, syllableObject)
+        clickSyllable(syllableSpan, syllableObject);
 
         // 한 음절-코드(객체-배열)로 파싱된 데이터 추가
         lineData.push(syllableObject);
         lineContainer.appendChild(syllableSpan);
     });
 
+    // 공백 10개 추가 (뒤쪽)
+    for (let i = 0; i < 10; i++) {
+        const blankSyllable = {
+            text: ' ',
+            chord: null,
+        };
+        lineData.push(blankSyllable);
+
+        // 공백 음절을 span으로 생성
+        const syllableSpan = document.createElement('span');
+        syllableSpan.className = 'relative hover:bg-green-700 hover:bg-opacity-40 cursor-pointer inline-block tracking-wide';
+        syllableSpan.innerHTML = '&nbsp;&nbsp;&nbsp;'; // 공백 처리
+
+        // 뒤 10개 공백 음절 클릭
+        clickSyllable(syllableSpan, blankSyllable);
+
+        lineContainer.appendChild(syllableSpan);
+    }
+
+    // 캡션달기
+//    addCaption(lineContainer, lineData);
+
     // 한 행 삭제 버튼
-    removeLine(lineContainer, lineData)
+    removeLine(lineContainer, lineData);
 
     // 가사 데이터 추가
     lyricsData.push(lineData);
